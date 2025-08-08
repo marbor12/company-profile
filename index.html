@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>idSpora - Platform Pelatihan & Webinar Terdepan di Indonesia</title>
+    <meta
+      name="description"
+      content="idSpora adalah platform pelatihan dan webinar inovatif untuk pemberdayaan talenta lokal. Dapatkan akses ke live webinars, training profesional, dan mini workshops dengan expert terbaik."
+    />
+    <meta
+      name="keywords"
+      content="pelatihan online indonesia, webinar profesional, skill development, corporate training, digital learning, teknologi pendidikan"
+    />
+    <meta name="author" content="idSpora" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="idSpora - Platform Pelatihan & Webinar Terdepan"
+    />
+    <meta
+      property="og:description"
+      content="Bergabung dengan platform pembelajaran digital terdepan di Indonesia. Live webinars, training, dan workshops untuk pengembangan skill profesional."
+    />
+    <meta property="og:image" content="public/images/hero-training.png" />
+    <meta property="og:url" content="https://idspora.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="idSpora - Platform Pelatihan & Webinar"
+    />
+    <meta
+      name="twitter:description"
+      content="Platform pembelajaran digital terdepan untuk pengembangan talenta Indonesia"
+    />
+    <meta name="twitter:image" content="public/images/hero-training.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-yellow: #f4c430;
+        --dark-blue: #2c3e50;
+        --light-cream: #fdf6e3;
+        --section-spacing: 100px;
+      }
+
+      body {
+        background: linear-gradient(
+          135deg,
+          var(--primary-yellow) 0%,
+          #ffd700 100%
+        );
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+      }
+
+      .main-container {
+        background: var(--light-cream);
+        border-radius: 20px 20px 0 0;
+        margin: 20px 20px 0 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .content-container {
+        background: var(--light-cream);
+        margin: 0;
+        overflow: hidden;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: transparent;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(244, 196, 48, 0.1);
+      }
+
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        z-index: 10;
+      }
+
+      .navbar-brand img {
+        height: 70px;
+        width: auto;
+        transition: all 0.3s ease;
+        margin: -15px 0;
+      }
+
+      .navbar-brand:hover img {
+        transform: scale(1.05);
+      }
+
+      .navbar-nav .nav-link {
+        color: var(--dark-blue) !important;
+        font-weight: 500;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--primary-yellow);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link.active::after {
+        width: 100%;
+      }
+
+      .btn-contact {
+        background: var(--dark-blue);
+        color: white;
+        border-radius: 25px;
+        padding: 10px 25px;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .btn-contact:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Hero Carousel Section */
+      .hero-section {
+        padding: 80px 0;
+        background: linear-gradient(
+          135deg,
+          rgba(244, 196, 48, 0.05),
+          rgba(255, 215, 0, 0.05)
+        );
+      }
+
+      .hero-section .carousel-item {
+        transition: transform 0.8s ease-in-out;
+      }
+
+      .logo {
+        width: 250px;
+        margin-top: -80px;
+        animation: fadeInLeft 1s ease;
+      }
+
+      .img-fluid-gambar {
+        width: 150%;
+        transform: translateX(-200px);
+        animation: fadeInRight 1s ease;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        color: var(--dark-blue);
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.8rem;
+        color: var(--dark-blue);
+        margin-bottom: 30px;
+      }
+
+      .subtitle {
+        font-size: 1.8rem;
+        color: var(--dark-blue);
+        margin-bottom: 30px;
+        padding: 0px;
+        margin-top: -50px;
+        animation: fadeInUp 1s ease 0.3s both;
+      }
+
+      .yellow {
+        border-radius: 10px;
+        display: inline-block;
+        color: #ebbc00;
+        font-weight: bold;
+      }
+
+      .highlight-yellow {
+        background-color: var(--primary-yellow);
+        padding: 5px 15px;
+        font-weight: bold;
+        border-radius: 10px;
+        display: inline-block;
+      }
+
+      .btn-find {
+        background: var(--dark-blue);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        animation: fadeInUp 1s ease 0.6s both;
+      }
+
+      .btn-find:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-image {
+        position: relative;
+      }
+
+      .floating-card {
+        position: absolute;
+        background: white;
+        padding: 15px 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        z-index: 10;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .floating-card-1 {
+        top: 20%;
+        right: -10%;
+      }
+
+      .floating-card-2 {
+        bottom: 30%;
+        right: -5%;
+        animation-delay: -1.5s;
+      }
+
+      .profile-pics {
+        display: flex;
+        margin-left: 10px;
+      }
+
+      .profile-pic {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-left: -8px;
+      }
+
+      .count-badge {
+        background: var(--primary-yellow);
+        color: var(--dark-blue);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: -8px;
+      }
+
+      /* Video Recap Section */
+      .video-recap-section {
+        padding: 60px 0;
+        background: white;
+        position: relative;
+      }
+
+      .video-recap-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(244, 196, 48, 0.3),
+          transparent
+        );
+      }
+
+      .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        overflow: hidden;
+        border-radius: 20px;
+        border: 1px solid rgba(244, 196, 48, 0.3);
+        background: transparent;
+        margin: 0 auto;
+      }
+
+      .video-container img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        border-radius: 20px;
+      }
+
+      .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .video-overlay:hover {
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .play-button {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-yellow);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--dark-blue);
+        transition: all 0.3s ease;
+      }
+
+      .play-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 30px rgba(244, 196, 48, 0.4);
+      }
+
+      /* Stats Section */
+      .stats-section {
+        background: var(--dark-blue);
+        color: white;
+        padding: 40px 0;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 15px;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--primary-yellow);
+      }
+
+      .stats-section .h3 {
+        color: var(--primary-yellow) !important;
+        font-weight: bold;
+        font-size: 3rem !important;
+        margin-bottom: 10px !important;
+      }
+
+      .stats-section small {
+        color: #ffffff !important;
+        opacity: 0.9;
+        font-size: 1.1rem !important;
+        font-weight: 500;
+      }
+
+      .stats-section .col-md-3 {
+        margin-bottom: 15px;
+      }
+
+      /* What We Offer Section */
+      .insurance-types-section {
+        background: var(--light-cream);
+        padding: var(--section-spacing) 0;
+        position: relative;
+      }
+
+      .insurance-types-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(244, 196, 48, 0.3),
+          transparent
+        );
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--dark-blue);
+      }
+
+      .highlight-white {
+        background-color: white;
+        padding: 5px 15px;
+        font-weight: bold;
+        border-radius: 10px;
+        display: inline-block;
+      }
+
+      .insurance-card {
+        background: white;
+        padding: 40px 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        height: 100%;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(244, 196, 48, 0.1);
+      }
+
+      .insurance-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 25px 50px rgba(244, 196, 48, 0.2);
+      }
+
+      .insurance-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-yellow);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 2rem;
+        color: var(--dark-blue);
+        transition: all 0.4s ease;
+      }
+
+      .insurance-card:hover .insurance-icon {
+        animation: pulse 1s infinite;
+        background: linear-gradient(45deg, var(--primary-yellow), #ffd700);
+      }
+
+      /* Gallery Section */
+      .gallery-section {
+        padding: var(--section-spacing) 0;
+        background: white;
+        position: relative;
+      }
+
+      .gallery-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(244, 196, 48, 0.3),
+          transparent
+        );
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        height: 300px;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(244, 196, 48, 0.2);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.4s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent 50%,
+          rgba(0, 0, 0, 0.8) 100%
+        );
+        opacity: 0;
+        transition: all 0.4s ease;
+        display: flex;
+        align-items: flex-end;
+        padding: 20px;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      .gallery-content {
+        color: white;
+        width: 100%;
+      }
+
+      .gallery-content h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .gallery-content p {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        opacity: 0.9;
+      }
+
+      .gallery-content .badge {
+        font-size: 0.8rem;
+      }
+
+      /* Experts Section */
+      .agents-section {
+        padding: var(--section-spacing) 0;
+        background: white;
+        position: relative;
+      }
+
+      .agents-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(244, 196, 48, 0.3),
+          transparent
+        );
+      }
+
+      .agent-card,
+      .card-wrapper {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        text-align: center;
+        min-width: 280px;
+        flex: 0 0 280px;
+        margin: 0;
+      }
+
+      .agent-card:hover,
+      .card-wrapper:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(244, 196, 48, 0.12);
+      }
+
+      /* Horizontal Carousel Styles for Experts */
+      .experts-carousel-container {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        padding: 30px 0 50px 0;
+      }
+
+      .experts-carousel-track {
+        display: flex;
+        gap: 40px;
+        animation: scroll-experts 15s linear infinite;
+        will-change: transform;
+        backface-visibility: hidden;
+        perspective: 1000px;
+      }
+
+      .experts-carousel-track:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes scroll-experts {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-280px * 5 - 160px));
+        }
+      }
+
+      .experts-item-wrapper {
+        flex: 0 0 280px;
+      }
+
+      .agent-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--primary-yellow);
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .agent-card:hover .agent-photo,
+      .card-wrapper:hover .agent-photo {
+        transform: scale(1.1);
+        border-color: #ffd700;
+      }
+
+      .social-links a {
+        color: var(--dark-blue);
+        margin: 0 5px;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--primary-yellow);
+      }
+
+      /* News Section */
+      .news-section {
+        padding: var(--section-spacing) 0;
+        background: var(--light-cream);
+        position: relative;
+      }
+
+      .news-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(244, 196, 48, 0.3),
+          transparent
+        );
+      }
+
+      .news-card {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        height: 100%;
+      }
+
+      .news-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      .news-card img {
+        border-radius: 10px;
+        transition: all 0.4s ease;
+      }
+
+      .news-card:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Testimonials Section */
+      .testimonials-section {
+        padding: var(--section-spacing) 0;
+        background: white;
+        position: relative;
+      }
+
+      .testimonials-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(244, 196, 48, 0.3),
+          transparent
+        );
+      }
+
+      .testimonial-card {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        position: relative;
+      }
+
+      .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        font-size: 4rem;
+        color: var(--primary-yellow);
+        opacity: 0.3;
+        font-family: serif;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(244, 196, 48, 0.2);
+      }
+
+      .testimonial-photo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--primary-yellow);
+      }
+
+      /* Footer */
+      .footer-section {
+        background: var(--dark-blue) !important;
+        color: white;
+        padding: 30px 0 20px;
+        position: relative;
+      }
+
+      .footer-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary-yellow),
+          transparent
+        );
+      }
+
+      /* WhatsApp Floating Button */
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: white;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .whatsapp-float:hover {
+        background-color: #128c7e;
+        transform: scale(1.1);
+        color: white;
+        text-decoration: none;
+      }
+
+      .whatsapp-float i {
+        margin-top: 4px;
+      }
+
+      /* FAQ Section */
+      .faq-section {
+        padding: var(--section-spacing) 0;
+        background: var(--light-cream);
+        position: relative;
+      }
+
+      .faq-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(244, 196, 48, 0.3),
+          transparent
+        );
+      }
+
+      .accordion-button {
+        background-color: white;
+        border: 1px solid rgba(244, 196, 48, 0.2);
+        color: var(--dark-blue);
+        font-weight: 600;
+      }
+
+      .accordion-button:not(.collapsed) {
+        background-color: var(--primary-yellow);
+        color: var(--dark-blue);
+        border-color: var(--primary-yellow);
+      }
+
+      .accordion-button:focus {
+        box-shadow: 0 0 0 0.25rem rgba(244, 196, 48, 0.25);
+      }
+
+      .accordion-body {
+        background-color: white;
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        border-top: none;
+      }
+
+      /* Animations */
+      @keyframes fadeInLeft {
+        from {
+          transform: translateX(-100px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          transform: translateX(100px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        :root {
+          --section-spacing: 60px;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.4rem;
+        }
+
+        .subtitle {
+          font-size: 1.4rem;
+        }
+
+        .floating-card {
+          position: static;
+          margin: 10px 0;
+          animation: none;
+        }
+
+        .main-container {
+          margin: 10px 10px 0 10px;
+        }
+
+        .img-fluid-gambar {
+          width: 100%;
+          transform: translateX(0);
+        }
+
+        .card-wrapper {
+          min-width: 80%;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .video-container {
+          max-height: 300px;
+          aspect-ratio: 16/9;
+        }
+
+        .play-button {
+          width: 60px;
+          height: 60px;
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"
+            ><img
+              src="public/images/logo idspora_nobg_outlined.png"
+              alt="idSpora Logo"
+          /></a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-4">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="products.html">Product</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="reviews.html">Review</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="news.html">News</a>
+              </li>
+            </ul>
+            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Carousel Section -->
+      <section class="hero-section">
+        <div
+          id="heroCarousel"
+          class="carousel slide"
+          data-bs-ride="carousel"
+          data-bs-interval="4000"
+        >
+          <div class="carousel-inner">
+            <!-- Slide 1 - Main idSpora -->
+            <div class="carousel-item active">
+              <div class="container">
+                <div class="row align-items-center">
+                  <div class="col-lg-6">
+                    <img
+                      class="logo"
+                      src="public/images/idspora.svg"
+                      alt="idSpora Logo"
+                    />
+                    <h2 class="subtitle">
+                      <span class="yellow">Belajar</span> Tanpa Batas, <br />
+                      and <span class="yellow">Berkembang</span> Tanpa Henti
+                    </h2>
+                    <p class="text-muted mb-4">
+                      idSpora adalah platform pelatihan dan webinar inovatif
+                      yang berfokus pada pemberdayaan talenta lokal melalui
+                      pembelajaran berbasis teknologi. Dengan visi untuk menjadi
+                      platform terdepan di Indonesia, idSpora menggabungkan
+                      teknologi terbaru dan tren industri untuk menciptakan
+                      ekosistem pembelajaran yang berkelanjutan, inklusif, dan
+                      relevam di era digital
+                    </p>
+                    <button
+                      class="btn-find"
+                      onclick="window.open('https://wa.me/628989260731', '_blank')"
+                    >
+                      GET FREE CONSULTATION
+                    </button>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="hero-image text-center position-relative">
+                      <img
+                        src="property/gambar.png"
+                        alt="Learning Platform"
+                        class="img-fluid"
+                      />
+
+                      <div class="floating-card floating-card-1">
+                        <div class="d-flex align-items-center">
+                          <div>
+                            <strong>500+ Participants</strong>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="floating-card floating-card-2">
+                        <div class="d-flex align-items-center">
+                          <div>
+                            <strong>20+ Mitra</strong>
+                          </div>
+                          <div class="profile-pics">
+                            <img
+                              src="property/pttelkom.jpeg"
+                              class="profile-pic"
+                              alt="Partner 1"
+                            />
+                            <img
+                              src="property/padepokan79.png"
+                              class="profile-pic"
+                              alt="Partner 2"
+                            />
+                            <img
+                              src="property/ableid.png"
+                              class="profile-pic"
+                              alt="Partner 3"
+                            />
+                            <img
+                              src="property/fit.jpg"
+                              class="profile-pic"
+                              alt="Partner 4"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 - Live Webinars -->
+            <div class="carousel-item">
+              <div class="container">
+                <div class="row align-items-center">
+                  <div class="col-lg-6">
+                    <h1 class="hero-title">
+                      LIVE<br />
+                      <span class="highlight-yellow">WEBINARS</span>
+                    </h1>
+                    <h2 class="hero-subtitle">
+                      Real-Time Insights Through Live Discussions
+                    </h2>
+                    <p class="text-muted mb-4">
+                      Temukan inspirasi baru di webinar interaktif. Dapatkan
+                      wawasan terbaru dan perluas jaringan bersama peserta
+                      lainnya
+                    </p>
+                    <button
+                      class="btn-find"
+                      onclick="window.open('https://wa.me/628989260731', '_blank')"
+                    >
+                      JOIN NEXT WEBINAR
+                    </button>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="hero-image text-center position-relative">
+                      <img
+                        src="property/webinar.jpg"
+                        alt="Live Webinar"
+                        class="img-fluid"
+                      />
+
+                      <div class="floating-card floating-card-1">
+                        <div class="text-center">
+                          <div class="h4 text-success mb-1">LIVE</div>
+                          <small><strong>Webinar Berlangsung</strong></small>
+                        </div>
+                      </div>
+
+                      <div class="floating-card floating-card-2">
+                        <div class="text-center">
+                          <div class="h4 text-primary mb-1">500+</div>
+                          <small><strong>Peserta Online</strong></small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 - Training Programs -->
+            <div class="carousel-item">
+              <div class="container">
+                <div class="row align-items-center">
+                  <div class="col-lg-6">
+                    <h1 class="hero-title">
+                      <span class="highlight-yellow">TRAINING</span>
+                      and
+                      <span class="highlight-yellow">MINI WORKSHOP</span>
+                    </h1>
+                    <h2 class="hero-subtitle">
+                      Learn smart, practice fast, grow deeper.
+                    </h2>
+                    <p class="text-muted mb-4">
+                      Ikuti program training dan mini workshop. Tingkatkan
+                      kompetensi Anda dengan kurikulum yang disesuaikan dengan
+                      kebutuhan industri.
+                    </p>
+                    <button
+                      class="btn-find"
+                      onclick="window.open('https://wa.me/628989260731', '_blank')"
+                    >
+                      VIEW TRAINING PROGRAMS
+                    </button>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="hero-image text-center position-relative">
+                      <img
+                        src="property/training.jpg"
+                        alt="Training Program"
+                        class="img-fluid"
+                      />
+
+                      <!-- <div class="floating-card floating-card-1">
+                        <div class="text-center">
+                          <div class="h4 text-warning mb-1">50+</div>
+                          <small><strong>Program Training</strong></small>
+                        </div>
+                      </div> -->
+
+                      <!-- <div class="floating-card floating-card-2">
+                        <div class="text-center">
+                          <div class="h4 text-info mb-1">95%</div>
+                          <small><strong>Success Rate</strong></small>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Content Container (Full Width) -->
+    <div class="content-container">
+      <!-- Video Recap Section -->
+      <section class="video-recap-section">
+        <div class="container-fluid px-0">
+          <div class="text-center mb-5 px-3">
+            <h2 class="section-title mb-3">
+              Our <span class="highlight-yellow">Journey</span> So Far
+            </h2>
+            <p class="text-muted">
+              Lihat perjalanan kami dalam memberdayakan talenta Indonesia
+              melalui pembelajaran digital
+            </p>
+          </div>
+
+          <div class="video-container">
+            <img
+              src="public/images/hero-training.png"
+              alt="Video Recap"
+              class="img-fluid"
+            />
+            <div class="video-overlay" onclick="playVideo()">
+              <div class="play-button">
+                <i class="fas fa-play"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div
+              class="col-lg-3 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <h6>Peserta Pelatihan</h6>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <h6>Program Pelatihan</h6>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="stat-item">
+                <div class="stat-number">20+</div>
+                <h6>Mitra Strategis</h6>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="stat-item">
+                <div class="stat-number">3+</div>
+                <h6>Tahun Beroperasi</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What We Offer Section -->
+      <section class="insurance-types-section">
+        <div class="container text-center">
+          <h2 class="section-title mb-2" data-aos="fade-up">
+            <span class="highlight-yellow">What We</span> Offer
+          </h2>
+          <div class="row justify-content-center mt-5">
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="insurance-card">
+                <div class="insurance-icon mb-3">
+                  <i class="fas fa-video"></i>
+                </div>
+                <h4>Live Webinars</h4>
+                <p>Real-Time Insights Through Live Discussions</p>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="insurance-card">
+                <div class="insurance-icon mb-3">
+                  <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h4>Training</h4>
+                <p>
+                  Structured learning paths to build and advance your expertise.
+                </p>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="insurance-card">
+                <div class="insurance-icon mb-3">
+                  <i class="fas fa-tools"></i>
+                </div>
+                <h4>Mini Workshops</h4>
+                <p>Hands-on sessions designed for quick, practical learning.</p>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="insurance-card">
+                <div class="insurance-icon mb-3">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                <h4>E-Learning Courses</h4>
+                <p>
+                  Flexible, on-demand courses you can access anytime, anywhere.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Event Gallery Section -->
+      <section class="gallery-section">
+        <div class="container">
+          <h2 class="text-center section-title mb-5" data-aos="fade-up">
+            Our Event <span class="highlight-yellow">Gallery</span>
+          </h2>
+          <p
+            class="text-center text-muted mb-5"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            Lihat momen-momen berharga dari event dan pelatihan yang telah kami
+            selenggarakan
+          </p>
+
+          <div class="row">
+            <!-- Gallery Item 1 -->
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="gallery-item">
+                <img
+                  src="public/images/workshop-session.png"
+                  alt="Workshop AI untuk UMKM"
+                  class="img-fluid"
+                />
+                <div class="gallery-overlay">
+                  <div class="gallery-content">
+                    <h5>Workshop AI untuk UMKM</h5>
+                    <p>Jakarta, Januari 2025</p>
+                    <span class="badge bg-primary">50+ Peserta</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 2 -->
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="gallery-item">
+                <img
+                  src="public/images/corporate-event.png"
+                  alt="Corporate Training Digital Marketing"
+                  class="img-fluid"
+                />
+                <div class="gallery-overlay">
+                  <div class="gallery-content">
+                    <h5>Corporate Training Digital Marketing</h5>
+                    <p>Surabaya, Desember 2024</p>
+                    <span class="badge bg-success">75+ Peserta</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 3 -->
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="gallery-item">
+                <img
+                  src="public/images/training-roi.png"
+                  alt="Data Science Bootcamp"
+                  class="img-fluid"
+                />
+                <div class="gallery-overlay">
+                  <div class="gallery-content">
+                    <h5>Data Science Bootcamp</h5>
+                    <p>Bandung, November 2024</p>
+                    <span class="badge bg-warning">30+ Peserta</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 4 -->
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="gallery-item">
+                <img
+                  src="public/images/team-building.png"
+                  alt="Team Building Workshop"
+                  class="img-fluid"
+                />
+                <div class="gallery-overlay">
+                  <div class="gallery-content">
+                    <h5>Team Building Workshop</h5>
+                    <p>Yogyakarta, Oktober 2024</p>
+                    <span class="badge bg-info">40+ Peserta</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 5 -->
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              <div class="gallery-item">
+                <img
+                  src="public/images/leadership-training.png"
+                  alt="Leadership Development"
+                  class="img-fluid"
+                />
+                <div class="gallery-overlay">
+                  <div class="gallery-content">
+                    <h5>Leadership Development</h5>
+                    <p>Medan, September 2024</p>
+                    <span class="badge bg-danger">60+ Peserta</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 6 -->
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              <div class="gallery-item">
+                <img
+                  src="public/images/certification.png"
+                  alt="Certification Ceremony"
+                  class="img-fluid"
+                />
+                <div class="gallery-overlay">
+                  <div class="gallery-content">
+                    <h5>Certification Ceremony</h5>
+                    <p>Jakarta, Agustus 2024</p>
+                    <span class="badge bg-secondary">100+ Graduates</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-4" data-aos="fade-up">
+            <button
+              class="btn btn-dark btn-lg"
+              onclick="window.open('https://wa.me/628989260731', '_blank')"
+            >
+              <i class="fas fa-calendar-plus me-2"></i>Join Upcoming Events
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experts Section -->
+      <section class="agents-section">
+        <div class="container text-center">
+          <h2 class="section-title mt-5 mb-5" data-aos="fade-up">
+            Meet Our <span class="highlight-yellow">Experts</span>
+          </h2>
+
+          <div class="experts-carousel-container" data-aos="fade-up">
+            <div class="experts-carousel-track">
+              <!-- Expert 1 -->
+              <div class="experts-item-wrapper">
+                <div class="agent-card">
+                  <img
+                    src="public/images/trainer-sarah.png"
+                    class="agent-photo mb-3"
+                    alt="Robby Hendriyanto"
+                  />
+                  <h5>Robby Hendriyanto, S.T., M.T</h5>
+                  <p class="text-muted">Technology Expert</p>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <!-- Expert 2 -->
+              <div class="experts-item-wrapper">
+                <div class="card-wrapper">
+                  <img
+                    src="public/images/trainer-david.png"
+                    class="agent-photo mb-3"
+                    alt="Heru Nugroho"
+                  />
+                  <h5>Assoc.Prof.Dr.Heru Nugroho, S.Si., M.T</h5>
+                  <p class="text-muted">Research & Development</p>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <!-- Expert 3 -->
+              <div class="experts-item-wrapper">
+                <div class="card-wrapper">
+                  <img
+                    src="public/images/trainer-michael.png"
+                    class="agent-photo mb-3"
+                    alt="Yusuf Ramadhan"
+                  />
+                  <h5>M.Yusuf Ramadhan, S.A.B., M.A.B</h5>
+                  <p class="text-muted">Business Strategy</p>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <!-- Expert 4 -->
+              <div class="experts-item-wrapper">
+                <div class="card-wrapper">
+                  <img
+                    src="public/images/trainer-emily.png"
+                    class="agent-photo mb-3"
+                    alt="Erna Hikmawati"
+                  />
+                  <h5>Dr.Erna Hikmawati, S.Kom., M.Kom</h5>
+                  <p class="text-muted">Digital Innovation</p>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <!-- Expert 5 -->
+              <div class="experts-item-wrapper">
+                <div class="agent-card">
+                  <img
+                    src="public/images/trainer-sarah.png"
+                    class="agent-photo mb-3"
+                    alt="Wardani Muhamad"
+                  />
+                  <h5>Dr. Wardani Muhamad, S.T., M.T.</h5>
+                  <p class="text-muted">Engineering Expert</p>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Duplicate cards for seamless loop -->
+              <!-- Expert 1 (duplicate) -->
+              <div class="experts-item-wrapper">
+                <div class="agent-card">
+                  <img
+                    src="public/images/trainer-sarah.png"
+                    class="agent-photo mb-3"
+                    alt="Robby Hendriyanto"
+                  />
+                  <h5>Robby Hendriyanto, S.T., M.T</h5>
+                  <p class="text-muted">Technology Expert</p>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <!-- Expert 2 (duplicate) -->
+              <div class="experts-item-wrapper">
+                <div class="card-wrapper">
+                  <img
+                    src="public/images/trainer-david.png"
+                    class="agent-photo mb-3"
+                    alt="Heru Nugroho"
+                  />
+                  <h5>Assoc.Prof.Dr.Heru Nugroho, S.Si., M.T</h5>
+                  <p class="text-muted">Research & Development</p>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+              <!-- Expert 3 (duplicate) -->
+              <div class="experts-item-wrapper">
+                <div class="card-wrapper">
+                  <img
+                    src="public/images/trainer-michael.png"
+                    class="agent-photo mb-3"
+                    alt="Yusuf Ramadhan"
+                  />
+                  <h5>M.Yusuf Ramadhan, S.A.B., M.A.B</h5>
+                  <p class="text-muted">Business Strategy</p>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- News Section -->
+      <section class="news-section">
+        <div class="container">
+          <h2 class="text-center section-title mb-5" data-aos="fade-up">
+            Read Our Latest <span class="highlight-yellow">News</span>
+          </h2>
+          <div class="row">
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="news-card">
+                <img
+                  src="public/images/workshop-session.png"
+                  alt="Workshop AI UMKM"
+                  class="img-fluid mb-3"
+                />
+                <h5>Workshop Jago AI UMKM</h5>
+                <p class="text-muted">
+                  Pelatihan intensif untuk UMKM dalam memanfaatkan teknologi AI
+                  untuk meningkatkan produktivitas bisnis dan daya saing di era
+                  digital...
+                </p>
+                <small class="text-muted">15 Januari 2025</small>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="news-card">
+                <img
+                  src="public/images/corporate-event.png"
+                  alt="Digital Marketing"
+                  class="img-fluid mb-3"
+                />
+                <h5>Webinar Digital Marketing 2025</h5>
+                <p class="text-muted">
+                  Strategi pemasaran digital terbaru untuk menghadapi tantangan
+                  bisnis di era digital dan meningkatkan brand awareness...
+                </p>
+                <small class="text-muted">12 Januari 2025</small>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="news-card">
+                <img
+                  src="public/images/training-roi.png"
+                  alt="Data Science"
+                  class="img-fluid mb-3"
+                />
+                <h5>Bootcamp Data Science</h5>
+                <p class="text-muted">
+                  Program intensif 3 bulan untuk menguasai data science dari
+                  dasar hingga advanced dengan praktek real project...
+                </p>
+                <small class="text-muted">10 Januari 2025</small>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="news-card">
+                <img
+                  src="public/images/certification.png"
+                  alt="Cybersecurity"
+                  class="img-fluid mb-3"
+                />
+                <h5>Training Cybersecurity</h5>
+                <p class="text-muted">
+                  Pelatihan keamanan siber untuk melindungi aset digital
+                  perusahaan dari ancaman cyber dan serangan malware...
+                </p>
+                <small class="text-muted">8 Januari 2025</small>
+              </div>
+            </div>
+          </div>
+          <div class="text-center" data-aos="fade-up">
+            <a href="news.html">
+              <button class="btn btn-dark">Read All</button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="testimonials-section">
+        <div class="container">
+          <h2 class="text-center section-title mb-5" data-aos="fade-up">
+            What <span class="highlight-white">People Says</span> About Us
+          </h2>
+          <div class="row">
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="testimonial-card">
+                <div class="d-flex align-items-center mb-3">
+                  <img
+                    src="public/images/trainer-emily.png"
+                    alt="Maria Sari"
+                    class="testimonial-photo me-3"
+                  />
+                  <div>
+                    <h6>Maria Sari</h6>
+                    <small class="text-muted">CEO, Tech Startup</small>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                </div>
+                <p class="text-muted">
+                  "Platform idSpora sangat membantu tim kami dalam meningkatkan
+                  skill digital. Materi yang disajikan sangat praktis dan mudah
+                  dipahami."
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="testimonial-card">
+                <div class="d-flex align-items-center mb-3">
+                  <img
+                    src="public/images/trainer-david.png"
+                    alt="John Doe"
+                    class="testimonial-photo me-3"
+                  />
+                  <div>
+                    <h6>John Doe</h6>
+                    <small class="text-muted">Digital Marketing Manager</small>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                </div>
+                <p class="text-muted">
+                  "Webinar dan training di idSpora selalu update dengan tren
+                  terbaru. Sangat recommended untuk professional development."
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="text-center" data-aos="fade-up">
+            <a href="reviews.html">
+              <button class="btn btn-dark">View All</button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="faq-section">
+        <div class="container">
+          <h2 class="text-center section-title mb-5" data-aos="fade-up">
+            Frequently Asked <span class="highlight-yellow">Questions</span>
+          </h2>
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="accordion" id="faqAccordion" data-aos="fade-up">
+                <div class="accordion-item mb-3">
+                  <h2 class="accordion-header" id="faq1">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse1"
+                    >
+                      Apa itu idSpora dan bagaimana cara kerjanya?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapse1"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body">
+                      idSpora adalah platform pelatihan dan webinar digital yang
+                      menyediakan akses ke pembelajaran berkualitas dari para
+                      ahli industri. Kami menawarkan live webinars, training
+                      terstruktur, mini workshops, dan e-learning courses yang
+                      dapat diakses kapan saja.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                  <h2 class="accordion-header" id="faq2">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse2"
+                    >
+                      Apakah saya mendapat sertifikat setelah menyelesaikan
+                      pelatihan?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapse2"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body">
+                      Ya, setiap peserta yang menyelesaikan program pelatihan
+                      akan mendapatkan sertifikat digital yang dapat
+                      diverifikasi. Sertifikat ini diakui oleh industri dan
+                      dapat digunakan untuk pengembangan karir profesional Anda.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                  <h2 class="accordion-header" id="faq3">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse3"
+                    >
+                      Bagaimana cara mendaftar untuk webinar atau training?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapse3"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body">
+                      Anda dapat mendaftar melalui website kami atau menghubungi
+                      tim customer service melalui WhatsApp. Pilih program yang
+                      sesuai dengan kebutuhan Anda, lakukan pembayaran, dan Anda
+                      akan mendapatkan akses ke materi dan jadwal pelatihan.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                  <h2 class="accordion-header" id="faq4">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse4"
+                    >
+                      Apakah ada program khusus untuk perusahaan?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapse4"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body">
+                      Ya, kami menyediakan program corporate training yang dapat
+                      disesuaikan dengan kebutuhan spesifik perusahaan Anda.
+                      Program ini meliputi training karyawan, workshop tim, dan
+                      konsultasi pengembangan SDM dengan harga yang kompetitif.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                  <h2 class="accordion-header" id="faq5">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse5"
+                    >
+                      Berapa lama akses materi pelatihan tersedia?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapse5"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div class="accordion-body">
+                      Akses materi pelatihan tersedia selama 6 bulan untuk
+                      program reguler dan 12 bulan untuk program premium.
+                      Recording webinar dapat diakses selama 30 hari setelah
+                      sesi live berakhir.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 mb-4">
+              <a class="navbar-brand" href="index.html"
+                ><img
+                  src="public/images/logo idspora_nobg_dark.png"
+                  alt="idSpora Logo"
+              /></a>
+              <p class="text-light">
+                Empowering Lifelong Learning Through Innovation and
+                Collaboration.
+              </p>
+              <div class="social-links">
+                <a href="#" class="text-light me-3"
+                  ><i class="fab fa-tiktok"></i
+                ></a>
+                <a href="#" class="text-light me-3"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="text-light"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 mb-4 text-center">
+              <h6 class="text-white mb-3">Quick Links</h6>
+              <ul class="list-unstyled">
+                <li>
+                  <a
+                    href="index.html"
+                    class="text-light"
+                    style="text-decoration: none"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="products.html"
+                    class="text-light"
+                    style="text-decoration: none"
+                    >Portofolio</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="about.html"
+                    class="text-light"
+                    style="text-decoration: none"
+                    >About Us</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="reviews.html"
+                    class="text-light"
+                    style="text-decoration: none"
+                    >Review</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="news.html"
+                    class="text-light"
+                    style="text-decoration: none"
+                    >News</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 mb-4">
+              <h6 class="text-white mb-3">Newsletter</h6>
+              <p class="text-light">
+                Subscribe to get updates on latest training and webinar
+                schedules.
+              </p>
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your email"
+                />
+                <button
+                  class="btn"
+                  style="
+                    background: var(--primary-yellow);
+                    color: var(--dark-blue);
+                  "
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr class="mt-2 mb-2" style="border-color: #495057" />
+          <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+              <p class="text-light mb-2" style="font-size: 0.9rem">
+                &copy; 2024 idSpora. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href="https://wa.me/628989260731"
+      class="whatsapp-float"
+      target="_blank"
+      title="Chat with us on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+        offset: 100,
+      });
+
+      // Video Play Function
+      function playVideo() {
+        const videoContainer = document.querySelector(".video-container");
+        const videoEmbed = `
+                <video width="100%" height="100%" controls autoplay style="border-radius: 20px;">
+                    <source src="public/images/video-recap.mov" type="video/mp4">
+                    <p>Your browser does not support the video tag.</p>
+                </video>
+            `;
+        videoContainer.innerHTML = videoEmbed;
+      }
+
+      // Auto-only carousel functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        // Hero Carousel - Auto only
+        const heroCarousel = document.getElementById("heroCarousel");
+        const heroCarouselInstance = new bootstrap.Carousel(heroCarousel, {
+          interval: 4000, // 4 seconds
+          wrap: true,
+          pause: false, // Never pause
+        });
+
+        // Agents Carousel - Auto only
+        const agentsCarousel = document.getElementById("agentsCarousel");
+        const agentsCarouselInstance = new bootstrap.Carousel(agentsCarousel, {
+          interval: 4000, // 4 seconds
+          wrap: true,
+          pause: false, // Never pause
+        });
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

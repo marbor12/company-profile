@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reviews - idSpora</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-yellow: #f4c430;
+        --dark-blue: #2c3e50;
+        --light-cream: #fdf6e3;
+        --section-spacing: 100px;
+      }
+
+      body {
+        background: #ffffff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+      }
+
+      .main-container {
+        background: #ffffff;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      /* Navbar */
+      /* Navbar */
+      .navbar {
+        background: transparent;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(244, 196, 48, 0.1);
+      }
+
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        z-index: 10;
+      }
+
+      .navbar-brand img {
+        height: 70px;
+        width: auto;
+        transition: all 0.3s ease;
+        margin: -15px 0;
+      }
+
+      .navbar-brand:hover img {
+        transform: scale(1.05);
+      }
+
+      .navbar-nav .nav-link {
+        color: var(--dark-blue) !important;
+        font-weight: 500;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--primary-yellow);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link.active::after {
+        width: 100%;
+      }
+
+      .btn-contact {
+        background: var(--dark-blue);
+        color: white;
+        border-radius: 25px;
+        padding: 10px 25px;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .btn-contact:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Breadcrumb */
+      .breadcrumb {
+        background: transparent;
+        padding: 20px 0;
+      }
+
+      .breadcrumb-item a {
+        color: var(--dark-blue);
+        text-decoration: none;
+      }
+
+      .breadcrumb-item.active {
+        color: var(--primary-yellow);
+      }
+
+      /* Page Header */
+      .page-header {
+        padding: 60px 0;
+        background: linear-gradient(
+          135deg,
+          rgba(244, 196, 48, 0.05),
+          rgba(255, 215, 0, 0.05)
+        );
+        text-align: center;
+      }
+
+      .page-title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--dark-blue);
+        margin-bottom: 20px;
+      }
+
+      .page-subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .highlight-yellow {
+        background-color: var(--primary-yellow);
+        padding: 5px 15px;
+        font-weight: bold;
+        border-radius: 10px;
+        display: inline-block;
+      }
+
+      /* Overall Rating */
+      .section-spacing-sm {
+        padding: 60px 0;
+      }
+
+      .overall-rating-card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        border: 2px solid rgba(244, 196, 48, 0.1);
+      }
+
+      .overall-score {
+        font-size: 4rem;
+        font-weight: bold;
+        color: var(--primary-yellow);
+        line-height: 1;
+      }
+
+      .overall-stars {
+        font-size: 1.5rem;
+        color: #ffd700;
+      }
+
+      .rating-breakdown {
+        padding-left: 20px;
+      }
+
+      .rating-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        gap: 15px;
+      }
+
+      .rating-row span:first-child {
+        min-width: 60px;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .rating-row span:last-child {
+        min-width: 40px;
+        font-size: 0.9rem;
+        color: #666;
+        text-align: right;
+      }
+
+      .rating-bar {
+        flex: 1;
+        height: 8px;
+        background: #f0f0f0;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .rating-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary-yellow), #ffd700);
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+
+      /* Reviews Grid */
+      .reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 30px;
+      }
+
+      .review-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .review-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-yellow), #ffd700);
+      }
+
+      .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 15px;
+      }
+
+      .reviewer-photo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--primary-yellow);
+      }
+
+      .reviewer-name {
+        margin: 0;
+        font-weight: 600;
+        color: var(--dark-blue);
+      }
+
+      .reviewer-title {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .review-stars {
+        color: #ffd700;
+        font-size: 0.9rem;
+        margin-top: 5px;
+      }
+
+      .review-badge .badge {
+        font-size: 0.8rem;
+      }
+
+      .review-content p {
+        color: #555;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      .review-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      /* Filter Tabs */
+      .review-filters .nav-link {
+        border-radius: 25px;
+        margin: 0 5px;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        color: var(--dark-blue);
+      }
+
+      .review-filters .nav-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .review-filters .nav-link.active {
+        background: var(--primary-yellow);
+        color: var(--dark-blue);
+        border-color: var(--primary-yellow);
+      }
+
+      /* Write Review Section */
+      .write-review-card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        border: 2px solid rgba(244, 196, 48, 0.1);
+      }
+
+      .star-rating {
+        display: flex;
+        gap: 5px;
+        font-size: 1.5rem;
+        margin-top: 5px;
+      }
+
+      .star-rating i {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #ddd;
+      }
+
+      .star-rating i:hover {
+        transform: scale(1.2);
+      }
+
+      .load-more-btn {
+        transition: all 0.3s ease;
+        border-radius: 25px;
+        padding: 15px 30px;
+      }
+
+      .load-more-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Footer */
+      .footer-section {
+        background: var(--dark-blue) !important;
+        color: white;
+        padding: 60px 0 40px;
+        position: relative;
+      }
+
+      .footer-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary-yellow),
+          transparent
+        );
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .reviews-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .overall-rating-card {
+          padding: 25px;
+        }
+
+        .overall-score {
+          font-size: 3rem;
+        }
+
+        .rating-breakdown {
+          padding-left: 0;
+          margin-top: 20px;
+        }
+
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .main-container {
+          margin: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"
+            ><img
+              src="public/images/logo idspora_nobg_outlined.png"
+              alt="idSpora Logo"
+          /></a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-4">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="products.html">Product</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="reviews.html">Review</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="news.html">News</a>
+              </li>
+            </ul>
+            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Reviews</li>
+          </ol>
+        </div>
+      </nav>
+
+      <!-- Page Header -->
+      <section class="page-header">
+        <div class="container">
+          <h1 class="page-title" data-aos="fade-up">
+            Client <span class="highlight-yellow">Reviews</span>
+          </h1>
+          <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
+            Discover what our participants say about their transformative
+            learning experiences with idSpora.
+          </p>
+        </div>
+      </section>
+
+      <!-- Filter Tabs -->
+      <section class="section-spacing-sm">
+        <div class="container">
+          <div class="text-center mb-5" data-aos="fade-up">
+            <ul
+              class="nav nav-pills justify-content-center review-filters"
+              id="reviewTabs"
+            >
+              <li class="nav-item">
+                <a class="nav-link active" data-filter="all">All Reviews</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-filter="webinar">Webinar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-filter="training">Training</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-filter="workshop">Workshop</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Reviews Grid -->
+          <div class="reviews-grid" id="reviewsGrid">
+            <!-- Webinar Reviews -->
+            <div
+              class="review-item webinar"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="d-flex align-items-center">
+                    <img
+                      src="/placeholder.svg?height=60&width=60&text=Sarah"
+                      alt="Sarah Putri"
+                      class="reviewer-photo"
+                    />
+                    <div class="ms-3">
+                      <h6 class="reviewer-name">Sarah Putri</h6>
+                      <p class="reviewer-title">Digital Marketing Manager</p>
+                      <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-badge">
+                    <span class="badge bg-success"
+                      >Digital Marketing Webinar</span
+                    >
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p>
+                    "Webinar digital marketing di idSpora sangat insightful!
+                    Materi yang disampaikan sangat praktis dan langsung bisa
+                    diterapkan di pekerjaan. Speakernya juga sangat
+                    berpengalaman."
+                  </p>
+                </div>
+                <div class="review-footer">
+                  <small class="text-muted">2 minggu lalu</small>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="review-item training"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="d-flex align-items-center">
+                    <img
+                      src="/placeholder.svg?height=60&width=60&text=Budi"
+                      alt="Budi Santoso"
+                      class="reviewer-photo"
+                    />
+                    <div class="ms-3">
+                      <h6 class="reviewer-name">Budi Santoso</h6>
+                      <p class="reviewer-title">Software Developer</p>
+                      <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-badge">
+                    <span class="badge bg-info">Data Science Training</span>
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p>
+                    "Program training data science sangat komprehensif! Dari
+                    basic sampai advanced semua dicover dengan baik.
+                    Instrukturnya sabar dan materinya mudah dipahami."
+                  </p>
+                </div>
+                <div class="review-footer">
+                  <small class="text-muted">1 bulan lalu</small>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="review-item workshop"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="d-flex align-items-center">
+                    <img
+                      src="/placeholder.svg?height=60&width=60&text=Rina"
+                      alt="Rina Dewi"
+                      class="reviewer-photo"
+                    />
+                    <div class="ms-3">
+                      <h6 class="reviewer-name">Rina Dewi</h6>
+                      <p class="reviewer-title">UMKM Owner</p>
+                      <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-badge">
+                    <span class="badge bg-warning">AI for UMKM Workshop</span>
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p>
+                    "Workshop AI untuk UMKM sangat membantu! Sekarang saya bisa
+                    menggunakan AI tools untuk meningkatkan produktivitas bisnis
+                    saya. Terima kasih idSpora!"
+                  </p>
+                </div>
+                <div class="review-footer">
+                  <small class="text-muted">3 minggu lalu</small>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="review-item training"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="d-flex align-items-center">
+                    <img
+                      src="/placeholder.svg?height=60&width=60&text=Ahmad"
+                      alt="Ahmad Fauzi"
+                      class="reviewer-photo"
+                    />
+                    <div class="ms-3">
+                      <h6 class="reviewer-name">Ahmad Fauzi</h6>
+                      <p class="reviewer-title">IT Security Specialist</p>
+                      <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-badge">
+                    <span class="badge bg-danger">Cybersecurity Training</span>
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p>
+                    "Training cybersecurity sangat mendalam dan up-to-date
+                    dengan threat terbaru. Materi sangat relevan dengan
+                    pekerjaan sehari-hari. Hanya saja durasi bisa diperpanjang
+                    lagi."
+                  </p>
+                </div>
+                <div class="review-footer">
+                  <small class="text-muted">1 minggu lalu</small>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="review-item webinar"
+              data-aos="fade-up"
+              data-aos-delay="500"
+            >
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="d-flex align-items-center">
+                    <img
+                      src="/placeholder.svg?height=60&width=60&text=Lisa"
+                      alt="Lisa Maharani"
+                      class="reviewer-photo"
+                    />
+                    <div class="ms-3">
+                      <h6 class="reviewer-name">Lisa Maharani</h6>
+                      <p class="reviewer-title">Product Manager</p>
+                      <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-badge">
+                    <span class="badge bg-primary"
+                      >Product Management Webinar</span
+                    >
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p>
+                    "Webinar product management sangat inspiring! Banyak case
+                    study real yang dibagikan. Networking sessionnya juga bagus,
+                    bisa connect dengan PM lain dari berbagai industri."
+                  </p>
+                </div>
+                <div class="review-footer">
+                  <small class="text-muted">2 bulan lalu</small>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="review-item workshop"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="d-flex align-items-center">
+                    <img
+                      src="/placeholder.svg?height=60&width=60&text=Doni"
+                      alt="Doni Pratama"
+                      class="reviewer-photo"
+                    />
+                    <div class="ms-3">
+                      <h6 class="reviewer-name">Doni Pratama</h6>
+                      <p class="reviewer-title">Freelance Designer</p>
+                      <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-badge">
+                    <span class="badge bg-secondary"
+                      >UI/UX Design Workshop</span
+                    >
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p>
+                    "Workshop UI/UX design sangat hands-on! Langsung praktek
+                    bikin prototype dari awal sampai akhir. Mentornya juga
+                    memberikan feedback yang konstruktif untuk setiap peserta."
+                  </p>
+                </div>
+                <div class="review-footer">
+                  <small class="text-muted">6 minggu lalu</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Load More Button -->
+          <div class="text-center mt-5" data-aos="fade-up">
+            <button class="btn btn-outline-dark btn-lg load-more-btn">
+              <i class="fas fa-plus-circle me-2"></i>Load More Reviews
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Write Review Section -->
+      <section
+        class="section-spacing-sm"
+        style="background: var(--light-cream)"
+      >
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="write-review-card" data-aos="zoom-in">
+                <h3 class="text-center mb-4">Share Your Experience</h3>
+                <form class="review-form">
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="reviewerName" class="form-label"
+                        >Your Name *</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="reviewerName"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="reviewerTitle" class="form-label"
+                        >Job Title</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="reviewerTitle"
+                      />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="reviewerCompany" class="form-label"
+                        >Company</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="reviewerCompany"
+                      />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="serviceType" class="form-label"
+                        >Program Type *</label
+                      >
+                      <select class="form-control" id="serviceType" required>
+                        <option value="">Select program</option>
+                        <option value="webinar">Live Webinar</option>
+                        <option value="training">Training Program</option>
+                        <option value="workshop">Mini Workshop</option>
+                        <option value="elearning">E-Learning Course</option>
+                      </select>
+                    </div>
+                    <div class="col-12 mb-3">
+                      <label class="form-label">Rating *</label>
+                      <div class="star-rating">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                      </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                      <label for="reviewText" class="form-label"
+                        >Your Review *</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="reviewText"
+                        rows="4"
+                        required
+                        placeholder="Share your experience with idSpora..."
+                      ></textarea>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-dark btn-lg">
+                        <i class="fas fa-paper-plane me-2"></i>Submit Review
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 mb-4">
+              <a class="navbar-brand" href="index.html"
+                ><img
+                  src="public/images/logo idspora_nobg_dark.png"
+                  alt="idSpora Logo"
+                  style="height: 60px; width: auto"
+              /></a>
+              <p class="text-light mt-3">
+                Empowering Lifelong Learning Through Innovation and
+                Collaboration.
+              </p>
+              <div class="social-links">
+                <a href="#" class="text-light me-3"
+                  ><i class="fab fa-tiktok"></i
+                ></a>
+                <a href="#" class="text-light me-3"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="text-light"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 mb-4 text-center">
+              <h6 class="text-white mb-3">Quick Links</h6>
+              <ul class="list-unstyled">
+                <li>
+                  <a
+                    href="index.html"
+                    class="text-light"
+                    style="text-decoration: none"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="products.html"
+                    class="text-light"
+                    style="text-decoration: none"
+                    >Portofolio</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="about.html"
+                    class="text-light"
+                    style="text-decoration: none"
+                    >About Us</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="reviews.html"
+                    class="text-light"
+                    style="text-decoration: none"
+                    >Review</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="news.html"
+                    class="text-light"
+                    style="text-decoration: none"
+                    >News</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 mb-4">
+              <h6 class="text-white mb-3">Newsletter</h6>
+              <p class="text-light">
+                Subscribe to get updates on latest training and webinar
+                schedules.
+              </p>
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your email"
+                />
+                <button
+                  class="btn"
+                  style="
+                    background: var(--primary-yellow);
+                    color: var(--dark-blue);
+                  "
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr class="mt-2 mb-2" style="border-color: #495057" />
+          <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+              <p class="text-light mb-2" style="font-size: 0.9rem">
+                &copy; 2024 idSpora. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href="https://wa.me/628989260731"
+      class="whatsapp-float"
+      target="_blank"
+      title="Chat with us on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+      });
+
+      // Review Filter Functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const filterBtns = document.querySelectorAll(
+          ".review-filters .nav-link"
+        );
+        const reviewItems = document.querySelectorAll(".review-item");
+
+        filterBtns.forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Remove active class from all buttons
+            filterBtns.forEach((b) => b.classList.remove("active"));
+            // Add active class to clicked button
+            this.classList.add("active");
+
+            const filter = this.getAttribute("data-filter");
+
+            reviewItems.forEach((item) => {
+              if (filter === "all" || item.classList.contains(filter)) {
+                item.style.display = "block";
+                item.style.animation = "fadeInUp 0.5s ease forwards";
+              } else {
+                item.style.display = "none";
+              }
+            });
+          });
+        });
+
+        // Star Rating Functionality
+        const stars = document.querySelectorAll(".star-rating i");
+        let currentRating = 0;
+
+        stars.forEach((star) => {
+          star.addEventListener("mouseover", function () {
+            const rating = parseInt(this.getAttribute("data-rating"));
+            highlightStars(rating);
+          });
+
+          star.addEventListener("click", function () {
+            currentRating = parseInt(this.getAttribute("data-rating"));
+            highlightStars(currentRating);
+          });
+        });
+
+        document
+          .querySelector(".star-rating")
+          .addEventListener("mouseleave", function () {
+            highlightStars(currentRating);
+          });
+
+        function highlightStars(rating) {
+          stars.forEach((star, index) => {
+            if (index < rating) {
+              star.classList.remove("far");
+              star.classList.add("fas");
+              star.style.color = "#FFD700";
+            } else {
+              star.classList.remove("fas");
+              star.classList.add("far");
+              star.style.color = "#ddd";
+            }
+          });
+        }
+
+        // Load More Functionality
+        const loadMoreBtn = document.querySelector(".load-more-btn");
+        loadMoreBtn.addEventListener("click", function () {
+          // Simulate loading more reviews
+          this.innerHTML =
+            '<i class="fas fa-spinner fa-spin me-2"></i>Loading...';
+
+          setTimeout(() => {
+            this.innerHTML =
+              '<i class="fas fa-check me-2"></i>All Reviews Loaded';
+            this.disabled = true;
+            this.classList.add("btn-success");
+            this.classList.remove("btn-outline-dark");
+          }, 2000);
+        });
+
+        // Animate rating bars on scroll
+        const observerOptions = {
+          threshold: 0.5,
+          rootMargin: "0px 0px -100px 0px",
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const ratingFills = entry.target.querySelectorAll(".rating-fill");
+              ratingFills.forEach((fill) => {
+                const width = fill.style.width;
+                fill.style.width = "0%";
+                setTimeout(() => {
+                  fill.style.transition = "width 1s ease-out";
+                  fill.style.width = width;
+                }, 200);
+              });
+            }
+          });
+        }, observerOptions);
+
+        const ratingCard = document.querySelector(".overall-rating-card");
+        if (ratingCard) {
+          observer.observe(ratingCard);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Documentation - idSpora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-yellow: #f4c430;
+        --dark-blue: #2c3e50;
+      }
+      body {
+        background: #ffffff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+      }
+      .main-container {
+        background: #ffffff;
+        margin: 0;
+        overflow-x: hidden;
+      }
+      .navbar {
+        background: transparent;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(244, 196, 48, 0.1);
+      }
+      .navbar-brand {
+        font-weight: bold;
+        color: var(--dark-blue) !important;
+        font-size: 1.8rem;
+      }
+      .navbar-nav .nav-link {
+        color: var(--dark-blue) !important;
+        font-weight: 500;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+      }
+      .btn-contact {
+        background: var(--dark-blue);
+        color: white;
+        border-radius: 25px;
+        padding: 10px 25px;
+        border: none;
+        transition: all 0.3s ease;
+      }
+      .page-header {
+        padding: 60px 0;
+        background: linear-gradient(135deg, rgba(244, 196, 48, 0.05), rgba(255, 215, 0, 0.05));
+        text-align: center;
+      }
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--dark-blue);
+        margin-bottom: 10px;
+      }
+      .highlight-yellow {
+        background-color: var(--primary-yellow);
+        padding: 5px 15px;
+        font-weight: bold;
+        border-radius: 10px;
+        display: inline-block;
+      }
+      .doc-gallery {
+        padding: 40px 0;
+      }
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        margin-bottom: 30px;
+      }
+      .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(244, 196, 48, 0.2);
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: all 0.4s ease;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+      .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        color: white;
+        padding: 20px;
+        transform: translateY(100%);
+        transition: all 0.4s ease;
+      }
+      .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+      }
+      .footer-section {
+        background: var(--dark-blue) !important;
+        color: white;
+        padding: 40px 0;
+      }
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: white;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      .whatsapp-float:hover {
+        background-color: #128c7e;
+        transform: scale(1.1);
+        color: white;
+        text-decoration: none;
+      }
+      @media (max-width: 768px) {
+        .page-title { font-size: 2rem; }
+        .gallery-item img { height: 200px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"> idSpora </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-4">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+              <li class="nav-item"><a class="nav-link active" href="products.html">Portfolio</a></li>
+              <li class="nav-item"><a class="nav-link" href="reviews.html">Review</a></li>
+              <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+            </ul>
+            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+          </div>
+        </div>
+      </nav>
+
+      <section class="page-header">
+        <div class="container">
+          <h1 class="page-title">
+            <span class="highlight-yellow">Training</span> Documentation
+          </h1>
+        </div>
+      </section>
+
+      <section class="doc-gallery">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="gallery-item">
+                <img src="public/images/team-building.png" alt="Digital Marketing Training" />
+                <div class="gallery-overlay">
+                  <h5>Digital Marketing Training</h5>
+                  <p>Pelatihan digital marketing untuk profesional</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="gallery-item">
+                <img src="public/images/training-roi.png" alt="Leadership Training" />
+                <div class="gallery-overlay">
+                  <h5>Leadership Training</h5>
+                  <p>Program leadership untuk manager</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="gallery-item">
+                <img src="public/images/consultation.png" alt="Personal Mentorship" />
+                <div class="gallery-overlay">
+                  <h5>Personal Mentorship</h5>
+                  <p>Sesi mentoring one-on-one</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="gallery-item">
+                <img src="public/images/corporate-event.png" alt="Group Discussion" />
+                <div class="gallery-overlay">
+                  <h5>Group Discussion</h5>
+                  <p>Diskusi kelompok dan case study</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="gallery-item">
+                <img src="public/images/leadership-training.png" alt="Presentation Skills" />
+                <div class="gallery-overlay">
+                  <h5>Presentation Skills</h5>
+                  <p>Pelatihan presentation dan public speaking</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="gallery-item">
+                <img src="public/images/workshop-session.png" alt="Practical Session" />
+                <div class="gallery-overlay">
+                  <h5>Practical Session</h5>
+                  <p>Sesi praktik langsung dan hands-on</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="gallery-item">
+                <img src="public/images/event-planning.png" alt="Strategic Planning" />
+                <div class="gallery-overlay">
+                  <h5>Strategic Planning</h5>
+                  <p>Workshop strategic planning session</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="gallery-item">
+                <img src="public/images/portfolio-showcase.png" alt="Final Presentation" />
+                <div class="gallery-overlay">
+                  <h5>Final Presentation</h5>
+                  <p>Presentasi project final peserta</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="gallery-item">
+                <img src="public/images/certification.png" alt="Certificate Award" />
+                <div class="gallery-overlay">
+                  <h5>Certificate Award</h5>
+                  <p>Pemberian sertifikat completion</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer-section">
+        <div class="container text-center">
+          <p class="text-light mb-0">&copy; 2024 idSpora. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <a href="https://wa.me/628989260731?text=Halo%20idSpora,%20saya%20tertarik%20dengan%20training%20program" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
+       

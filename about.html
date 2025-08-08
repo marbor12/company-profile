@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - idSpora</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-yellow: #f4c430;
+        --dark-blue: #2c3e50;
+        --light-cream: #fdf6e3;
+        --section-spacing: 100px;
+      }
+
+      body {
+        background: #ffffff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+      }
+
+      .main-container {
+        background: #ffffff;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: transparent;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(244, 196, 48, 0.1);
+      }
+
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        z-index: 10;
+      }
+
+      .navbar-brand img {
+        height: 70px;
+        width: auto;
+        transition: all 0.3s ease;
+        margin: -15px 0;
+      }
+
+      .navbar-brand:hover img {
+        transform: scale(1.05);
+      }
+
+      .navbar-nav .nav-link {
+        color: var(--dark-blue) !important;
+        font-weight: 500;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--primary-yellow);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link.active::after {
+        width: 100%;
+      }
+
+      .btn-contact {
+        background: var(--dark-blue);
+        color: white;
+        border-radius: 25px;
+        padding: 10px 25px;
+        border: none;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .btn-contact:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .page-header {
+        padding: 100px 0 60px;
+        text-align: center;
+      }
+
+      .page-title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--dark-blue);
+        margin-bottom: 20px;
+      }
+
+      .page-subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--dark-blue);
+      }
+
+      .highlight-yellow {
+        background-color: var(--primary-yellow);
+        padding: 5px 15px;
+        font-weight: bold;
+        border-radius: 10px;
+        display: inline-block;
+      }
+
+      .section-spacing {
+        padding: var(--section-spacing) 0;
+      }
+
+      .section-spacing-sm {
+        padding: 60px 0;
+      }
+
+      .stats-section {
+        background: var(--dark-blue);
+        color: white;
+        padding: 40px 0;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 15px;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--primary-yellow);
+      }
+
+      .service-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-yellow);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 2rem;
+        color: var(--dark-blue);
+      }
+
+      .trainer-card {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        text-align: center;
+        min-width: 280px;
+        flex: 0 0 280px;
+        margin: 0;
+      }
+
+      .trainer-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(244, 196, 48, 0.12);
+      }
+
+      /* Horizontal Carousel Styles */
+      .leadership-carousel-container {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        padding: 30px 0 50px 0;
+      }
+
+      .leadership-carousel-track {
+        display: flex;
+        gap: 40px;
+        animation: scroll-horizontal 15s linear infinite;
+      }
+
+      .leadership-carousel-track:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes scroll-horizontal {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-280px * 5 - 160px));
+        }
+      }
+
+      .carousel-item-wrapper {
+        flex: 0 0 280px;
+      }
+
+      .trainer-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--primary-yellow);
+        margin-bottom: 20px;
+      }
+
+      .breadcrumb {
+        background: transparent;
+        padding: 20px 0;
+      }
+
+      .breadcrumb-item a {
+        color: var(--dark-blue);
+        text-decoration: none;
+      }
+
+      .breadcrumb-item.active {
+        color: #666;
+      }
+
+      .footer-section {
+        background: var(--dark-blue) !important;
+        color: white;
+        padding: 60px 0 40px;
+        position: relative;
+      }
+
+      .footer-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary-yellow),
+          transparent
+        );
+      }
+
+      /* WhatsApp Floating Button */
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: white;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .whatsapp-float:hover {
+        background-color: #128c7e;
+        transform: scale(1.1);
+        color: white;
+        text-decoration: none;
+      }
+
+      .whatsapp-float i {
+        margin-top: 4px;
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --section-spacing: 60px;
+        }
+
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"
+            ><img
+              src="public/images/logo idspora_nobg_outlined.png"
+              alt="idSpora Logo"
+          /></a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-4">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="products.html">Product</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="reviews.html">Review</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="news.html">News</a>
+              </li>
+            </ul>
+            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">About Us</li>
+          </ol>
+        </div>
+      </nav>
+
+      <!-- Page Header -->
+      <section class="page-header">
+        <div class="container">
+          <h1 class="page-title" data-aos="fade-up">
+            About <span class="highlight-yellow">idSpora</span>
+          </h1>
+          <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
+            For over one year, we've provided innovative learning experiences to
+            support personal and professional growth.
+          </p>
+        </div>
+      </section>
+
+      <!-- Company Story -->
+      <section class="section-spacing">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+              <h2 class="section-title mb-4">
+                Our <span class="highlight-yellow">Story</span>
+              </h2>
+              <p class="mb-4">
+                IdSpora originated from a research initiative conducted by a
+                collaborative alliance known as Ko+Lab. The research highlighted
+                the urgent need for a platform that could bridge the gap between
+                student potential and the innovative ideas of lecturers in the
+                fields of education, technology, and human resource development.
+              </p>
+              <p class="mb-4">
+                Based on these findings, Ko+Lab took the initiative to establish
+                a startup that facilitates the development of talents,
+                interests, and creative ideas through event-based and digital
+                platform approaches. IdSpora officially began operating in
+                November 2024, founded by a group of students and academics with
+                backgrounds in technology and education. Its early activities
+                started within a small community actively organizing training
+                sessions, seminars, online sharing events, and focus group
+                discussions both on and off campus.
+              </p>
+              <p class="mb-4">
+                IdSpora is categorized as a digital startup operating in the
+                field of educational services and youth development platforms.
+                It is currently in the early growth stage, focusing on market
+                validation, core feature development, and expanding its partner
+                network.
+              </p>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+              <img
+                src="public/images/hero-training.png"
+                alt="Company story"
+                class="img-fluid rounded"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <h5>Participants</h5>
+              </div>
+            </div>
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="stat-item">
+                <div class="stat-number">1+</div>
+                <h5>Year Experience</h5>
+              </div>
+            </div>
+            <div
+              class="col-lg-4 col-md-6"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <h5>Mitra Collaborator</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission & Vision -->
+      <section class="section-spacing bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="text-center">
+                <div class="service-icon mb-3">
+                  <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Our Mission</h3>
+                <p class="text-muted">
+                  To deliver technology-based training that enhances
+                  accessibility and learning effectiveness. We are committed to
+                  developing local talents through certified training programs
+                  aligned with industry needs. Through strategic collaboration
+                  with various partners, idSpora aims to expand its impact,
+                  foster innovation in learning methods, and provide flexible,
+                  interactive, and sustainable online training programs.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="text-center">
+                <div class="service-icon mb-3">
+                  <i class="fas fa-eye"></i>
+                </div>
+                <h3>Our Vision</h3>
+                <p class="text-muted">
+                  To become Indonesia’s leading training and webinar platform by
+                  leveraging innovative technology to build a sustainable
+                  learning ecosystem and empower local talents to compete at
+                  both national and global levels.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leadership Team -->
+      <section class="section-spacing">
+        <div class="container">
+          <h2 class="text-center section-title mb-5" data-aos="fade-up">
+            Our <span class="highlight-yellow">Leadership Team</span>
+          </h2>
+
+          <div class="leadership-carousel-container" data-aos="fade-up">
+            <div class="leadership-carousel-track">
+              <!-- CEO -->
+              <div class="carousel-item-wrapper">
+                <div class="trainer-card">
+                  <img
+                    src="/property/alea.png"
+                    alt="CEO"
+                    class="trainer-photo"
+                  />
+                  <h4>Alea Atapasya</h4>
+                  <p class="text-primary mb-3">Chief Executive Officer</p>
+                  <p class="text-muted">
+                    Drives vision, strategy, and impact across idSpora's journey
+                  </p>
+                  <div class="social-links">
+                    <a href="#" class="text-dark me-2"
+                      ><i class="fab fa-linkedin"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <!-- COO -->
+              <div class="carousel-item-wrapper">
+                <div class="trainer-card">
+                  <img
+                    src="/placeholder.svg?height=120&width=120&text=COO"
+                    alt="COO"
+                    class="trainer-photo"
+                  />
+                  <h4>Stephanie</h4>
+                  <p class="text-primary mb-3">Chief Operating Officer</p>
+                  <p class="text-muted">
+                    Ensures smooth daily operations and team coordination.
+                  </p>
+                  <div class="social-links">
+                    <a href="#" class="text-dark me-2"
+                      ><i class="fab fa-linkedin"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <!-- CTO -->
+              <div class="carousel-item-wrapper">
+                <div class="trainer-card">
+                  <img
+                    src="/placeholder.svg?height=120&width=120&text=CTO"
+                    alt="CTO"
+                    class="trainer-photo"
+                  />
+                  <h4>Maria Oxtavia Laurence Siboro</h4>
+                  <p class="text-primary mb-3">Chief Technology Officer</p>
+                  <p class="text-muted">
+                    Leads tech development to power the learning platform.
+                  </p>
+                  <div class="social-links">
+                    <a href="#" class="text-dark me-2"
+                      ><i class="fab fa-linkedin"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <!-- CMO -->
+              <div class="carousel-item-wrapper">
+                <div class="trainer-card">
+                  <img
+                    src="/placeholder.svg?height=120&width=120&text=CMO"
+                    alt="CMO"
+                    class="trainer-photo"
+                  />
+                  <h4>Dini Auliyah Fauziah</h4>
+                  <p class="text-primary mb-3">Chief Marketing Officer</p>
+                  <p class="text-muted">
+                    Builds brands presence and drives user engagement.
+                  </p>
+                  <div class="social-links">
+                    <a href="#" class="text-dark me-2"
+                      ><i class="fab fa-linkedin"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <!-- CFO -->
+              <div class="carousel-item-wrapper">
+                <div class="trainer-card">
+                  <img
+                    src="/placeholder.svg?height=120&width=120&text=CFO"
+                    alt="CFO"
+                    class="trainer-photo"
+                  />
+                  <h4>Agvin Amalia Nurfitri</h4>
+                  <p class="text-primary mb-3">Chief Financial Officer</p>
+                  <p class="text-muted">
+                    Manages finance to support sustainable growth and
+                    innovation.
+                  </p>
+                  <div class="social-links">
+                    <a href="#" class="text-dark me-2"
+                      ><i class="fab fa-linkedin"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Duplicate cards for seamless loop -->
+              <!-- CEO (duplicate) -->
+              <div class="carousel-item-wrapper">
+                <div class="trainer-card">
+                  <img
+                    src="/property/alea.png"
+                    alt="CEO"
+                    class="trainer-photo"
+                  />
+                  <h4>Alea Atapasya</h4>
+                  <p class="text-primary mb-3">Chief Executive Officer</p>
+                  <p class="text-muted">
+                    Drives vision, strategy, and impact across idSpora's journey
+                  </p>
+                  <div class="social-links">
+                    <a href="#" class="text-dark me-2"
+                      ><i class="fab fa-linkedin"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <!-- COO (duplicate) -->
+              <div class="carousel-item-wrapper">
+                <div class="trainer-card">
+                  <img
+                    src="/placeholder.svg?height=120&width=120&text=COO"
+                    alt="COO"
+                    class="trainer-photo"
+                  />
+                  <h4>Stephanie</h4>
+                  <p class="text-primary mb-3">Chief Operating Officer</p>
+                  <p class="text-muted">
+                    Ensures smooth daily operations and team coordination.
+                  </p>
+                  <div class="social-links">
+                    <a href="#" class="text-dark me-2"
+                      ><i class="fab fa-linkedin"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <!-- CTO (duplicate) -->
+              <div class="carousel-item-wrapper">
+                <div class="trainer-card">
+                  <img
+                    src="/placeholder.svg?height=120&width=120&text=CTO"
+                    alt="CTO"
+                    class="trainer-photo"
+                  />
+                  <h4>Maria Oxtavia Laurence Siboro</h4>
+                  <p class="text-primary mb-3">Chief Technology Officer</p>
+                  <p class="text-muted">
+                    Leads tech development to power the learning platform.
+                  </p>
+                  <div class="social-links">
+                    <a href="#" class="text-dark me-2"
+                      ><i class="fab fa-linkedin"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Values Section -->
+      <section class="section-spacing bg-light">
+        <div class="container">
+          <h2 class="text-center section-title mb-5" data-aos="fade-up">
+            Our <span class="highlight-yellow">Core Values</span>
+          </h2>
+          <div class="row">
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="text-center">
+                <div class="service-icon mb-3">
+                  <i class="fas fa-star"></i>
+                </div>
+                <h5>Innovation</h5>
+                <p class="text-muted">
+                  Continously improving through technology and creativity
+                </p>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="text-center">
+                <div class="service-icon mb-3">
+                  <i class="fas fa-handshake"></i>
+                </div>
+                <h5>Integrity</h5>
+                <p class="text-muted">
+                  Upholding honesty, transparency, and strong ethical principles
+                  in every action and decision.
+                </p>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="text-center">
+                <div class="service-icon mb-3">
+                  <i class="fas fa-users"></i>
+                </div>
+                <h5>Collaboration</h5>
+                <p class="text-muted">
+                  Building strategic partnerships to create a robust learning
+                  ecosystem
+                </p>
+              </div>
+            </div>
+            <div
+              class="col-lg-3 col-md-6 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="text-center">
+                <div class="service-icon mb-3">
+                  <i class="fas fa-leaf"></i>
+                </div>
+                <h5>Sustainability</h5>
+                <p class="text-muted">
+                  Long-term commitment to the development of Indonesian talent.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 mb-4">
+              <h5 class="text-white mb-3">idSpora</h5>
+              <p class="text-light">
+                Empowering Lifelong Learning Through Innovation and
+                Collaboration.
+              </p>
+              <div class="social-links">
+                <a href="#" class="text-light me-3"
+                  ><i class="fab fa-tiktok"></i
+                ></a>
+                <a href="#" class="text-light me-3"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="text-light"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4">
+              <h6 class="text-white mb-3">Quick Links</h6>
+              <ul class="list-unstyled">
+                <li><a href="index.html" class="text-light">Home</a></li>
+                <li><a href="products.html" class="text-light">Products</a></li>
+                <li><a href="about.html" class="text-light">About Us</a></li>
+                <li><a href="reviews.html" class="text-light">Review</a></li>
+                <li><a href="news.html" class="text-light">News</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4">
+              <h6 class="text-white mb-3">Services</h6>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-light">Live Webinars</a></li>
+                <li><a href="#" class="text-light">Training</a></li>
+                <li><a href="#" class="text-light">Mini Workshops</a></li>
+                <li><a href="#" class="text-light">E-Learning</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-4 mb-4">
+              <h6 class="text-white mb-3">Newsletter</h6>
+              <p class="text-light">
+                Subscribe to get updates on latest training and webinar
+                schedules.
+              </p>
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your email"
+                />
+                <button
+                  class="btn"
+                  style="
+                    background: var(--primary-yellow);
+                    color: var(--dark-blue);
+                  "
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr class="my-4" style="border-color: #495057" />
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <p class="text-light mb-0">
+                &copy; 2024 idSpora. All rights reserved.
+              </p>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <a href="#" class="text-light me-3">Privacy Policy</a>
+              <a href="#" class="text-light">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href="https://wa.me/6281234567890?text=Halo%20idSpora,%20saya%20tertarik%20dengan%20program%20pelatihan%20yang%20ada"
+      class="whatsapp-float"
+      target="_blank"
+      title="Chat with us on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+      });
+    </script>
+  </body>
+</html>

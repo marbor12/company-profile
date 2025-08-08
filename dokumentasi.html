@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Documentation - idSpora</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-yellow: #f4c430;
+        --dark-blue: #2c3e50;
+        --light-cream: #fdf6e3;
+        --section-spacing: 100px;
+      }
+
+      body {
+        background: #ffffff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      .main-container {
+        background: #ffffff;
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: transparent;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(244, 196, 48, 0.1);
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        color: var(--dark-blue) !important;
+        font-size: 1.8rem;
+      }
+
+      .navbar-nav .nav-link {
+        color: var(--dark-blue) !important;
+        font-weight: 500;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--primary-yellow);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link.active::after {
+        width: 100%;
+      }
+
+      .btn-contact {
+        background: var(--dark-blue);
+        color: white;
+        border-radius: 25px;
+        padding: 10px 25px;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .btn-contact:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Breadcrumb */
+      .breadcrumb {
+        background: transparent;
+        padding: 20px 0;
+      }
+
+      .breadcrumb-item a {
+        color: var(--dark-blue);
+        text-decoration: none;
+      }
+
+      .breadcrumb-item.active {
+        color: var(--primary-yellow);
+      }
+
+      /* Page Header */
+      .page-header {
+        padding: 80px 0;
+        background: linear-gradient(
+          135deg,
+          rgba(244, 196, 48, 0.05),
+          rgba(255, 215, 0, 0.05)
+        );
+        text-align: center;
+        border-bottom: 2px solid rgba(244, 196, 48, 0.1);
+      }
+
+      .page-title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--dark-blue);
+        margin-bottom: 20px;
+      }
+
+      .page-subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .highlight-yellow {
+        background-color: var(--primary-yellow);
+        padding: 5px 15px;
+        font-weight: bold;
+        border-radius: 10px;
+        display: inline-block;
+      }
+
+      /* Sidebar Navigation */
+      .sidebar-nav {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        position: sticky;
+        top: 20px;
+      }
+
+      .sidebar-nav .nav-link {
+        color: var(--dark-blue);
+        padding: 12px 20px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        margin-bottom: 5px;
+        display: block;
+        text-decoration: none;
+      }
+
+      .sidebar-nav .nav-link:hover,
+      .sidebar-nav .nav-link.active {
+        background: var(--primary-yellow);
+        color: var(--dark-blue);
+        transform: translateX(5px);
+      }
+
+      .sidebar-nav .nav-link i {
+        width: 20px;
+        margin-right: 10px;
+      }
+
+      /* Documentation Content */
+      .doc-content {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .doc-section {
+        margin-bottom: 50px;
+      }
+
+      .doc-section h2 {
+        color: var(--dark-blue);
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary-yellow);
+      }
+
+      .doc-section h3 {
+        color: var(--dark-blue);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 30px;
+        margin-bottom: 15px;
+      }
+
+      .doc-section h4 {
+        color: var(--dark-blue);
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 12px;
+      }
+
+      /* Feature Cards */
+      .feature-card {
+        background: var(--light-cream);
+        padding: 25px;
+        border-radius: 15px;
+        border-left: 4px solid var(--primary-yellow);
+        margin: 20px 0;
+      }
+
+      .feature-card h5 {
+        color: var(--dark-blue);
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      /* Pricing Table */
+      .pricing-table {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 15px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+
+      .pricing-table thead {
+        background: var(--primary-yellow);
+        color: var(--dark-blue);
+      }
+
+      .pricing-table th,
+      .pricing-table td {
+        padding: 15px;
+        text-align: center;
+      }
+
+      /* Code Blocks */
+      .code-block {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 15px 0;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+      }
+
+      /* Alert Boxes */
+      .alert-info {
+        background: rgba(13, 202, 240, 0.1);
+        border-left: 4px solid #0dcaf0;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px 0;
+      }
+
+      .alert-warning {
+        background: rgba(255, 193, 7, 0.1);
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px 0;
+      }
+
+      .alert-success {
+        background: rgba(25, 135, 84, 0.1);
+        border-left: 4px solid #198754;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px 0;
+      }
+
+      /* FAQ Accordion */
+      .faq-section .accordion-button {
+        background-color: white;
+        border: 1px solid rgba(244, 196, 48, 0.2);
+        color: var(--dark-blue);
+        font-weight: 600;
+      }
+
+      .faq-section .accordion-button:not(.collapsed) {
+        background-color: var(--primary-yellow);
+        color: var(--dark-blue);
+        border-color: var(--primary-yellow);
+      }
+
+      .faq-section .accordion-button:focus {
+        box-shadow: 0 0 0 0.25rem rgba(244, 196, 48, 0.25);
+      }
+
+      .faq-section .accordion-body {
+        background-color: white;
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        border-top: none;
+      }
+
+      /* Quick Links */
+      .quick-links {
+        background: var(--light-cream);
+        padding: 30px;
+        border-radius: 15px;
+        margin: 30px 0;
+      }
+
+      .quick-links h4 {
+        color: var(--dark-blue);
+        margin-bottom: 20px;
+      }
+
+      .quick-links .btn {
+        margin: 5px;
+      }
+
+      /* Footer */
+      .footer-section {
+        background: var(--dark-blue) !important;
+        color: white;
+        padding: 60px 0 40px;
+        position: relative;
+      }
+
+      .footer-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary-yellow),
+          transparent
+        );
+      }
+
+      /* WhatsApp Floating Button */
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: white;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .whatsapp-float:hover {
+        background-color: #128c7e;
+        transform: scale(1.1);
+        color: white;
+        text-decoration: none;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .doc-content {
+          padding: 20px;
+        }
+
+        .sidebar-nav {
+          margin-bottom: 30px;
+        }
+
+        .main-container {
+          margin: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"> idSpora </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-4">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="products.html">Product</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="reviews.html">Review</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="news.html">News</a>
+              </li>
+            </ul>
+            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">
+              <a href="products.html">Products</a>
+            </li>
+            <li class="breadcrumb-item active">Documentation</li>
+          </ol>
+        </div>
+      </nav>
+
+      <!-- Page Header -->
+      <section class="page-header">
+        <div class="container">
+          <h1 class="page-title" data-aos="fade-up">
+            Product <span class="highlight-yellow">Documentation</span>
+          </h1>
+          <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
+            Complete guide to understanding and getting started with idSpora's
+            learning solutions.
+          </p>
+        </div>
+      </section>
+
+      <!-- Documentation Content -->
+      <section class="py-5">
+        <div class="container">
+          <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3">
+              <div class="sidebar-nav">
+                <h5 class="mb-3">Quick Navigation</h5>
+                <a href="#overview" class="nav-link active">
+                  <i class="fas fa-home"></i>Overview
+                </a>
+                <a href="#live-webinar" class="nav-link">
+                  <i class="fas fa-video"></i>Live Webinar
+                </a>
+                <a href="#training" class="nav-link">
+                  <i class="fas fa-chalkboard-teacher"></i>Training
+                </a>
+                <a href="#mini-workshop" class="nav-link">
+                  <i class="fas fa-tools"></i>Mini Workshop
+                </a>
+                <a href="#e-learning" class="nav-link">
+                  <i class="fas fa-laptop-code"></i>E-Learning
+                </a>
+                <a href="#pricing" class="nav-link">
+                  <i class="fas fa-tags"></i>Pricing
+                </a>
+                <a href="#getting-started" class="nav-link">
+                  <i class="fas fa-rocket"></i>Getting Started
+                </a>
+                <a href="#faq" class="nav-link">
+                  <i class="fas fa-question-circle"></i>FAQ
+                </a>
+              </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+              <div class="doc-content">
+                <!-- Overview Section -->
+                <div id="overview" class="doc-section" data-aos="fade-up">
+                  <h2>Platform Overview</h2>
+                  <p>
+                    idSpora provides comprehensive digital learning solutions
+                    designed to empower professionals and organizations with
+                    cutting-edge skills and knowledge. Our platform combines
+                    live interactions, structured learning paths, hands-on
+                    workshops, and flexible self-paced courses.
+                  </p>
+
+                  <!-- Platform Screenshot -->
+                  <div class="row mb-4">
+                    <div class="col-12">
+                      <div class="text-center">
+                        <img
+                          src="public/images/portfolio-showcase.png"
+                          alt="idSpora Platform Overview"
+                          class="img-fluid rounded"
+                          style="
+                            max-height: 400px;
+                            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                          "
+                        />
+                        <p class="text-muted mt-2">
+                          <em>idSpora Learning Platform Dashboard</em>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-4">
+                    <div class="col-md-6 mb-3">
+                      <div class="feature-card">
+                        <h5>
+                          <i class="fas fa-users text-warning me-2"></i>500+
+                          Active Learners
+                        </h5>
+                        <p>
+                          Join our growing community of professionals advancing
+                          their careers through continuous learning.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="feature-card">
+                        <h5>
+                          <i class="fas fa-certificate text-warning me-2"></i
+                          >Industry-Recognized Certificates
+                        </h5>
+                        <p>
+                          Earn certificates that are valued by top employers and
+                          industry leaders.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="alert-info">
+                    <strong>New to idSpora?</strong> Start with our
+                    <a href="#getting-started">Getting Started</a> guide to
+                    understand how our platform works and choose the right
+                    learning path for your goals.
+                  </div>
+                </div>
+
+                <!-- Live Webinar Section -->
+                <div id="live-webinar" class="doc-section" data-aos="fade-up">
+                  <h2>
+                    <i class="fas fa-video text-warning me-3"></i>Live Webinar
+                  </h2>
+                  <p>
+                    Experience real-time learning with industry experts through
+                    our interactive webinar sessions. Perfect for staying
+                    updated with the latest trends and networking with
+                    professionals.
+                  </p>
+
+                  <!-- Webinar Screenshots -->
+                  <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                      <img
+                        src="public/images/consultation.png"
+                        alt="Live Webinar Session"
+                        class="img-fluid rounded"
+                        style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)"
+                      />
+                      <p class="text-muted text-center mt-2">
+                        <em>Interactive Live Session</em>
+                      </p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <img
+                        src="public/images/corporate-event.png"
+                        alt="Webinar Participants"
+                        class="img-fluid rounded"
+                        style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)"
+                      />
+                      <p class="text-muted text-center mt-2">
+                        <em>Engaged Participants</em>
+                      </p>
+                    </div>
+                  </div>
+
+                  <h3>Key Features</h3>
+                  <ul>
+                    <li>
+                      <strong>Live Q&A Sessions:</strong> Interact directly with
+                      speakers and get your questions answered
+                    </li>
+                    <li>
+                      <strong>Expert Speakers:</strong> Learn from industry
+                      leaders and experienced practitioners
+                    </li>
+                    <li>
+                      <strong>Interactive Polls:</strong> Participate in
+                      real-time polls and discussions
+                    </li>
+                    <li>
+                      <strong>Networking Opportunities:</strong> Connect with
+                      other participants through chat
+                    </li>
+                    <li>
+                      <strong>Session Recordings:</strong> Access recordings for
+                      30 days after the live session
+                    </li>
+                  </ul>
+
+                  <h3>How It Works</h3>
+                  <ol>
+                    <li>Browse upcoming webinars in our events calendar</li>
+                    <li>Register for sessions that interest you</li>
+                    <li>Receive calendar invitation and access links</li>
+                    <li>Join live session from any device</li>
+                    <li>Participate actively through chat and Q&A</li>
+                    <li>
+                      Access recording and additional resources post-session
+                    </li>
+                  </ol>
+
+                  <div class="alert-success">
+                    <strong>Pro Tip:</strong> Arrive 5-10 minutes early to test
+                    your connection and get familiar with the platform
+                    interface.
+                  </div>
+
+                  <h3>Upcoming Webinar Topics</h3>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <ul>
+                        <li>AI in Digital Marketing</li>
+                        <li>Data Science Career Paths</li>
+                        <li>Cybersecurity Best Practices</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <ul>
+                        <li>Remote Team Leadership</li>
+                        <li>Cloud Computing Fundamentals</li>
+                        <li>UX/UI Design Trends 2025</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Training Section -->
+                <div id="training" class="doc-section" data-aos="fade-up">
+                  <h2>
+                    <i class="fas fa-chalkboard-teacher text-warning me-3"></i
+                    >Training Programs
+                  </h2>
+                  <p>
+                    Comprehensive, structured learning programs designed to
+                    build job-ready skills through hands-on projects and expert
+                    mentorship.
+                  </p>
+
+                  <!-- Training Program Photos -->
+                  <div class="row mb-4">
+                    <div class="col-md-4 mb-3">
+                      <img
+                        src="public/images/leadership-training.png"
+                        alt="Training Classroom"
+                        class="img-fluid rounded"
+                        style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)"
+                      />
+                      <p class="text-muted text-center mt-2">
+                        <em>Interactive Classroom</em>
+                      </p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <img
+                        src="public/images/team-building.png"
+                        alt="Hands-on Project"
+                        class="img-fluid rounded"
+                        style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)"
+                      />
+                      <p class="text-muted text-center mt-2">
+                        <em>Practical Projects</em>
+                      </p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <img
+                        src="public/images/training-roi.png"
+                        alt="Mentorship Session"
+                        class="img-fluid rounded"
+                        style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)"
+                      />
+                      <p class="text-muted text-center mt-2">
+                        <em>1-on-1 Mentorship</em>
+                      </p>
+                    </div>
+                  </div>
+
+                  <h3>Program Structure</h3>
+                  <div class="row">
+                    <div class="col-md-4 mb-3">
+                      <div class="feature-card">
+                        <h5>Foundation Phase</h5>
+                        <p>Core concepts and fundamental knowledge building</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="feature-card">
+                        <h5>Practice Phase</h5>
+                        <p>Hands-on projects and real-world case studies</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="feature-card">
+                        <h5>Mastery Phase</h5>
+                        <p>Advanced topics and portfolio development</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3>Available Training Tracks</h3>
+                  <table class="table pricing-table">
+                    <thead>
+                      <tr>
+                        <th>Track</th>
+                        <th>Duration</th>
+                        <th>Level</th>
+                        <th>Certificate</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>AI & Machine Learning Bootcamp</td>
+                        <td>12 weeks</td>
+                        <td>Intermediate</td>
+                        <td>✓</td>
+                      </tr>
+                      <tr>
+                        <td>Data Science Professional</td>
+                        <td>16 weeks</td>
+                        <td>Beginner to Advanced</td>
+                        <td>✓</td>
+                      </tr>
+                      <tr>
+                        <td>Digital Marketing Mastery</td>
+                        <td>8 weeks</td>
+                        <td>Beginner</td>
+                        <td>✓</td>
+                      </tr>
+                      <tr>
+                        <td>Cybersecurity Fundamentals</td>
+                        <td>10 weeks</td>
+                        <td>Intermediate</td>
+                        <td>✓</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <h3>What's Included</h3>
+                  <ul>
+                    <li>Weekly live sessions with instructors</li>
+                    <li>Practical assignments and projects</li>
+                    <li>Peer collaboration opportunities</li>
+                    <li>1-on-1 mentorship sessions</li>
+                    <li>Industry-standard tools and software access</li>
+                    <li>Career guidance and job placement support</li>
+                    <li>Lifetime access to course materials</li>
+                  </ul>
+
+                  <h3>Meet Our Expert Trainers</h3>
+                  <div class="row mb-4">
+                    <div class="col-md-3 mb-3 text-center">
+                      <img
+                        src="public/images/trainer-sarah.png"
+                        alt="Sarah - Data Science Expert"
+                        class="img-fluid rounded-circle"
+                        style="
+                          width: 120px;
+                          height: 120px;
+                          object-fit: cover;
+                          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                        "
+                      />
+                      <h6 class="mt-2 mb-0">Sarah Johnson</h6>
+                      <small class="text-muted">Data Science Expert</small>
+                    </div>
+                    <div class="col-md-3 mb-3 text-center">
+                      <img
+                        src="public/images/trainer-david.png"
+                        alt="David - AI Specialist"
+                        class="img-fluid rounded-circle"
+                        style="
+                          width: 120px;
+                          height: 120px;
+                          object-fit: cover;
+                          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                        "
+                      />
+                      <h6 class="mt-2 mb-0">David Chen</h6>
+                      <small class="text-muted">AI Specialist</small>
+                    </div>
+                    <div class="col-md-3 mb-3 text-center">
+                      <img
+                        src="public/images/trainer-emily.png"
+                        alt="Emily - Digital Marketing Pro"
+                        class="img-fluid rounded-circle"
+                        style="
+                          width: 120px;
+                          height: 120px;
+                          object-fit: cover;
+                          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                        "
+                      />
+                      <h6 class="mt-2 mb-0">Emily Rodriguez</h6>
+                      <small class="text-muted">Digital Marketing Pro</small>
+                    </div>
+                    <div class="col-md-3 mb-3 text-center">
+                      <img
+                        src="public/images/trainer-michael.png"
+                        alt="Michael - Cybersecurity Expert"
+                        class="img-fluid rounded-circle"
+                        style="
+                          width: 120px;
+                          height: 120px;
+                          object-fit: cover;
+                          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                        "
+                      />
+                      <h6 class="mt-2 mb-0">Michael Brown</h6>
+                      <small class="text-muted">Cybersecurity Expert</small>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Mini Workshop Section -->
+                <div id="mini-workshop" class="doc-section" data-aos="fade-up">
+                  <h2>
+                    <i class="fas fa-tools text-warning me-3"></i>Mini Workshops
+                  </h2>
+                  <p>
+                    Focused, hands-on sessions designed to teach specific skills
+                    or tools in a short timeframe. Perfect for quick skill
+                    upgrades and practical learning.
+                  </p>
+
+                  <!-- Workshop Photos -->
+                  <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                      <img
+                        src="public/images/workshop-session.png"
+                        alt="Workshop in Action"
+                        class="img-fluid rounded"
+                        style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)"
+                      />
+                      <p class="text-muted text-center mt-2">
+                        <em>Intensive Workshop Session</em>
+                      </p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <img
+                        src="public/images/event-planning.png"
+                        alt="Workshop Collaboration"
+                        class="img-fluid rounded"
+                        style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)"
+                      />
+                      <p class="text-muted text-center mt-2">
+                        <em>Team Collaboration</em>
+                      </p>
+                    </div>
+                  </div>
+
+                  <h3>Workshop Format</h3>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="feature-card">
+                        <h5>Duration</h5>
+                        <p>2-4 hours intensive sessions</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="feature-card">
+                        <h5>Group Size</h5>
+                        <p>Small groups of 10-15 participants</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3>Popular Workshop Topics</h3>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h4>Technical Skills</h4>
+                      <ul>
+                        <li>Python for Data Analysis</li>
+                        <li>Excel Advanced Functions</li>
+                        <li>SQL Database Queries</li>
+                        <li>Git Version Control</li>
+                        <li>API Integration Basics</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <h4>Soft Skills</h4>
+                      <ul>
+                        <li>Presentation Skills</li>
+                        <li>Time Management</li>
+                        <li>Team Collaboration</li>
+                        <li>Leadership Fundamentals</li>
+                        <li>Communication Strategies</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="alert-warning">
+                    <strong>Prerequisites:</strong> Mini workshops may have
+                    specific prerequisites. Check individual workshop
+                    requirements before registering.
+                  </div>
+
+                  <h3>What to Expect</h3>
+                  <ol>
+                    <li>Brief theoretical overview (30 minutes)</li>
+                    <li>Hands-on practice with guided exercises (2-3 hours)</li>
+                    <li>Q&A and troubleshooting session (30 minutes)</li>
+                    <li>Resource sharing and next steps guidance</li>
+                  </ol>
+                </div>
+
+                <!-- E-Learning Section -->
+                <div id="e-learning" class="doc-section" data-aos="fade-up">
+                  <h2>
+                    <i class="fas fa-laptop-code text-warning me-3"></i
+                    >E-Learning Platform
+                  </h2>
+                  <p>
+                    Self-paced online courses that you can access anytime,
+                    anywhere. Perfect for busy professionals who need flexible
+                    learning schedules.
+                  </p>
+
+                  <!-- E-Learning Platform Screenshots -->
+                  <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                      <img
+                        src="public/images/portfolio-showcase.png"
+                        alt="E-Learning Dashboard"
+                        class="img-fluid rounded"
+                        style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)"
+                      />
+                      <p class="text-muted text-center mt-2">
+                        <em>User-Friendly Dashboard</em>
+                      </p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <img
+                        src="public/images/consultation.png"
+                        alt="Mobile Learning"
+                        class="img-fluid rounded"
+                        style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)"
+                      />
+                      <p class="text-muted text-center mt-2">
+                        <em>Learn on Mobile Devices</em>
+                      </p>
+                    </div>
+                  </div>
+
+                  <h3>Platform Features</h3>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <div class="feature-card">
+                        <h5>
+                          <i class="fas fa-mobile-alt text-warning me-2"></i
+                          >Mobile Responsive
+                        </h5>
+                        <p>
+                          Learn on any device - desktop, tablet, or smartphone
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="feature-card">
+                        <h5>
+                          <i class="fas fa-download text-warning me-2"></i
+                          >Offline Access
+                        </h5>
+                        <p>Download content for offline study when needed</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="feature-card">
+                        <h5>
+                          <i class="fas fa-chart-line text-warning me-2"></i
+                          >Progress Tracking
+                        </h5>
+                        <p>
+                          Monitor your learning progress with detailed analytics
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="feature-card">
+                        <h5>
+                          <i class="fas fa-trophy text-warning me-2"></i
+                          >Gamification
+                        </h5>
+                        <p>Earn badges and points as you complete lessons</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3>Course Categories</h3>
+                  <ul>
+                    <li>
+                      <strong>Technology:</strong> Programming, AI/ML, Cloud
+                      Computing, Cybersecurity
+                    </li>
+                    <li>
+                      <strong>Business:</strong> Digital Marketing, Project
+                      Management, Data Analysis
+                    </li>
+                    <li>
+                      <strong>Design:</strong> UI/UX, Graphic Design, Video
+                      Editing
+                    </li>
+                    <li>
+                      <strong>Leadership:</strong> Management Skills,
+                      Communication, Strategy
+                    </li>
+                  </ul>
+
+                  <h3>Learning Path Example</h3>
+                  <div class="code-block">
+                    <strong>Data Science Beginner Path:</strong><br />
+                    1. Statistics Fundamentals (4 hours)<br />
+                    2. Python Programming Basics (8 hours)<br />
+                    3. Data Manipulation with Pandas (6 hours)<br />
+                    4. Data Visualization (4 hours)<br />
+                    5. Introduction to Machine Learning (6 hours)<br />
+                    <em>Total: 28 hours of content</em>
+                  </div>
+                </div>
+
+                <!-- Pricing Section -->
+                <div id="pricing" class="doc-section" data-aos="fade-up">
+                  <h2>
+                    <i class="fas fa-tags text-warning me-3"></i>Pricing & Plans
+                  </h2>
+                  <p>
+                    Flexible pricing options to suit individual learners and
+                    organizations. All plans include access to our learning
+                    community and basic support.
+                  </p>
+
+                  <div class="row">
+                    <div class="col-md-3 mb-4">
+                      <div class="feature-card text-center">
+                        <h5>Live Webinar</h5>
+                        <h3 class="text-warning">Free - Rp 299K</h3>
+                        <p>Per session, depending on speaker and topic</p>
+                        <ul class="list-unstyled text-start">
+                          <li>✓ Live session access</li>
+                          <li>✓ Q&A participation</li>
+                          <li>✓ 30-day recording access</li>
+                          <li>✓ Digital certificate</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                      <div class="feature-card text-center">
+                        <h5>Mini Workshop</h5>
+                        <h3 class="text-warning">Rp 199K - 499K</h3>
+                        <p>Per workshop session</p>
+                        <ul class="list-unstyled text-start">
+                          <li>✓ Hands-on session</li>
+                          <li>✓ Small group (max 15)</li>
+                          <li>✓ Practice materials</li>
+                          <li>✓ Certificate of completion</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                      <div class="feature-card text-center">
+                        <h5>Training Program</h5>
+                        <h3 class="text-warning">Rp 2.5M - 8M</h3>
+                        <p>Per complete program</p>
+                        <ul class="list-unstyled text-start">
+                          <li>✓ Comprehensive curriculum</li>
+                          <li>✓ Mentorship included</li>
+                          <li>✓ Career support</li>
+                          <li>✓ Industry certificate</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                      <div class="feature-card text-center">
+                        <h5>E-Learning</h5>
+                        <h3 class="text-warning">Rp 99K - 499K</h3>
+                        <p>Per course or monthly subscription</p>
+                        <ul class="list-unstyled text-start">
+                          <li>✓ Self-paced learning</li>
+                          <li>✓ Lifetime access</li>
+                          <li>✓ Mobile app access</li>
+                          <li>✓ Progress tracking</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="alert-info">
+                    <strong>Early Bird Discounts:</strong> Register early and
+                    save up to 25% on training programs and 15% on workshops.
+                    Corporate packages available with additional benefits.
+                  </div>
+                </div>
+
+                <!-- Getting Started Section -->
+                <div
+                  id="getting-started"
+                  class="doc-section"
+                  data-aos="fade-up"
+                >
+                  <h2>
+                    <i class="fas fa-rocket text-warning me-3"></i>Getting
+                    Started
+                  </h2>
+                  <p>
+                    New to idSpora? Follow this step-by-step guide to make the
+                    most of our learning platform.
+                  </p>
+
+                  <!-- Getting Started Visual Guide -->
+                  <div class="row mb-4">
+                    <div class="col-12">
+                      <div class="text-center">
+                        <img
+                          src="public/images/certification.png"
+                          alt="Getting Started Guide"
+                          class="img-fluid rounded"
+                          style="
+                            max-height: 300px;
+                            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                          "
+                        />
+                        <p class="text-muted mt-2">
+                          <em>Step-by-Step Registration Process</em>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3>Step 1: Create Your Account</h3>
+                  <ol>
+                    <li>Visit our registration page</li>
+                    <li>Fill in your basic information</li>
+                    <li>Verify your email address</li>
+                    <li>Complete your profile with learning goals</li>
+                  </ol>
+
+                  <h3>Step 2: Choose Your Learning Path</h3>
+                  <div class="quick-links">
+                    <h4>Quick Start Options:</h4>
+                    <a href="#" class="btn btn-outline-primary"
+                      >Browse Free Webinars</a
+                    >
+                    <a href="#" class="btn btn-outline-success"
+                      >Try a Mini Workshop</a
+                    >
+                    <a href="#" class="btn btn-outline-warning"
+                      >Explore E-Learning</a
+                    >
+                    <a href="#" class="btn btn-outline-info"
+                      >Join Training Program</a
+                    >
+                  </div>
+
+                  <h3>Step 3: Set Up Your Learning Environment</h3>
+                  <ul>
+                    <li>Download our mobile app for on-the-go learning</li>
+                    <li>Set up calendar reminders for live sessions</li>
+                    <li>Join our community Discord server</li>
+                    <li>Configure notification preferences</li>
+                  </ul>
+
+                  <h3>Step 4: Start Learning</h3>
+                  <div class="alert-success">
+                    <strong>Recommended First Steps:</strong>
+                    <ul class="mb-0">
+                      <li>
+                        Attend a free webinar to get familiar with our platform
+                      </li>
+                      <li>Take our learning style assessment</li>
+                      <li>Set weekly learning goals in your dashboard</li>
+                      <li>Connect with other learners in your field</li>
+                    </ul>
+                  </div>
+
+                  <h3>Success Stories</h3>
+                  <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                      <div class="feature-card">
+                        <div class="d-flex align-items-center mb-3">
+                          <img
+                            src="public/images/trainer-sarah.png"
+                            alt="Graduate Success Story"
+                            class="rounded-circle me-3"
+                            style="width: 60px; height: 60px; object-fit: cover"
+                          />
+                          <div>
+                            <h6 class="mb-0">Andi Pratama</h6>
+                            <small class="text-muted"
+                              >Data Scientist at Tokopedia</small
+                            >
+                          </div>
+                        </div>
+                        <p class="mb-0">
+                          "idSpora's AI Bootcamp changed my career path
+                          completely. From a fresh graduate to landing a dream
+                          job in just 3 months!"
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="feature-card">
+                        <div class="d-flex align-items-center mb-3">
+                          <img
+                            src="public/images/trainer-emily.png"
+                            alt="Graduate Success Story 2"
+                            class="rounded-circle me-3"
+                            style="width: 60px; height: 60px; object-fit: cover"
+                          />
+                          <div>
+                            <h6 class="mb-0">Maya Sari</h6>
+                            <small class="text-muted"
+                              >Digital Marketing Manager</small
+                            >
+                          </div>
+                        </div>
+                        <p class="mb-0">
+                          "The hands-on approach and expert mentorship at
+                          idSpora helped me transition from traditional
+                          marketing to digital marketing seamlessly."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div
+                  id="faq"
+                  class="doc-section faq-section"
+                  data-aos="fade-up"
+                >
+                  <h2>
+                    <i class="fas fa-question-circle text-warning me-3"></i
+                    >Frequently Asked Questions
+                  </h2>
+
+                  <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item mb-3">
+                      <h2 class="accordion-header" id="faq1">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapse1"
+                        >
+                          How do I access my purchased courses?
+                        </button>
+                      </h2>
+                      <div
+                        id="collapse1"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#faqAccordion"
+                      >
+                        <div class="accordion-body">
+                          After purchase, courses are immediately available in
+                          your dashboard. Log in to your account and navigate to
+                          "My Courses" to access all your enrolled programs.
+                          You'll also receive email confirmation with direct
+                          access links.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item mb-3">
+                      <h2 class="accordion-header" id="faq2">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapse2"
+                        >
+                          Can I get a refund if I'm not satisfied?
+                        </button>
+                      </h2>
+                      <div
+                        id="collapse2"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#faqAccordion"
+                      >
+                        <div class="accordion-body">
+                          Yes! We offer a 14-day money-back guarantee for all
+                          courses and training programs. If you're not satisfied
+                          within the first 14 days, contact our support team for
+                          a full refund. Note: This doesn't apply to completed
+                          workshops or attended live webinars.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item mb-3">
+                      <h2 class="accordion-header" id="faq3">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapse3"
+                        >
+                          Do I get a certificate upon completion?
+                        </button>
+                      </h2>
+                      <div
+                        id="collapse3"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#faqAccordion"
+                      >
+                        <div class="accordion-body">
+                          Yes! All our programs include digital certificates
+                          upon successful completion. Training programs and
+                          comprehensive courses provide industry-recognized
+                          certificates, while webinars and workshops provide
+                          certificates of attendance.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item mb-3">
+                      <h2 class="accordion-header" id="faq4">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapse4"
+                        >
+                          Is there technical support available?
+                        </button>
+                      </h2>
+                      <div
+                        id="collapse4"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#faqAccordion"
+                      >
+                        <div class="accordion-body">
+                          Absolutely! Our technical support team is available
+                          Monday-Friday, 9 AM - 6 PM WIB. You can reach us via
+                          WhatsApp, email, or through the help desk in your
+                          dashboard. We also have an extensive knowledge base
+                          and video tutorials.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item mb-3">
+                      <h2 class="accordion-header" id="faq5">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapse5"
+                        >
+                          Can I access courses on mobile devices?
+                        </button>
+                      </h2>
+                      <div
+                        id="collapse5"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#faqAccordion"
+                      >
+                        <div class="accordion-body">
+                          Yes! Our platform is fully responsive and works on all
+                          devices. We also have dedicated mobile apps for iOS
+                          and Android. You can download content for offline
+                          viewing and sync your progress across all devices.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="quick-links">
+                  <h4>Need More Help?</h4>
+                  <p>
+                    Can't find what you're looking for? Our team is here to
+                    help!
+                  </p>
+                  <a
+                    href="https://wa.me/628989260731"
+                    class="btn btn-success"
+                    target="_blank"
+                  >
+                    <i class="fab fa-whatsapp me-2"></i>Chat on WhatsApp
+                  </a>
+                  <a href="contact.html" class="btn btn-outline-primary">
+                    <i class="fas fa-envelope me-2"></i>Contact Support
+                  </a>
+                  <a href="about.html" class="btn btn-outline-info">
+                    <i class="fas fa-info-circle me-2"></i>Learn About Us
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 mb-4">
+              <h5 class="text-white mb-3">idSpora</h5>
+              <p class="text-light">
+                Empowering Lifelong Learning Through Innovation and
+                Collaboration.
+              </p>
+              <div class="social-links">
+                <a href="#" class="text-light me-3"
+                  ><i class="fab fa-tiktok"></i
+                ></a>
+                <a href="#" class="text-light me-3"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="text-light"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4">
+              <h6 class="text-white mb-3">Quick Links</h6>
+              <ul class="list-unstyled">
+                <li><a href="index.html" class="text-light">Home</a></li>
+                <li><a href="products.html" class="text-light">Products</a></li>
+                <li><a href="about.html" class="text-light">About Us</a></li>
+                <li><a href="reviews.html" class="text-light">Review</a></li>
+                <li><a href="news.html" class="text-light">News</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4">
+              <h6 class="text-white mb-3">Services</h6>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#live-webinar" class="text-light">Live Webinars</a>
+                </li>
+                <li><a href="#training" class="text-light">Training</a></li>
+                <li>
+                  <a href="#mini-workshop" class="text-light">Mini Workshops</a>
+                </li>
+                <li><a href="#e-learning" class="text-light">E-Learning</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-4 mb-4">
+              <h6 class="text-white mb-3">Newsletter</h6>
+              <p class="text-light">
+                Subscribe to get updates on latest training and webinar
+                schedules.
+              </p>
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your email"
+                />
+                <button
+                  class="btn"
+                  style="
+                    background: var(--primary-yellow);
+                    color: var(--dark-blue);
+                  "
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr class="my-4" style="border-color: #495057" />
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <p class="text-light mb-0">
+                &copy; 2024 idSpora. All rights reserved.
+              </p>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <a href="#" class="text-light me-3">Privacy Policy</a>
+              <a href="#" class="text-light">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href="https://wa.me/628989260731?text=Halo%20idSpora,%20saya%20butuh%20bantuan%20terkait%20produk%20dan%20layanan"
+      class="whatsapp-float"
+      target="_blank"
+      title="Chat with us on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+
+            // Update active nav link
+            document
+              .querySelectorAll(".sidebar-nav .nav-link")
+              .forEach((link) => {
+                link.classList.remove("active");
+              });
+            this.classList.add("active");
+          }
+        });
+      });
+
+      // Update active nav on scroll
+      window.addEventListener("scroll", function () {
+        const sections = document.querySelectorAll(".doc-section");
+        const navLinks = document.querySelectorAll(".sidebar-nav .nav-link");
+
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
