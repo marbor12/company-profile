@@ -41,9 +41,22 @@
       }
 
       .navbar-brand {
-        font-weight: bold;
-        color: var(--dark-blue) !important;
-        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        z-index: 10;
+      }
+
+      .navbar-brand img {
+        height: 70px;
+        width: auto;
+        transition: all 0.3s ease;
+        margin: -15px 0;
+      }
+
+      .navbar-brand:hover img {
+        transform: scale(1.05);
       }
 
       .navbar-nav .nav-link {
@@ -77,6 +90,7 @@
         border-radius: 25px;
         padding: 10px 25px;
         border: none;
+        text-decoration: none;
         transition: all 0.3s ease;
       }
 
@@ -285,21 +299,27 @@
         z-index: 3;
       }
 
-      .event-badge.featured {
-        background: rgba(220, 53, 69, 0.9);
-        color: white;
+      /* Breadcrumb */
+      .breadcrumb {
+        background: transparent;
+        padding: 10px 0;
+        margin-bottom: 0;
       }
 
-      .event-badge.recent {
-        background: rgba(25, 135, 84, 0.9);
-        color: white;
+      .breadcrumb-item a {
+        color: var(--dark-blue);
+        text-decoration: none;
+      }
+
+      .breadcrumb-item.active {
+        color: var(--primary-yellow);
       }
 
       /* Footer */
       .footer-section {
         background: var(--dark-blue) !important;
         color: white;
-        padding: 60px 0 40px;
+        padding: 30px 0 15px;
         position: relative;
       }
 
@@ -316,6 +336,14 @@
           var(--primary-yellow),
           transparent
         );
+      }
+
+      .footer-section a {
+        text-decoration: none !important;
+      }
+
+      .footer-section a:hover {
+        text-decoration: none !important;
       }
 
       /* WhatsApp Floating Button */
@@ -344,6 +372,20 @@
         transform: scale(1.1);
         color: white;
         text-decoration: none;
+      }
+
+      .whatsapp-float i {
+        margin-top: 4px;
+      }
+
+      .event-badge.featured {
+        background: rgba(220, 53, 69, 0.9);
+        color: white;
+      }
+
+      .event-badge.recent {
+        background: rgba(25, 135, 84, 0.9);
+        color: white;
       }
 
       /* Animations */
@@ -378,7 +420,11 @@
       <!-- Navigation -->
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"> idSpora </a>
+          <a class="navbar-brand" href="index.html"
+            ><img
+              src="property/logo idspora_nobg_outlined.png"
+              alt="idSpora Logo"
+          /></a>
 
           <button
             class="navbar-toggler"
@@ -392,23 +438,33 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html">Beranda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="about.html">Tentang</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="products.html">Portfolio</a>
+                <a class="nav-link active" href="products.html">Portofolio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="reviews.html">Review</a>
+                <a class="nav-link" href="reviews.html">Ulasan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="news.html">News</a>
+                <a class="nav-link" href="news.html">Berita</a>
               </li>
             </ul>
-            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+            <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
           </div>
+        </div>
+      </nav>
+
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+            <li class="breadcrumb-item active">Portofolio</li>
+          </ol>
         </div>
       </nav>
 
@@ -877,12 +933,16 @@
       <!-- Footer -->
       <footer class="footer-section">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-4 mb-4">
-              <h5 class="text-white mb-3">idSpora</h5>
+          <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+              <a class="navbar-brand" href="index.html"
+                ><img
+                  src="property/logo idspora_nobg_dark.png"
+                  alt="idSpora Logo"
+                  style="height: 60px; width: auto"
+              /></a>
               <p class="text-light">
-                Empowering Lifelong Learning Through Innovation and
-                Collaboration.
+                Belajar tanpa batas, berkembang tanpa henti.
               </p>
               <div class="social-links">
                 <a
@@ -895,7 +955,9 @@
                   class="text-light me-3"
                   ><i class="fab fa-instagram"></i
                 ></a>
-                <a href="#" class="text-light"
+                <a
+                  href="https://www.linkedin.com/company/idspora/"
+                  class="text-light"
                   ><i class="fab fa-linkedin"></i
                 ></a>
               </div>
@@ -903,58 +965,67 @@
             <div class="col-lg-2 col-md-6 mb-4">
               <h6 class="text-white mb-3">Quick Links</h6>
               <ul class="list-unstyled">
-                <li><a href="index.html" class="text-light">Home</a></li>
+                <li><a href="index.html" class="text-light">Beranda</a></li>
                 <li>
-                  <a href="products.html" class="text-light">Portfolio</a>
+                  <a href="about.html" class="text-light">Tentang Kami</a>
                 </li>
-                <li><a href="about.html" class="text-light">About Us</a></li>
-                <li><a href="reviews.html" class="text-light">Review</a></li>
-                <li><a href="news.html" class="text-light">News</a></li>
+                <li>
+                  <a href="products.html" class="text-light">Portofolio</a>
+                </li>
+                <li><a href="reviews.html" class="text-light">Ulasan</a></li>
+                <li><a href="news.html" class="text-light">Berita</a></li>
               </ul>
             </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Services</h6>
+            <div class="col-lg-3 col-md-6 mb-4">
+              <h6 class="text-white mb-3">Layanan</h6>
               <ul class="list-unstyled">
                 <li><a href="#" class="text-light">Live Webinars</a></li>
-                <li><a href="#" class="text-light">Training</a></li>
-                <li><a href="#" class="text-light">Mini Workshops</a></li>
+                <li>
+                  <a href="#" class="text-light">Training & Mini Workshops</a>
+                </li>
                 <li><a href="#" class="text-light">E-Learning</a></li>
+                <li><a href="#" class="text-light">Video Production</a></li>
               </ul>
             </div>
-            <div class="col-lg-4 mb-4">
-              <h6 class="text-white mb-3">Newsletter</h6>
-              <p class="text-light">
-                Subscribe to get updates on latest training and webinar
-                schedules.
+            <div class="col-lg-3 col-md-6 mb-4">
+              <h6 class="text-white mb-3">Hubungi Kami</h6>
+              <p class="text-light mb-2">
+                <i class="fas fa-envelope me-2"></i>info@idspora.com
               </p>
-              <div class="input-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Your email"
-                />
-                <button
-                  class="btn"
-                  style="
-                    background: var(--primary-yellow);
-                    color: var(--dark-blue);
-                  "
-                >
-                  Subscribe
-                </button>
+              <p class="text-light mb-2">
+                <i class="fas fa-phone me-2"></i>+62 898-926-0731
+              </p>
+              <p class="text-light mb-3">
+                <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
+              </p>
+              <div class="social-links">
+                <a
+                  href="https://www.tiktok.com/@idspora"
+                  class="text-light me-3"
+                  title="TikTok"
+                  ><i class="fab fa-tiktok"></i
+                ></a>
+                <a
+                  href="https://www.instagram.com/idspora.official/"
+                  class="text-light me-3"
+                  title="Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a
+                  href="https://www.linkedin.com/company/idspora/"
+                  class="text-light"
+                  title="LinkedIn"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
               </div>
             </div>
           </div>
-          <hr class="my-4" style="border-color: #495057" />
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <p class="text-light mb-0">
+          <hr class="my-3" style="border-color: #495057" />
+          <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+              <p class="text-light mb-1" style="font-size: 0.8rem">
                 &copy; 2024 idSpora. All rights reserved.
               </p>
-            </div>
-            <div class="col-md-6 text-md-end">
-              <a href="#" class="text-light me-3">Privacy Policy</a>
-              <a href="#" class="text-light">Terms of Service</a>
             </div>
           </div>
         </div>
@@ -963,7 +1034,7 @@
 
     <!-- WhatsApp Floating Button -->
     <a
-      href="https://wa.me/6281234567890?text=Halo%20idSpora,%20saya%20tertarik%20dengan%20program%20pelatihan%20yang%20ada"
+      href="https://wa.me/628989260731"
       class="whatsapp-float"
       target="_blank"
       title="Chat with us on WhatsApp"
