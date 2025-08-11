@@ -40,9 +40,22 @@
       }
 
       .navbar-brand {
-        font-weight: bold;
-        color: var(--dark-blue) !important;
-        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        z-index: 10;
+      }
+
+      .navbar-brand img {
+        height: 70px;
+        width: auto;
+        transition: all 0.3s ease;
+        margin: -15px 0;
+      }
+
+      .navbar-brand:hover img {
+        transform: scale(1.05);
       }
 
       .navbar-nav .nav-link {
@@ -78,6 +91,11 @@
         border: none;
         text-decoration: none;
         transition: all 0.3s ease;
+      }
+
+      .btn-contact:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       }
 
       .btn-contact.active {
@@ -165,7 +183,7 @@
       .footer-section {
         background: var(--dark-blue) !important;
         color: white;
-        padding: 60px 0 40px;
+        padding: 30px 0 15px;
         position: relative;
       }
 
@@ -184,6 +202,46 @@
         );
       }
 
+      .footer-section a {
+        text-decoration: none !important;
+      }
+
+      .footer-section a:hover {
+        text-decoration: none !important;
+      }
+
+      /* WhatsApp Floating Button */
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: white;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .whatsapp-float:hover {
+        background-color: #128c7e;
+        transform: scale(1.1);
+        color: white;
+        text-decoration: none;
+      }
+
+      .whatsapp-float i {
+        margin-top: 4px;
+      }
+
       @media (max-width: 768px) {
         .page-title {
           font-size: 2rem;
@@ -198,7 +256,7 @@
         <div class="container">
           <a class="navbar-brand" href="index.html"
             ><img
-              src="public/images/logo idspora_nobg_outlined.png"
+              src="property/logo idspora_nobg_outlined.png"
               alt="idSpora Logo"
           /></a>
 
@@ -214,22 +272,24 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html">Home</a>
+                <a class="nav-link" href="index.html">Beranda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="about.html">Tentang</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="products.html">Product</a>
+                <a class="nav-link" href="products.html">Portofolio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="reviews.html">Review</a>
+                <a class="nav-link" href="reviews.html">Ulasan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="news.html">News</a>
+                <a class="nav-link" href="news.html">Berita</a>
               </li>
             </ul>
-            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+            <a href="contact.html" class="btn btn-contact active"
+              >Hubungi Kami</a
+            >
           </div>
         </div>
       </nav>
@@ -238,8 +298,8 @@
       <nav aria-label="breadcrumb">
         <div class="container">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Contact Us</li>
+            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+            <li class="breadcrumb-item active">Hubungi Kami</li>
           </ol>
         </div>
       </nav>
@@ -248,7 +308,7 @@
       <section class="page-header">
         <div class="container">
           <h1 class="page-title" data-aos="fade-up">
-            Get In <span class="highlight-yellow">Touch</span>
+            Butuh Bantuan <span class="highlight-yellow">idSpora?</span>
           </h1>
           <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
             Hubungi kami untuk konsultasi gratis atau informasi lebih lanjut
@@ -264,7 +324,7 @@
             <div class="col-lg-8 mb-4" data-aos="fade-right">
               <div class="contact-form-card">
                 <h3 class="mb-4">Kirim Pesan</h3>
-                <form class="contact-form">
+                <form class="contact-form" id="whatsappForm">
                   <div class="row">
                     <div class="col-md-6 mb-3">
                       <label for="firstName" class="form-label"
@@ -324,8 +384,8 @@
                       ></textarea>
                     </div>
                     <div class="col-12">
-                      <button type="submit" class="btn btn-dark btn-lg">
-                        <i class="fas fa-paper-plane me-2"></i>Kirim Pesan
+                      <button type="submit" class="btn btn-success btn-lg">
+                        <i class="fab fa-whatsapp me-2"></i>Kirim ke WhatsApp
                       </button>
                     </div>
                   </div>
@@ -348,7 +408,8 @@
                     <div>
                       <h6>Alamat</h6>
                       <p class="text-muted mb-0">
-                        Jl. Teknologi No. 123<br />Jakarta Selatan, 12345
+                        Gd. Selaru Lt.4 Telkom University<br />Jl.
+                        Telekomunikasi No.1 Bandung<br />Jawa Barat, 40267
                       </p>
                     </div>
                   </div>
@@ -364,7 +425,7 @@
                     </div>
                     <div>
                       <h6>Telepon</h6>
-                      <p class="text-muted mb-0">+62 21 1234 5678</p>
+                      <p class="text-muted mb-0">+62 898-9260-731</p>
                     </div>
                   </div>
                 </div>
@@ -379,7 +440,7 @@
                     </div>
                     <div>
                       <h6>Email</h6>
-                      <p class="text-muted mb-0">info@idspora.com</p>
+                      <p class="text-muted mb-0">idspora.contact@gmail.com</p>
                     </div>
                   </div>
                 </div>
@@ -395,22 +456,30 @@
                     <div>
                       <h6>Jam Operasional</h6>
                       <p class="text-muted mb-0">
-                        Senin - Jumat: 09:00 - 18:00<br />Sabtu: 09:00 - 15:00
+                        Senin - Jumat: 09:00 - 17:00<br />
                       </p>
                     </div>
                   </div>
                 </div>
 
                 <div class="contact-item">
-                  <h6>Follow Us</h6>
+                  <h6>Ikuti Media Sosial idSpora</h6>
                   <div class="social-links">
-                    <a href="#" class="me-3" style="color: var(--dark-blue)"
+                    <a
+                      href="https://www.tiktok.com/@idspora"
+                      class="me-3"
+                      style="color: var(--dark-blue)"
                       ><i class="fab fa-tiktok fa-lg"></i
                     ></a>
-                    <a href="#" class="me-3" style="color: var(--dark-blue)"
+                    <a
+                      href="https://www.instagram.com/idspora.official/"
+                      class="me-3"
+                      style="color: var(--dark-blue)"
                       ><i class="fab fa-instagram fa-lg"></i
                     ></a>
-                    <a href="#" style="color: var(--dark-blue)"
+                    <a
+                      href="https://www.linkedin.com/company/idspora/"
+                      style="color: var(--dark-blue)"
                       ><i class="fab fa-linkedin fa-lg"></i
                     ></a>
                   </div>
@@ -439,7 +508,7 @@
             >
               <i class="fab fa-whatsapp me-2"></i>Chat WhatsApp
             </a>
-            <a href="tel:+622112345678" class="btn btn-outline-dark btn-lg">
+            <a href="tel:+628989260731" class="btn btn-outline-dark btn-lg">
               <i class="fas fa-phone me-2"></i>Telepon Sekarang
             </a>
           </div>
@@ -449,21 +518,31 @@
       <!-- Footer -->
       <footer class="footer-section">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-4 mb-4">
-              <h5 class="text-white mb-3">idSpora</h5>
+          <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+              <a class="navbar-brand" href="index.html"
+                ><img
+                  src="property/logo idspora_nobg_dark.png"
+                  alt="idSpora Logo"
+                  style="height: 60px; width: auto"
+              /></a>
               <p class="text-light">
-                Empowering Lifelong Learning Through Innovation and
-                Collaboration.
+                Belajar tanpa batas, berkembang tanpa henti.
               </p>
               <div class="social-links">
-                <a href="#" class="text-light me-3"
+                <a
+                  href="https://www.tiktok.com/@idspora"
+                  class="text-light me-3"
                   ><i class="fab fa-tiktok"></i
                 ></a>
-                <a href="#" class="text-light me-3"
+                <a
+                  href="https://www.instagram.com/idspora.official/"
+                  class="text-light me-3"
                   ><i class="fab fa-instagram"></i
                 ></a>
-                <a href="#" class="text-light"
+                <a
+                  href="https://www.linkedin.com/company/idspora/"
+                  class="text-light"
                   ><i class="fab fa-linkedin"></i
                 ></a>
               </div>
@@ -471,61 +550,82 @@
             <div class="col-lg-2 col-md-6 mb-4">
               <h6 class="text-white mb-3">Quick Links</h6>
               <ul class="list-unstyled">
-                <li><a href="index.html" class="text-light">Home</a></li>
-                <li><a href="products.html" class="text-light">Products</a></li>
-                <li><a href="about.html" class="text-light">About Us</a></li>
-                <li><a href="reviews.html" class="text-light">Review</a></li>
-                <li><a href="news.html" class="text-light">News</a></li>
+                <li><a href="index.html" class="text-light">Beranda</a></li>
+                <li>
+                  <a href="about.html" class="text-light">Tentang Kami</a>
+                </li>
+                <li>
+                  <a href="products.html" class="text-light">Portofolio</a>
+                </li>
+                <li><a href="reviews.html" class="text-light">Ulasan</a></li>
+                <li><a href="news.html" class="text-light">Berita</a></li>
               </ul>
             </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Services</h6>
+            <div class="col-lg-3 col-md-6 mb-4">
+              <h6 class="text-white mb-3">Layanan</h6>
               <ul class="list-unstyled">
                 <li><a href="#" class="text-light">Live Webinars</a></li>
-                <li><a href="#" class="text-light">Training</a></li>
-                <li><a href="#" class="text-light">Mini Workshops</a></li>
+                <li>
+                  <a href="#" class="text-light">Training & Mini Workshops</a>
+                </li>
                 <li><a href="#" class="text-light">E-Learning</a></li>
+                <li><a href="#" class="text-light">Video Production</a></li>
               </ul>
             </div>
-            <div class="col-lg-4 mb-4">
-              <h6 class="text-white mb-3">Newsletter</h6>
-              <p class="text-light">
-                Subscribe to get updates on latest training and webinar
-                schedules.
+            <div class="col-lg-3 col-md-6 mb-4">
+              <h6 class="text-white mb-3">Hubungi Kami</h6>
+              <p class="text-light mb-2">
+                <i class="fas fa-envelope me-2"></i>info@idspora.com
               </p>
-              <div class="input-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Your email"
-                />
-                <button
-                  class="btn"
-                  style="
-                    background: var(--primary-yellow);
-                    color: var(--dark-blue);
-                  "
-                >
-                  Subscribe
-                </button>
+              <p class="text-light mb-2">
+                <i class="fas fa-phone me-2"></i>+62 898-926-0731
+              </p>
+              <p class="text-light mb-3">
+                <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
+              </p>
+              <div class="social-links">
+                <a
+                  href="https://www.tiktok.com/@idspora"
+                  class="text-light me-3"
+                  title="TikTok"
+                  ><i class="fab fa-tiktok"></i
+                ></a>
+                <a
+                  href="https://www.instagram.com/idspora.official/"
+                  class="text-light me-3"
+                  title="Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a
+                  href="https://www.linkedin.com/company/idspora/"
+                  class="text-light"
+                  title="LinkedIn"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
               </div>
             </div>
           </div>
-          <hr class="my-4" style="border-color: #495057" />
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <p class="text-light mb-0">
+          <hr class="my-3" style="border-color: #495057" />
+          <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+              <p class="text-light mb-1" style="font-size: 0.8rem">
                 &copy; 2024 idSpora. All rights reserved.
               </p>
-            </div>
-            <div class="col-md-6 text-md-end">
-              <a href="#" class="text-light me-3">Privacy Policy</a>
-              <a href="#" class="text-light">Terms of Service</a>
             </div>
           </div>
         </div>
       </footer>
     </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href="https://wa.me/628989260731"
+      class="whatsapp-float"
+      target="_blank"
+      title="Chat with us on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -536,33 +636,76 @@
         once: true,
       });
 
-      // Form submission handler
+      // WhatsApp form submission handler
       document
-        .querySelector(".contact-form")
+        .querySelector("#whatsappForm")
         .addEventListener("submit", function (e) {
           e.preventDefault();
+
+          // Get form data
+          const firstName = document.getElementById("firstName").value.trim();
+          const lastName = document.getElementById("lastName").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const subjectSelect = document.getElementById("subject");
+          const subjectValue = subjectSelect.value;
+          const subjectText = subjectValue
+            ? subjectSelect.options[subjectSelect.selectedIndex].text
+            : "Belum dipilih";
+          const message = document.getElementById("message").value.trim();
+
+          // Validation
+          if (!firstName || !lastName || !email || !subjectValue || !message) {
+            alert("Mohon lengkapi semua field yang wajib diisi!");
+            return;
+          }
+
+          // Create simple WhatsApp message
+          let whatsappMessage = `Halo idSpora! 👋
+
+Informasi Kontak:
+📝 Nama: ${firstName} ${lastName}
+📧 Email: ${email}`;
+
+          if (phone) {
+            whatsappMessage += `
+📞 Telepon: ${phone}`;
+          }
+
+          whatsappMessage += `
+
+Subjek: ${subjectText}
+
+Pesan:
+${message}
+
+Mohon informasi lebih lanjut. Terima kasih! 🙏`;
+
+          // Debug: Show message in console
+          console.log("WhatsApp Message:", whatsappMessage);
+
+          // Encode the message for URL
+          const encodedMessage = encodeURIComponent(whatsappMessage);
+
+          // Open WhatsApp
+          const whatsappURL = "https://wa.me/628989260731?text=${encodedMessage}"
+          console.log("WhatsApp URL:", whatsappURL);
+
+          window.open(whatsappURL, "_blank");
 
           // Show success message
           const button = this.querySelector('button[type="submit"]');
           const originalText = button.innerHTML;
 
           button.innerHTML =
-            '<i class="fas fa-spinner fa-spin me-2"></i>Mengirim...';
+            '<i class="fas fa-check me-2"></i>Mengarahkan ke WhatsApp...';
           button.disabled = true;
 
           setTimeout(() => {
-            button.innerHTML = '<i class="fas fa-check me-2"></i>Terkirim!';
-            button.classList.remove("btn-dark");
-            button.classList.add("btn-success");
-
-            setTimeout(() => {
-              button.innerHTML = originalText;
-              button.disabled = false;
-              button.classList.remove("btn-success");
-              button.classList.add("btn-dark");
-              this.reset();
-            }, 2000);
-          }, 2000);
+            button.innerHTML = originalText;
+            button.disabled = false;
+            this.reset();
+          }, 3000);
         });
     </script>
   </body>
