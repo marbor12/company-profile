@@ -68,7 +68,7 @@
         position: relative;
       }
 
-      .navbar-nav .nav-link::after {
+      .navbar .navbar-nav .nav-link::after {
         content: "";
         position: absolute;
         bottom: -5px;
@@ -80,8 +80,8 @@
         transform: translateX(-50%);
       }
 
-      .navbar-nav .nav-link:hover::after,
-      .navbar-nav .nav-link.active::after {
+      .navbar .navbar-nav .nav-link:hover::after,
+      .navbar .navbar-nav .nav-link.active::after {
         width: 100%;
       }
 
@@ -277,10 +277,6 @@
         margin-top: 5px;
       }
 
-      .review-badge .badge {
-        font-size: 0.8rem;
-      }
-
       .review-content p {
         color: #555;
         line-height: 1.6;
@@ -377,6 +373,46 @@
         );
       }
 
+      .footer-section a {
+        text-decoration: none !important;
+      }
+
+      .footer-section a:hover {
+        text-decoration: none !important;
+      }
+
+      /* WhatsApp Floating Button */
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: white;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .whatsapp-float:hover {
+        background-color: #128c7e;
+        transform: scale(1.1);
+        color: white;
+        text-decoration: none;
+      }
+
+      .whatsapp-float i {
+        margin-top: 4px;
+      }
+
       /* Animations */
       @keyframes fadeInUp {
         from {
@@ -425,7 +461,7 @@
         <div class="container">
           <a class="navbar-brand" href="index.html"
             ><img
-              src="public/images/logo idspora_nobg_outlined.png"
+              src="property/logo idspora_nobg_outlined.png"
               alt="idSpora Logo"
           /></a>
 
@@ -441,22 +477,22 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html">Home</a>
+                <a class="nav-link" href="index.html">Beranda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="about.html">Tentang</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="products.html">Product</a>
+                <a class="nav-link" href="products.html">Portofolio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="reviews.html">Review</a>
+                <a class="nav-link active" href="reviews.html">Ulasan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="news.html">News</a>
+                <a class="nav-link" href="news.html">Berita</a>
               </li>
             </ul>
-            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+            <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
           </div>
         </div>
       </nav>
@@ -465,8 +501,8 @@
       <nav aria-label="breadcrumb">
         <div class="container">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Reviews</li>
+            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+            <li class="breadcrumb-item active">Ulasan</li>
           </ol>
         </div>
       </nav>
@@ -475,11 +511,11 @@
       <section class="page-header">
         <div class="container">
           <h1 class="page-title" data-aos="fade-up">
-            Client <span class="highlight-yellow">Reviews</span>
+            Ulasan tentang <span class="highlight-yellow">idSpora</span>
           </h1>
           <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
-            Discover what our participants say about their transformative
-            learning experiences with idSpora.
+            Temukan apa yang dikatakan peserta kami tentang pengalaman
+            pembelajaran transformasional mereka dengan idSpora.
           </p>
         </div>
       </section>
@@ -487,26 +523,6 @@
       <!-- Filter Tabs -->
       <section class="section-spacing-sm">
         <div class="container">
-          <div class="text-center mb-5" data-aos="fade-up">
-            <ul
-              class="nav nav-pills justify-content-center review-filters"
-              id="reviewTabs"
-            >
-              <li class="nav-item">
-                <a class="nav-link active" data-filter="all">All Reviews</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-filter="webinar">Webinar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-filter="training">Training</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-filter="workshop">Workshop</a>
-              </li>
-            </ul>
-          </div>
-
           <!-- Reviews Grid -->
           <div class="reviews-grid" id="reviewsGrid">
             <!-- Webinar Reviews -->
@@ -534,11 +550,6 @@
                         <i class="fas fa-star"></i>
                       </div>
                     </div>
-                  </div>
-                  <div class="review-badge">
-                    <span class="badge bg-success"
-                      >Digital Marketing Webinar</span
-                    >
                   </div>
                 </div>
                 <div class="review-content">
@@ -580,9 +591,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="review-badge">
-                    <span class="badge bg-info">Data Science Training</span>
-                  </div>
                 </div>
                 <div class="review-content">
                   <p>
@@ -622,9 +630,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="review-badge">
-                    <span class="badge bg-warning">AI for UMKM Workshop</span>
-                  </div>
                 </div>
                 <div class="review-content">
                   <p>
@@ -663,9 +668,6 @@
                         <i class="far fa-star"></i>
                       </div>
                     </div>
-                  </div>
-                  <div class="review-badge">
-                    <span class="badge bg-danger">Cybersecurity Training</span>
                   </div>
                 </div>
                 <div class="review-content">
@@ -707,11 +709,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="review-badge">
-                    <span class="badge bg-primary"
-                      >Product Management Webinar</span
-                    >
-                  </div>
                 </div>
                 <div class="review-content">
                   <p>
@@ -751,11 +748,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="review-badge">
-                    <span class="badge bg-secondary"
-                      >UI/UX Design Workshop</span
-                    >
-                  </div>
                 </div>
                 <div class="review-content">
                   <p>
@@ -774,7 +766,7 @@
           <!-- Load More Button -->
           <div class="text-center mt-5" data-aos="fade-up">
             <button class="btn btn-outline-dark btn-lg load-more-btn">
-              <i class="fas fa-plus-circle me-2"></i>Load More Reviews
+              <i class="fas fa-plus-circle me-2"></i>Lihat Lebih Banyak
             </button>
           </div>
         </div>
@@ -789,12 +781,12 @@
           <div class="row justify-content-center">
             <div class="col-lg-8">
               <div class="write-review-card" data-aos="zoom-in">
-                <h3 class="text-center mb-4">Share Your Experience</h3>
+                <h3 class="text-center mb-4">Bagikan Pengalaman</h3>
                 <form class="review-form">
                   <div class="row">
                     <div class="col-md-6 mb-3">
                       <label for="reviewerName" class="form-label"
-                        >Your Name *</label
+                        >Nama Kamu *</label
                       >
                       <input
                         type="text"
@@ -805,7 +797,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                       <label for="reviewerTitle" class="form-label"
-                        >Job Title</label
+                        >Pekerjaan</label
                       >
                       <input
                         type="text"
@@ -815,7 +807,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                       <label for="reviewerCompany" class="form-label"
-                        >Company</label
+                        >Perusahaan</label
                       >
                       <input
                         type="text"
@@ -825,18 +817,20 @@
                     </div>
                     <div class="col-md-6 mb-3">
                       <label for="serviceType" class="form-label"
-                        >Program Type *</label
+                        >Tipe Program *</label
                       >
                       <select class="form-control" id="serviceType" required>
-                        <option value="">Select program</option>
-                        <option value="webinar">Live Webinar</option>
-                        <option value="training">Training Program</option>
-                        <option value="workshop">Mini Workshop</option>
-                        <option value="elearning">E-Learning Course</option>
+                        <option value="">Pilih program</option>
+                        <option value="webinar">Live Webinars</option>
+                        <option value="training">
+                          Program Training & Mini Workshop
+                        </option>
+                        <option value="elearning">E-Learning</option>
+                        <option value="workshop">Video Production</option>
                       </select>
                     </div>
                     <div class="col-12 mb-3">
-                      <label class="form-label">Rating *</label>
+                      <label class="form-label">Skor *</label>
                       <div class="star-rating">
                         <i class="far fa-star" data-rating="1"></i>
                         <i class="far fa-star" data-rating="2"></i>
@@ -847,7 +841,7 @@
                     </div>
                     <div class="col-12 mb-3">
                       <label for="reviewText" class="form-label"
-                        >Your Review *</label
+                        >Ulasan Kamu *</label
                       >
                       <textarea
                         class="form-control"
@@ -859,7 +853,7 @@
                     </div>
                     <div class="col-12">
                       <button type="submit" class="btn btn-dark btn-lg">
-                        <i class="fas fa-paper-plane me-2"></i>Submit Review
+                        <i class="fas fa-paper-plane me-2"></i>Kirim Ulasan
                       </button>
                     </div>
                   </div>
@@ -873,103 +867,97 @@
       <!-- Footer -->
       <footer class="footer-section">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-4 col-md-4 mb-4">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 mb-4">
               <a class="navbar-brand" href="index.html"
                 ><img
-                  src="public/images/logo idspora_nobg_dark.png"
+                  src="property/logo idspora_nobg_dark.png"
                   alt="idSpora Logo"
                   style="height: 60px; width: auto"
               /></a>
-              <p class="text-light mt-3">
-                Empowering Lifelong Learning Through Innovation and
-                Collaboration.
+              <p class="text-light">
+                Belajar tanpa batas, berkembang tanpa henti.
               </p>
               <div class="social-links">
-                <a href="#" class="text-light me-3"
+                <a
+                  href="https://www.tiktok.com/@idspora"
+                  class="text-light me-3"
                   ><i class="fab fa-tiktok"></i
                 ></a>
-                <a href="#" class="text-light me-3"
+                <a
+                  href="https://www.instagram.com/idspora.official/"
+                  class="text-light me-3"
                   ><i class="fab fa-instagram"></i
                 ></a>
-                <a href="#" class="text-light"
+                <a
+                  href="https://www.linkedin.com/company/idspora/"
+                  class="text-light"
                   ><i class="fab fa-linkedin"></i
                 ></a>
               </div>
             </div>
-            <div class="col-lg-4 col-md-4 mb-4 text-center">
+            <div class="col-lg-2 col-md-6 mb-4">
               <h6 class="text-white mb-3">Quick Links</h6>
               <ul class="list-unstyled">
+                <li><a href="index.html" class="text-light">Beranda</a></li>
                 <li>
-                  <a
-                    href="index.html"
-                    class="text-light"
-                    style="text-decoration: none"
-                    >Home</a
-                  >
+                  <a href="about.html" class="text-light">Tentang Kami</a>
                 </li>
                 <li>
-                  <a
-                    href="products.html"
-                    class="text-light"
-                    style="text-decoration: none"
-                    >Portofolio</a
-                  >
+                  <a href="products.html" class="text-light">Portofolio</a>
                 </li>
-                <li>
-                  <a
-                    href="about.html"
-                    class="text-light"
-                    style="text-decoration: none"
-                    >About Us</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="reviews.html"
-                    class="text-light"
-                    style="text-decoration: none"
-                    >Review</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="news.html"
-                    class="text-light"
-                    style="text-decoration: none"
-                    >News</a
-                  >
-                </li>
+                <li><a href="reviews.html" class="text-light">Ulasan</a></li>
+                <li><a href="news.html" class="text-light">Berita</a></li>
               </ul>
             </div>
-            <div class="col-lg-4 col-md-4 mb-4">
-              <h6 class="text-white mb-3">Newsletter</h6>
-              <p class="text-light">
-                Subscribe to get updates on latest training and webinar
-                schedules.
+            <div class="col-lg-3 col-md-6 mb-4">
+              <h6 class="text-white mb-3">Layanan</h6>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-light">Live Webinars</a></li>
+                <li>
+                  <a href="#" class="text-light">Training & Mini Workshops</a>
+                </li>
+                <li><a href="#" class="text-light">E-Learning</a></li>
+                <li><a href="#" class="text-light">Video Production</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+              <h6 class="text-white mb-3">Hubungi Kami</h6>
+              <p class="text-light mb-2">
+                <i class="fas fa-envelope me-2"></i>info@idspora.com
               </p>
-              <div class="input-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Your email"
-                />
-                <button
-                  class="btn"
-                  style="
-                    background: var(--primary-yellow);
-                    color: var(--dark-blue);
-                  "
-                >
-                  Subscribe
-                </button>
+              <p class="text-light mb-2">
+                <i class="fas fa-phone me-2"></i>+62 898-926-0731
+              </p>
+              <p class="text-light mb-3">
+                <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
+              </p>
+              <div class="social-links">
+                <a
+                  href="https://www.tiktok.com/@idspora"
+                  class="text-light me-3"
+                  title="TikTok"
+                  ><i class="fab fa-tiktok"></i
+                ></a>
+                <a
+                  href="https://www.instagram.com/idspora.official/"
+                  class="text-light me-3"
+                  title="Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a
+                  href="https://www.linkedin.com/company/idspora/"
+                  class="text-light"
+                  title="LinkedIn"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
               </div>
             </div>
           </div>
-          <hr class="mt-2 mb-2" style="border-color: #495057" />
+          <hr class="my-3" style="border-color: #495057" />
           <div class="row justify-content-center">
             <div class="col-md-4 text-center">
-              <p class="text-light mb-2" style="font-size: 0.9rem">
+              <p class="text-light mb-1" style="font-size: 0.8rem">
                 &copy; 2024 idSpora. All rights reserved.
               </p>
             </div>
@@ -1068,11 +1056,11 @@
         loadMoreBtn.addEventListener("click", function () {
           // Simulate loading more reviews
           this.innerHTML =
-            '<i class="fas fa-spinner fa-spin me-2"></i>Loading...';
+            '<i class="fas fa-spinner fa-spin me-2"></i>Memuat...';
 
           setTimeout(() => {
             this.innerHTML =
-              '<i class="fas fa-check me-2"></i>All Reviews Loaded';
+              '<i class="fas fa-check me-2"></i>Semua Ulasan Dimuat';
             this.disabled = true;
             this.classList.add("btn-success");
             this.classList.remove("btn-outline-dark");
