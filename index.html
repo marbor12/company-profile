@@ -66,9 +66,22 @@
         }
 
         .navbar-brand {
-            font-weight: bold;
-            color: var(--dark-blue) !important;
-            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            position: relative;
+            z-index: 10;
+        }
+
+        .navbar-brand img {
+            height: 70px;
+            width: auto;
+            transition: all 0.3s ease;
+            margin: -15px 0;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
         }
 
         .navbar-nav .nav-link {
@@ -179,6 +192,7 @@
             border-radius: 20px 20px 0px 0px;
             display: inline-block;
         }
+
         .highlight-yellow-borderright {
             background-color: var(--primary-yellow);
             padding: 5px 15px;
@@ -205,6 +219,16 @@
 
         .hero-image {
             position: relative;
+        }
+
+        .hero-image img {
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image.slide-1 img {
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .floating-card {
@@ -745,6 +769,14 @@
                     transparent);
         }
 
+        .footer-section a {
+            text-decoration: none !important;
+        }
+
+        .footer-section a:hover {
+            text-decoration: none !important;
+        }
+
         /* WhatsApp Floating Button */
         .whatsapp-float {
             position: fixed;
@@ -941,7 +973,8 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html"> idSpora </a>
+                <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_outlined.png"
+                        alt="idSpora Logo" /></a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -953,7 +986,7 @@
                             <a class="nav-link active" href="index.html">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">Tentang Kami</a>
+                            <a class="nav-link" href="about.html">Tentang</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="products.html">Portofolio</a>
@@ -999,7 +1032,7 @@
                                     </button>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="hero-image text-center position-relative">
+                                    <div class="hero-image slide-1 text-center position-relative">
                                         <img src="property/gambar.png" alt="Learning Platform" class="img-fluid" />
 
                                         <div class="floating-card floating-card-1">
@@ -1088,7 +1121,8 @@
                                         <span class="highlight-yellow-borderright">MINI WORKSHOP</span>
                                     </h1>
                                     <h2 class="hero-subtitle">
-                                        Belajar dengan cerdas, berlatih cepat, berkembang lebih dalam.
+                                        Belajar dengan cerdas, berlatih cepat, berkembang lebih
+                                        dalam.
                                     </h2>
                                     <p class="text-muted mb-4">
                                         Ikuti program training dan mini workshop. Tingkatkan
@@ -1207,7 +1241,8 @@
                             </div>
                             <h4>Training & Mini Workshop</h4>
                             <p>
-                                Jalur pembelajaran terstruktur untuk membangun dan memajukan keahlian Anda.
+                                Jalur pembelajaran terstruktur untuk membangun dan memajukan
+                                keahlian Anda.
                             </p>
                         </div>
                     </div>
@@ -1217,7 +1252,10 @@
                                 <i class="fas fa-tools"></i>
                             </div>
                             <h4>E-Learning</h4>
-                            <p>Kursus fleksibel sesuai permintaan yang dapat Anda akses kapan saja, di mana saja.</p>
+                            <p>
+                                Kursus fleksibel sesuai permintaan yang dapat Anda akses kapan
+                                saja, di mana saja.
+                            </p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
@@ -1227,7 +1265,8 @@
                             </div>
                             <h4>Video Production</h4>
                             <p>
-                              Produksi video pembelajaran yang siap digunakan di berbagai platform e-learning.
+                                Produksi video pembelajaran yang siap digunakan di berbagai
+                                platform e-learning.
                             </p>
                         </div>
                     </div>
@@ -1239,7 +1278,7 @@
         <section class="gallery-section">
             <div class="container">
                 <h2 class="text-center section-title mb-5" data-aos="fade-up">
-                     Event Kami <span class="highlight-yellow">Dokumentasi</span>
+                    Event Kami <span class="highlight-yellow">Dokumentasi</span>
                 </h2>
                 <p class="text-center text-muted mb-5" data-aos="fade-up" data-aos-delay="200">
                     Lihat momen-momen berharga dari event dan pelatihan yang telah kami
@@ -1262,7 +1301,7 @@
 
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="gallery-item">
-                             <img src="property/fgd.jpg" alt="Workshop AI untuk UMKM" class="img-fluid" />
+                            <img src="property/fgd.jpg" alt="Workshop AI untuk UMKM" class="img-fluid" />
                             <div class="gallery-overlay">
                                 <div class="gallery-content">
                                     <h5>Forum Group Discussion</h5>
@@ -1301,8 +1340,7 @@
 
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
                         <div class="gallery-item">
-                            <img src="property/training.jpg" alt="Leadership Development"
-                                class="img-fluid" />
+                            <img src="property/training.jpg" alt="Leadership Development" class="img-fluid" />
                             <div class="gallery-overlay">
                                 <div class="gallery-content">
                                     <h5>Workshop Gen AI untuk Gen Z</h5>
@@ -1319,7 +1357,7 @@
                             <div class="gallery-overlay">
                                 <div class="gallery-content">
                                     <h5>Webinar</h5>
-                                    <p> Agustus 2024</p>
+                                    <p>Agustus 2024</p>
                                     <span class="badge bg-secondary">100+ Graduates</span>
                                 </div>
                             </div>
@@ -1340,7 +1378,7 @@
         <section class="agents-section">
             <div class="container text-center">
                 <h2 class="section-title mt-5 mb-5" data-aos="fade-up">
-                   <span class="highlight-yellow">Mentor</span> Kami
+                    <span class="highlight-yellow">Mentor</span> Kami
                 </h2>
 
                 <div class="experts-carousel-container" data-aos="fade-up">
@@ -1391,7 +1429,6 @@
                             </div>
                         </div>
 
-      
                         <div class="experts-item-wrapper">
                             <div class="agent-card">
                                 <img src="property/parobi.png" class="agent-photo mb-3" alt="Robby Hendriyanto" />
@@ -1401,7 +1438,7 @@
                                 </div>
                             </div>
                         </div>
-               
+
                         <div class="experts-item-wrapper">
                             <div class="card-wrapper">
                                 <img src="property/heru.png" class="agent-photo mb-3" alt="Heru Nugroho" />
@@ -1411,7 +1448,7 @@
                                 </div>
                             </div>
                         </div>
-                   
+
                         <div class="experts-item-wrapper">
                             <div class="card-wrapper">
                                 <img src="property/payusuf.png" class="agent-photo mb-3" alt="Yusuf Ramadhan" />
@@ -1425,7 +1462,6 @@
                 </div>
             </div>
         </section>
-
         <!-- News -->
         <section class="news-section">
             <div class="container">
@@ -1435,8 +1471,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="news-card">
-                            <img src="property/workshop-session.png" alt="Workshop AI UMKM"
-                                class="img-fluid mb-3" />
+                            <img src="property/workshop-session.png" alt="Workshop AI UMKM" class="img-fluid mb-3" />
                             <h5>Workshop Jago AI UMKM</h5>
                             <p class="text-muted">
                                 Pelatihan intensif untuk UMKM dalam memanfaatkan teknologi AI
@@ -1448,8 +1483,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="news-card">
-                            <img src="property/webinar.jpg" alt="Digital Marketing"
-                                class="img-fluid mb-3" />
+                            <img src="property/webinar.jpg" alt="Digital Marketing" class="img-fluid mb-3" />
                             <h5>Webinar Digital Marketing 2025</h5>
                             <p class="text-muted">
                                 Strategi pemasaran digital terbaru untuk menghadapi tantangan
@@ -1493,14 +1527,13 @@
         <section class="testimonials-section">
             <div class="container">
                 <h2 class="text-center section-title mb-5" data-aos="fade-up">
-                 <span class="highlight-white">Ulasan Mereka</span> Tentang Kami
+                    <span class="highlight-white">Ulasan Mereka</span> Tentang Kami
                 </h2>
                 <div class="row">
                     <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="testimonial-card">
                             <div class="d-flex align-items-center mb-3">
-                                <img src="property/profile.png" alt="Maria Sari"
-                                    class="testimonial-photo me-3" />
+                                <img src="property/profile.png" alt="Maria Sari" class="testimonial-photo me-3" />
                                 <div>
                                     <h6>Maria Sari</h6>
                                     <small class="text-muted">CEO, Tech Startup</small>
@@ -1517,8 +1550,7 @@
                     <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="testimonial-card">
                             <div class="d-flex align-items-center mb-3">
-                                <img src="property/profile.png" alt="John Doe"
-                                    class="testimonial-photo me-3" />
+                                <img src="property/profile.png" alt="John Doe" class="testimonial-photo me-3" />
                                 <div>
                                     <h6>John Doe</h6>
                                     <small class="text-muted">Digital Marketing Manager</small>
@@ -1641,111 +1673,85 @@
             </div>
         </section>
 
-        
-      <!-- Footer -->
-      <footer class="footer-section">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-3 col-md-6 mb-4">
-              <a class="navbar-brand" href="index.html"
-                ><img
-                  src="property/logo idspora_nobg_dark.png"
-                  alt="idSpora Logo"
-                  style="height: 60px; width: auto"
-              /></a>
-              <p class="text-light">
-                Belajar tanpa batas, berkembang tanpa henti.
-              </p>
-              <div class="social-links">
-                <a
-                  href="https://www.tiktok.com/@idspora"
-                  class="text-light me-3"
-                  ><i class="fab fa-tiktok"></i
-                ></a>
-                <a
-                  href="https://www.instagram.com/idspora.official/"
-                  class="text-light me-3"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/company/idspora/"
-                  class="text-light"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-              </div>
+        <!-- Footer -->
+        <footer class="footer-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_dark.png"
+                                alt="idSpora Logo" style="height: 60px; width: auto" /></a>
+                        <p class="text-light">
+                            Belajar tanpa batas, berkembang tanpa henti.
+                        </p>
+                        <div class="social-links">
+                            <a href="https://www.tiktok.com/@idspora" class="text-light me-3"><i
+                                    class="fab fa-tiktok"></i></a>
+                            <a href="https://www.instagram.com/idspora.official/" class="text-light me-3"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/company/idspora/" class="text-light"><i
+                                    class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="text-white mb-3">Quick Links</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html" class="text-light">Beranda</a></li>
+                            <li>
+                                <a href="about.html" class="text-light">Tentang Kami</a>
+                            </li>
+                            <li>
+                                <a href="products.html" class="text-light">Portofolio</a>
+                            </li>
+                            <li><a href="reviews.html" class="text-light">Ulasan</a></li>
+                            <li><a href="news.html" class="text-light">Berita</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <h6 class="text-white mb-3">Layanan</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-light">Live Webinars</a></li>
+                            <li>
+                                <a href="#" class="text-light">Training & Mini Workshops</a>
+                            </li>
+                            <li><a href="#" class="text-light">E-Learning</a></li>
+                            <li><a href="#" class="text-light">Video Production</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <h6 class="text-white mb-3">Hubungi Kami</h6>
+                        <p class="text-light mb-2">
+                            <i class="fas fa-envelope me-2"></i>info@idspora.com
+                        </p>
+                        <p class="text-light mb-2">
+                            <i class="fas fa-phone me-2"></i>+62 898-926-0731
+                        </p>
+                        <p class="text-light mb-3">
+                            <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
+                        </p>
+                        <div class="social-links">
+                            <a href="https://www.tiktok.com/@idspora" class="text-light me-3" title="TikTok"><i
+                                    class="fab fa-tiktok"></i></a>
+                            <a href="https://www.instagram.com/idspora.official/" class="text-light me-3"
+                                title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/company/idspora/" class="text-light" title="LinkedIn"><i
+                                    class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-3" style="border-color: #495057" />
+                <div class="row justify-content-center">
+                    <div class="col-md-4 text-center">
+                        <p class="text-light mb-1" style="font-size: 0.8rem">
+                            &copy; 2024 idSpora. All rights reserved.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Quick Links</h6>
-              <ul class="list-unstyled">
-                <li><a href="index.html" class="text-light">Beranda</a></li>
-                <li>
-                  <a href="about.html" class="text-light">Tentang Kami</a>
-                </li>
-                <li>
-                  <a href="products.html" class="text-light">Portofolio</a>
-                </li>
-                <li><a href="reviews.html" class="text-light">Ulasan</a></li>
-                <li><a href="news.html" class="text-light">Berita</a></li>
-              </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Layanan</h6>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-light">Live Webinars</a></li>
-                <li>
-                  <a href="#" class="text-light">Training & Mini Workshops</a>
-                </li>
-                <li><a href="#" class="text-light">E-Learning</a></li>
-                <li><a href="#" class="text-light">Video Production</a></li>
-              </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Hubungi Kami</h6>
-              <p class="text-light mb-2">
-                <i class="fas fa-envelope me-2"></i>info@idspora.com
-              </p>
-              <p class="text-light mb-2">
-                <i class="fas fa-phone me-2"></i>+62 898-926-0731
-              </p>
-              <p class="text-light mb-3">
-                <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
-              </p>
-              <div class="social-links">
-                <a
-                  href="https://www.tiktok.com/@idspora"
-                  class="text-light me-3"
-                  title="TikTok"
-                  ><i class="fab fa-tiktok"></i
-                ></a>
-                <a
-                  href="https://www.instagram.com/idspora.official/"
-                  class="text-light me-3"
-                  title="Instagram"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/company/idspora/"
-                  class="text-light"
-                  title="LinkedIn"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <hr class="my-3" style="border-color: #495057" />
-          <div class="row justify-content-center">
-            <div class="col-md-4 text-center">
-              <p class="text-light mb-1" style="font-size: 0.8rem">
-                &copy; 2024 idSpora. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+        </footer>
     </div>
 
-    <a href="https://wa.me/6281234567890?text=Halo%20idSpora,%20saya%20tertarik%20dengan%20program%20pelatihan%20yang%20ada"
-        class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/628989260731" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1773,16 +1779,16 @@
         document.addEventListener("DOMContentLoaded", function () {
             const heroCarousel = document.getElementById("heroCarousel");
             const heroCarouselInstance = new bootstrap.Carousel(heroCarousel, {
-                interval: 4000, 
+                interval: 4000,
                 wrap: true,
-                pause: false, 
+                pause: false,
             });
 
             const agentsCarousel = document.getElementById("agentsCarousel");
             const agentsCarouselInstance = new bootstrap.Carousel(agentsCarousel, {
-                interval: 4000, 
+                interval: 4000,
                 wrap: true,
-                pause: false, 
+                pause: false,
             });
         });
 

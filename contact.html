@@ -173,7 +173,7 @@
       }
 
       .breadcrumb-item.active {
-        color: #666;
+        color: var(--primary-yellow);
       }
 
       .section-spacing {
@@ -688,7 +688,7 @@ Mohon informasi lebih lanjut. Terima kasih! 🙏`;
           const encodedMessage = encodeURIComponent(whatsappMessage);
 
           // Open WhatsApp
-          const whatsappURL = "https://wa.me/628989260731?text=${encodedMessage}"
+          const whatsappURL = "https://wa.me/628989260731?text=${encodedMessage};"
           console.log("WhatsApp URL:", whatsappURL);
 
           window.open(whatsappURL, "_blank");

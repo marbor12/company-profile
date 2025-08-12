@@ -1,1055 +1,630 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - idSpora</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <style>
-      :root {
-        --primary-yellow: #f4c430;
-        --dark-blue: #2c3e50;
-        --light-cream: #fdf6e3;
-        --section-spacing: 100px;
-      }
 
-      body {
-        background: #ffffff;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        min-height: 100vh;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News - idSpora</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-yellow: #f4c430;
+      --dark-blue: #2c3e50;
+      --light-cream: #fdf6e3;
+      --section-spacing: 100px;
+    }
 
-      .main-container {
-        background: #ffffff;
-        margin: 0;
-        overflow-x: hidden;
-      }
+    body {
+      background: #ffffff;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+    }
 
-      /* Navbar */
-      .navbar {
-        background: transparent;
-        padding: 20px 0;
-        border-bottom: 1px solid rgba(244, 196, 48, 0.1);
-      }
+    .main-container {
+      background: #ffffff;
+      margin: 0;
+      overflow: hidden;
+    }
 
-      .navbar-brand {
-        font-weight: bold;
-        color: var(--dark-blue) !important;
-        font-size: 1.8rem;
-      }
+    /* Navbar */
+    .navbar {
+      background: transparent;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(244, 196, 48, 0.1);
+    }
 
-      .navbar-nav .nav-link {
-        color: var(--dark-blue) !important;
-        font-weight: 500;
-        margin: 0 15px;
-        transition: all 0.3s ease;
-        position: relative;
-      }
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      position: relative;
+      z-index: 10;
+    }
 
-      .navbar-nav .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background: var(--primary-yellow);
-        transition: all 0.3s ease;
-        transform: translateX(-50%);
-      }
+    .navbar-brand img {
+      height: 70px;
+      width: auto;
+      transition: all 0.3s ease;
+      margin: -15px 0;
+    }
 
-      .navbar-nav .nav-link:hover::after,
-      .navbar-nav .nav-link.active::after {
-        width: 100%;
-      }
+    .navbar-brand:hover img {
+      transform: scale(1.05);
+    }
 
-      .btn-contact {
-        background: var(--dark-blue);
-        color: white;
-        border-radius: 25px;
-        padding: 10px 25px;
-        border: none;
-        transition: all 0.3s ease;
-      }
+    .navbar-nav .nav-link {
+      color: var(--dark-blue) !important;
+      font-weight: 500;
+      margin: 0 15px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
 
-      .btn-contact:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      }
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary-yellow);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
 
-      /* Page Header */
-      .page-header {
-        padding: 80px 0;
-        background: linear-gradient(
-          135deg,
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+      width: 100%;
+    }
+
+    .btn-contact {
+      background: var(--dark-blue);
+      color: white;
+      border-radius: 25px;
+      padding: 10px 25px;
+      border: none;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-contact:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      background: transparent;
+      padding: 20px 0;
+    }
+
+    .breadcrumb-item a {
+      color: var(--dark-blue);
+      text-decoration: none;
+    }
+
+    .breadcrumb-item.active {
+      color: var(--primary-yellow);
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 60px 0;
+      background: linear-gradient(135deg,
           rgba(244, 196, 48, 0.05),
-          rgba(255, 215, 0, 0.05)
-        );
-        text-align: center;
-      }
+          rgba(255, 215, 0, 0.02));
+      text-align: center;
+      border-bottom: 2px solid rgba(244, 196, 48, 0.1);
+    }
 
-      .page-title {
-        font-size: 3rem;
-        font-weight: bold;
-        color: var(--dark-blue);
-        margin-bottom: 20px;
-      }
+    .page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--dark-blue);
+      margin-bottom: 20px;
+    }
 
-      .page-subtitle {
-        font-size: 1.2rem;
-        color: #666;
-        max-width: 600px;
-        margin: 0 auto;
-      }
+    .page-subtitle {
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-      .highlight-yellow {
-        background-color: var(--primary-yellow);
-        padding: 5px 15px;
-        font-weight: bold;
-        border-radius: 10px;
-        display: inline-block;
-      }
+    .highlight-yellow {
+      background-color: var(--primary-yellow);
+      padding: 5px 15px;
+      font-weight: bold;
+      border-radius: 10px;
+      display: inline-block;
+    }
 
-      /* Event Portfolio Cards */
-      .event-card {
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        border: 2px solid rgba(244, 196, 48, 0.1);
-        overflow: hidden;
-        height: 100%;
-        transition: all 0.4s ease;
-        position: relative;
-      }
+    /* Sections */
+    .section-spacing-sm {
+      padding: 60px 0;
+    }
 
-      .event-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--primary-yellow), #ffd700);
-        z-index: 2;
-      }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--dark-blue);
+    }
 
-      .event-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 25px 50px rgba(244, 196, 48, 0.2);
-      }
+    /* Featured Article */
+    .featured-article {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      border: 2px solid rgba(244, 196, 48, 0.1);
+    }
 
-      .event-image {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-        transition: all 0.4s ease;
-      }
+    .featured-article img {
+      border-radius: 15px;
+    }
 
-      .event-card:hover .event-image {
-        transform: scale(1.05);
-      }
+    /* Sidebar */
+    .blog-sidebar {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(244, 196, 48, 0.1);
+    }
 
-      .event-content {
-        padding: 25px;
-      }
+    .sidebar-widget {
+      padding-bottom: 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
 
-      .event-category {
-        background: var(--primary-yellow);
-        color: var(--dark-blue);
-        padding: 5px 15px;
-        border-radius: 15px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        display: inline-block;
-        margin-bottom: 15px;
-      }
+    .sidebar-widget:last-child {
+      border-bottom: none;
+    }
 
-      .event-title {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: var(--dark-blue);
-        margin-bottom: 10px;
-        line-height: 1.3;
-      }
+    .sidebar-widget a {
+      color: var(--dark-blue);
+      transition: color 0.3s ease;
+    }
 
-      .event-date {
-        color: #666;
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-      }
+    .sidebar-widget a:hover {
+      color: var(--primary-yellow);
+    }
 
-      .event-date i {
-        margin-right: 8px;
-        color: var(--primary-yellow);
-      }
+    /* News Cards */
+    .news-card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(244, 196, 48, 0.1);
+      height: 100%;
+    }
 
-      .event-description {
-        color: #666;
-        font-size: 0.95rem;
-        line-height: 1.5;
-        margin-bottom: 20px;
-      }
+    .news-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
 
-      .event-stats {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 15px;
-        border-top: 1px solid rgba(244, 196, 48, 0.2);
-        margin-bottom: 15px;
-      }
+    .news-card img {
+      border-radius: 10px;
+      transition: all 0.4s ease;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
 
-      .stat-item {
-        text-align: center;
-      }
+    .news-card:hover img {
+      transform: scale(1.05);
+    }
 
-      .stat-number {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: var(--primary-yellow);
-        display: block;
-      }
+    .news-card .badge {
+      font-size: 0.8rem;
+    }
 
-      .stat-label {
-        font-size: 0.8rem;
-        color: #666;
-      }
+    /* Pagination */
+    .pagination .page-link {
+      color: var(--dark-blue);
+      border-color: rgba(244, 196, 48, 0.3);
+    }
 
-      .btn-view-docs {
-        background: var(--dark-blue);
-        color: white;
-        border: none;
-        border-radius: 25px;
-        padding: 10px 20px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        width: 100%;
-      }
+    .pagination .page-item.active .page-link {
+      background-color: var(--primary-yellow);
+      border-color: var(--primary-yellow);
+      color: var(--dark-blue);
+    }
 
-      .btn-view-docs:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        background: #1a252f;
-        color: white;
-      }
+    .pagination .page-link:hover {
+      background-color: rgba(244, 196, 48, 0.1);
+      border-color: var(--primary-yellow);
+      color: var(--dark-blue);
 
-      /* Filter Tabs */
-      .filter-tabs {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 50px;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
+    }
 
-      .filter-tab {
-        background: white;
-        border: 2px solid rgba(244, 196, 48, 0.3);
-        color: var(--dark-blue);
-        padding: 10px 25px;
-        border-radius: 25px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        cursor: pointer;
-      }
+    /* Footer */
+    .footer-section {
+      background: var(--dark-blue) !important;
+      color: white;
+      padding: 30px 0 15px;
+      position: relative;
+    }
 
-      .filter-tab.active,
-      .filter-tab:hover {
-        background: var(--primary-yellow);
-        border-color: var(--primary-yellow);
-        color: var(--dark-blue);
-        transform: translateY(-2px);
-      }
-
-      /* Event Badge */
-      .event-badge {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: rgba(244, 196, 48, 0.9);
-        color: var(--dark-blue);
-        padding: 5px 12px;
-        border-radius: 15px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        z-index: 3;
-      }
-
-      .event-badge.featured {
-        background: rgba(220, 53, 69, 0.9);
-        color: white;
-      }
-
-      .event-badge.recent {
-        background: rgba(25, 135, 84, 0.9);
-        color: white;
-      }
-
-      /* Footer */
-      .footer-section {
-        background: var(--dark-blue) !important;
-        color: white;
-        padding: 60px 0 40px;
-        position: relative;
-      }
-
-      .footer-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
+    .footer-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
           transparent,
           var(--primary-yellow),
-          transparent
-        );
+          transparent);
+    }
+
+    .footer-section a {
+      text-decoration: none !important;
+    }
+
+    .footer-section a:hover {
+      text-decoration: none !important;
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 40px;
+      right: 40px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 2px 2px 3px #999;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      background-color: #128c7e;
+      transform: scale(1.1);
+      color: white;
+      text-decoration: none;
+    }
+
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2rem;
       }
 
-      /* WhatsApp Floating Button */
-      .whatsapp-float {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 40px;
-        right: 40px;
-        background-color: #25d366;
-        color: white;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 30px;
-        box-shadow: 2px 2px 3px #999;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        text-decoration: none;
+      .featured-article {
+        padding: 20px;
       }
 
-      .whatsapp-float:hover {
-        background-color: #128c7e;
-        transform: scale(1.1);
-        color: white;
-        text-decoration: none;
+      .blog-sidebar {
+        margin-top: 30px;
       }
+    }
+  </style>
+</head>
 
-      /* Animations */
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.05);
-        }
-      }
+<body>
+  <div class="main-container">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_outlined.png"
+            alt="idSpora Logo" /></a>
 
-      /* Responsive */
-      @media (max-width: 768px) {
-        .page-title {
-          font-size: 2rem;
-        }
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-        .main-container {
-          margin: 10px;
-        }
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto me-4">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">Tentang</a>
+            </li>
+            <li class="nav-item">
 
-        .product-card {
-          padding: 30px 20px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="main-container">
-      <!-- Navigation -->
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="index.html"> idSpora </a>
+              <a class="nav-link active" href="products.html">Portofolio</a>
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reviews.html">Ulasan</a>
+            </li>
+            <li class="nav-item">
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto me-4">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Beranda</a>
+              <a class="nav-link" href="news.html">Berita</a>
+
+            </li>
+          </ul>
+          <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+
+          <li class="breadcrumb-item active">Portofolio</li>
+
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-title">
+          <span class="highlight-yellow">Portofolio </span> Terbaru
+        </h1>
+        <p class="page-subtitle">
+          Dapatkan Portofolio terbaru seputarEvent yang kami adakan di idSpora.
+        </p>
+      </div>
+    </section>
+
+    <!-- Blog Articles Grid -->
+    <section class="section-spacing-sm" style="background: #ffffff">
+      <div class="container">
+        <div class="row">
+          <!-- Featured Article as Card -->
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="50">
+            <div class="news-card">
+              <img src="property/fgdhibah1.jpg" class="img-fluid mb-3" />
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-primary me-2">FGD Literature & Review</span>
+                <small class="text-muted">20 Oktober 2024</small>
+              </div>
+              <h5 class="mb-3">
+                FGD Hibah Penelitian KerjaSama
+              </h5>
+              <p class="text-muted mb-3">
+                idSpora melakukan kolaborasi dengan kemenristekdikti untuk melalukan FGD Hibah Penelitian KerjaSama
+              </p>
+              <a href="dokumentasi-training.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="news-card">
+              <img src="property/workshopumkm1.jpg" alt="AI Trends" class="img-fluid mb-3" />
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-success me-2">Workshop AI</span>
+                <small class="text-muted">12 November 2024</small>
+              </div>
+              <h5 class="mb-3">
+               Workshop Jago AI For UMKM
+              </h5>
+              <p class="text-muted mb-3">
+                Kegiatan workshop yang diadakan oleh idSpora untuk UMKM dalam memanfaatkan AI untuk meningkatkan produktivitas bisnis.
+              </p>
+              <a href="dokumentasi-training.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="news-card">
+              <img src="public/images/training-roi.png" alt="Data Science Career" class="img-fluid mb-3" />
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-info me-2">Career</span>
+                <small class="text-muted">10 Januari 2025</small>
+              </div>
+              <h5 class="mb-3">
+                Cara Memulai Karir di Data Science dari Nol
+              </h5>
+              <p class="text-muted mb-3">
+                Panduan lengkap untuk memulai karir di bidang data science,
+                mulai dari skill yang dibutuhkan hingga tips mendapatkan
+                pekerjaan pertama di industri teknologi.
+              </p>
+              <a href="article-data-science-career.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="news-card">
+              <img src="public/images/consultation.png" alt="Online Learning" class="img-fluid mb-3" />
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-warning me-2">Learning Tips</span>
+                <small class="text-muted">8 Januari 2025</small>
+              </div>
+              <h5 class="mb-3">
+                Tips Sukses Mengikuti Webinar dan Training Online
+              </h5>
+              <p class="text-muted mb-3">
+                Strategi efektif untuk memaksimalkan pembelajaran online dan
+                mendapatkan hasil terbaik dari setiap sesi webinar atau
+                training yang Anda ikuti.
+              </p>
+              <a href="article-online-learning-tips.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="news-card">
+              <img src="property/" alt="Cybersecurity" class="img-fluid mb-3" />
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-danger me-2">Security</span>
+                <small class="text-muted">6 Januari 2025</small>
+              </div>
+              <h5 class="mb-3">
+                Ancaman Cybersecurity Terbaru dan Cara Mengatasinya
+              </h5>
+              <p class="text-muted mb-3">
+                Pelajari tentang ancaman keamanan siber terkini dan strategi
+                perlindungan yang efektif untuk individu dan perusahaan di era
+                digital.
+              </p>
+              <a href="article-cybersecurity.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+            <div class="news-card">
+              <img src="property/" alt="Digital Marketing" class="img-fluid mb-3" />
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-secondary me-2">Marketing</span>
+                <small class="text-muted">4 Januari 2025</small>
+              </div>
+              <h5 class="mb-3">
+                Strategi Digital Marketing untuk UMKM di Era AI
+              </h5>
+              <p class="text-muted mb-3">
+                Bagaimana UMKM dapat memanfaatkan teknologi AI untuk
+                meningkatkan efektivitas strategi pemasaran digital dan
+                menjangkau target market yang tepat.
+              </p>
+              <a href="article-digital-marketing-umkm.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="news-card">
+              <img src="property/bcg2.JPG" alt="UI/UX Design" class="img-fluid mb-3" />
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-primary me-2">Leadership</span>
+                <small class="text-muted">2 Januari 2025</small>
+              </div>
+              <h5 class="mb-3">
+                Membangun Leadership Skills di Era Remote Work
+              </h5>
+              <p class="text-muted mb-3">
+                Pelajari cara mengembangkan kemampuan kepemimpinan yang
+                efektif dalam mengelola tim remote dan membangun budaya kerja
+                yang produktif.
+              </p>
+              <a href="article-leadership-remote.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Blog pagination" class="mt-5">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1">Sebelumnya</a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Selanjutnya</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-6 mb-4">
+            <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_dark.png" alt="idSpora Logo"
+                style="height: 60px; width: auto" /></a>
+            <p class="text-light">
+              Belajar tanpa batas, berkembang tanpa henti.
+            </p>
+            <div class="social-links">
+              <a href="https://www.tiktok.com/@idspora" class="text-light me-3"><i class="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/idspora.official/" class="text-light me-3"><i
+                  class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/idspora/" class="text-light"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="text-white mb-3">Quick Links</h6>
+            <ul class="list-unstyled">
+              <li><a href="index.html" class="text-light">Beranda</a></li>
+              <li>
+                <a href="about.html" class="text-light">Tentang Kami</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">Tentang Kami</a>
+              <li>
+                <a href="products.html" class="text-light">Portofolio</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="products.html">Portofolio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="reviews.html">Ulasan</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="news.html">Berita</a>
-              </li>
+
+              <li><a href="reviews.html" class="text-light">Ulasan</a></li>
+              <li><a href="news.html" class="text-light">Berita</a></li>
             </ul>
-            <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
           </div>
-        </div>
-      </nav>
-
-      <!-- Page Header -->
-      <section class="page-header">
-        <div class="container">
-          <h1 class="page-title" data-aos="fade-up">
-            Event <span class="highlight-yellow">Portofolio</span>
-          </h1>
-          <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
-            Jelajahi dokumentasi lengkap dari berbagai event dan program
-            pelatihan yang telah kami selenggarakan. Lihat bagaimana kami
-            memberdayakan talenta Indonesia melalui pembelajaran inovatif.
-          </p>
-        </div>
-      </section>
-
-      <!-- Filter Tabs -->
-      <section class="py-4">
-        <div class="container">
-          <div class="filter-tabs" data-aos="fade-up">
-            <div class="filter-tab active" onclick="filterEvents('all')">
-              Semua Event
-            </div>
-            <div class="filter-tab" onclick="filterEvents('webinar')">
-              Live Webinar
-            </div>
-            <div class="filter-tab" onclick="filterEvents('training')">
-              Training & Mini Workshops
-            </div>
-            <div class="filter-tab" onclick="filterEvents('workshop')">
-              E-Learning
-            </div>
-            <div class="filter-tab" onclick="filterEvents('bootcamp')">
-              Video Production
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h6 class="text-white mb-3">Layanan</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-light">Live Webinars</a></li>
+              <li>
+                <a href="#" class="text-light">Training & Mini Workshops</a>
+              </li>
+              <li><a href="#" class="text-light">E-Learning</a></li>
+              <li><a href="#" class="text-light">Video Production</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h6 class="text-white mb-3">Hubungi Kami</h6>
+            <p class="text-light mb-2">
+              <i class="fas fa-envelope me-2"></i>info@idspora.com
+            </p>
+            <p class="text-light mb-2">
+              <i class="fas fa-phone me-2"></i>+62 898-926-0731
+            </p>
+            <p class="text-light mb-3">
+              <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
+            </p>
+            <div class="social-links">
+              <a href="https://www.tiktok.com/@idspora" class="text-light me-3" title="TikTok"><i
+                  class="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/idspora.official/" class="text-light me-3" title="Instagram"><i
+                  class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/idspora/" class="text-light" title="LinkedIn"><i
+                  class="fab fa-linkedin"></i></a>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- Event Portfolio Section -->
-      <section class="py-5">
-        <div class="container">
-          <div class="row" id="eventsContainer">
-            <!-- Event 1: AI & Machine Learning Bootcamp -->
-            <div class="col-lg-4 col-md-6 mb-4" data-category="bootcamp">
-              <div class="event-card" data-aos="fade-up">
-                <div class="event-badge featured">Featured</div>
-                <img
-                  src="public/images/leadership-training.png"
-                  alt="AI & ML Bootcamp"
-                  class="event-image"
-                />
-                <div class="event-content">
-                  <div class="event-category">Bootcamp</div>
-                  <h4 class="event-title">
-                    AI & Machine Learning Bootcamp 2024
-                  </h4>
-                  <div class="event-date">
-                    <i class="fas fa-calendar"></i>
-                    15-17 November 2024
-                  </div>
-                  <p class="event-description">
-                    Bootcamp intensif 3 hari untuk mempelajari fundamentals AI
-                    dan Machine Learning. Peserta belajar dari basic Python
-                    hingga implementasi model ML.
-                  </p>
-                  <div class="event-stats">
-                    <div class="stat-item">
-                      <span class="stat-number">120+</span>
-                      <span class="stat-label">Peserta</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">98%</span>
-                      <span class="stat-label">Satisfaction</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">24</span>
-                      <span class="stat-label">Jam</span>
-                    </div>
-                  </div>
-                  <button
-                    class="btn-view-docs"
-                    onclick="viewDocumentation('ai-bootcamp')"
-                  >
-                    <i class="fas fa-images me-2"></i>Lihat Dokumentasi
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event 2: Digital Marketing Mastery -->
-            <div class="col-lg-4 col-md-6 mb-4" data-category="training">
-              <div class="event-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="event-badge recent">Recent</div>
-                <img
-                  src="public/images/team-building.png"
-                  alt="Digital Marketing Training"
-                  class="event-image"
-                />
-                <div class="event-content">
-                  <div class="event-category">Training Program</div>
-                  <h4 class="event-title">Digital Marketing Mastery</h4>
-                  <div class="event-date">
-                    <i class="fas fa-calendar"></i>
-                    1-30 November 2024
-                  </div>
-                  <p class="event-description">
-                    Program training komprehensif untuk menguasai strategi
-                    digital marketing modern. Mulai dari SEO, SEM, Social Media
-                    hingga Analytics.
-                  </p>
-                  <div class="event-stats">
-                    <div class="stat-item">
-                      <span class="stat-number">85+</span>
-                      <span class="stat-label">Peserta</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">95%</span>
-                      <span class="stat-label">Completion</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">40</span>
-                      <span class="stat-label">Jam</span>
-                    </div>
-                  </div>
-                  <button
-                    class="btn-view-docs"
-                    onclick="viewDocumentation('digital-marketing')"
-                  >
-                    <i class="fas fa-images me-2"></i>Lihat Dokumentasi
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event 3: Data Science Career Path -->
-            <div class="col-lg-4 col-md-6 mb-4" data-category="webinar">
-              <div class="event-card" data-aos="fade-up" data-aos-delay="200">
-                <img
-                  src="public/images/consultation.png"
-                  alt="Data Science Webinar"
-                  class="event-image"
-                />
-                <div class="event-content">
-                  <div class="event-category">Live Webinar</div>
-                  <h4 class="event-title">
-                    Data Science Career Path: From Zero to Hero
-                  </h4>
-                  <div class="event-date">
-                    <i class="fas fa-calendar"></i>
-                    25 Oktober 2024
-                  </div>
-                  <p class="event-description">
-                    Webinar eksklusif dengan praktisi senior Data Science dari
-                    perusahaan unicorn. Membahas roadmap karir dan skill yang
-                    dibutuhkan.
-                  </p>
-                  <div class="event-stats">
-                    <div class="stat-item">
-                      <span class="stat-number">500+</span>
-                      <span class="stat-label">Peserta</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">4.8</span>
-                      <span class="stat-label">Rating</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">2</span>
-                      <span class="stat-label">Jam</span>
-                    </div>
-                  </div>
-                  <button
-                    class="btn-view-docs"
-                    onclick="viewDocumentation('data-science-webinar')"
-                  >
-                    <i class="fas fa-images me-2"></i>Lihat Dokumentasi
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event 4: Python Programming Workshop -->
-            <div class="col-lg-4 col-md-6 mb-4" data-category="workshop">
-              <div class="event-card" data-aos="fade-up" data-aos-delay="300">
-                <img
-                  src="public/images/workshop-session.png"
-                  alt="Python Workshop"
-                  class="event-image"
-                />
-                <div class="event-content">
-                  <div class="event-category">Mini Workshop</div>
-                  <h4 class="event-title">Python Programming for Beginners</h4>
-                  <div class="event-date">
-                    <i class="fas fa-calendar"></i>
-                    12 Oktober 2024
-                  </div>
-                  <p class="event-description">
-                    Workshop hands-on untuk pemula yang ingin belajar Python
-                    programming. Peserta langsung praktek coding dari basic
-                    syntax hingga mini project.
-                  </p>
-                  <div class="event-stats">
-                    <div class="stat-item">
-                      <span class="stat-number">30</span>
-                      <span class="stat-label">Peserta</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">100%</span>
-                      <span class="stat-label">Hands-on</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">4</span>
-                      <span class="stat-label">Jam</span>
-                    </div>
-                  </div>
-                  <button
-                    class="btn-view-docs"
-                    onclick="viewDocumentation('python-workshop')"
-                  >
-                    <i class="fas fa-images me-2"></i>Lihat Dokumentasi
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event 5: Cybersecurity Awareness -->
-            <div class="col-lg-4 col-md-6 mb-4" data-category="webinar">
-              <div class="event-card" data-aos="fade-up" data-aos-delay="400">
-                <img
-                  src="public/images/corporate-event.png"
-                  alt="Cybersecurity Webinar"
-                  class="event-image"
-                />
-                <div class="event-content">
-                  <div class="event-category">Live Webinar</div>
-                  <h4 class="event-title">
-                    Cybersecurity Awareness for Professionals
-                  </h4>
-                  <div class="event-date">
-                    <i class="fas fa-calendar"></i>
-                    5 Oktober 2024
-                  </div>
-                  <p class="event-description">
-                    Webinar penting tentang kesadaran keamanan siber di era
-                    digital. Membahas threat landscape dan best practices untuk
-                    protection.
-                  </p>
-                  <div class="event-stats">
-                    <div class="stat-item">
-                      <span class="stat-number">350+</span>
-                      <span class="stat-label">Peserta</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">4.9</span>
-                      <span class="stat-label">Rating</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">1.5</span>
-                      <span class="stat-label">Jam</span>
-                    </div>
-                  </div>
-                  <button
-                    class="btn-view-docs"
-                    onclick="viewDocumentation('cybersecurity-webinar')"
-                  >
-                    <i class="fas fa-images me-2"></i>Lihat Dokumentasi
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event 6: Leadership Training -->
-            <div class="col-lg-4 col-md-6 mb-4" data-category="training">
-              <div class="event-card" data-aos="fade-up" data-aos-delay="500">
-                <img
-                  src="public/images/training-roi.png"
-                  alt="Leadership Training"
-                  class="event-image"
-                />
-                <div class="event-content">
-                  <div class="event-category">Training Program</div>
-                  <h4 class="event-title">Leadership Excellence Program</h4>
-                  <div class="event-date">
-                    <i class="fas fa-calendar"></i>
-                    20-22 September 2024
-                  </div>
-                  <p class="event-description">
-                    Program leadership intensif untuk mengembangkan kemampuan
-                    kepemimpinan. Fokus pada team management, decision making,
-                    dan strategic thinking.
-                  </p>
-                  <div class="event-stats">
-                    <div class="stat-item">
-                      <span class="stat-number">45</span>
-                      <span class="stat-label">Peserta</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">96%</span>
-                      <span class="stat-label">Satisfaction</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">18</span>
-                      <span class="stat-label">Jam</span>
-                    </div>
-                  </div>
-                  <button
-                    class="btn-view-docs"
-                    onclick="viewDocumentation('leadership-training')"
-                  >
-                    <i class="fas fa-images me-2"></i>Lihat Dokumentasi
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event 7: Excel Advanced Workshop -->
-            <div class="col-lg-4 col-md-6 mb-4" data-category="workshop">
-              <div class="event-card" data-aos="fade-up" data-aos-delay="600">
-                <img
-                  src="public/images/event-planning.png"
-                  alt="Excel Workshop"
-                  class="event-image"
-                />
-                <div class="event-content">
-                  <div class="event-category">Mini Workshop</div>
-                  <h4 class="event-title">
-                    Excel Advanced Functions & Analytics
-                  </h4>
-                  <div class="event-date">
-                    <i class="fas fa-calendar"></i>
-                    15 September 2024
-                  </div>
-                  <p class="event-description">
-                    Workshop praktis untuk menguasai fungsi-fungsi advanced
-                    Excel. Dari pivot tables, macros, hingga data visualization
-                    techniques.
-                  </p>
-                  <div class="event-stats">
-                    <div class="stat-item">
-                      <span class="stat-number">25</span>
-                      <span class="stat-label">Peserta</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">100%</span>
-                      <span class="stat-label">Practical</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">6</span>
-                      <span class="stat-label">Jam</span>
-                    </div>
-                  </div>
-                  <button
-                    class="btn-view-docs"
-                    onclick="viewDocumentation('excel-workshop')"
-                  >
-                    <i class="fas fa-images me-2"></i>Lihat Dokumentasi
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event 8: Future of Work Webinar -->
-            <div class="col-lg-4 col-md-6 mb-4" data-category="webinar">
-              <div class="event-card" data-aos="fade-up" data-aos-delay="700">
-                <img
-                  src="public/images/portfolio-showcase.png"
-                  alt="Future of Work"
-                  class="event-image"
-                />
-                <div class="event-content">
-                  <div class="event-category">Live Webinar</div>
-                  <h4 class="event-title">
-                    The Future of Work: AI & Human Collaboration
-                  </h4>
-                  <div class="event-date">
-                    <i class="fas fa-calendar"></i>
-                    8 September 2024
-                  </div>
-                  <p class="event-description">
-                    Diskusi mendalam tentang masa depan dunia kerja dengan AI.
-                    Bagaimana manusia dan AI bisa berkolaborasi untuk
-                    produktivitas maksimal.
-                  </p>
-                  <div class="event-stats">
-                    <div class="stat-item">
-                      <span class="stat-number">600+</span>
-                      <span class="stat-label">Peserta</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">4.7</span>
-                      <span class="stat-label">Rating</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">2</span>
-                      <span class="stat-label">Jam</span>
-                    </div>
-                  </div>
-                  <button
-                    class="btn-view-docs"
-                    onclick="viewDocumentation('future-work-webinar')"
-                  >
-                    <i class="fas fa-images me-2"></i>Lihat Dokumentasi
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event 9: UX/UI Design Bootcamp -->
-            <div class="col-lg-4 col-md-6 mb-4" data-category="bootcamp">
-              <div class="event-card" data-aos="fade-up" data-aos-delay="800">
-                <img
-                  src="public/images/certification.png"
-                  alt="UX/UI Bootcamp"
-                  class="event-image"
-                />
-                <div class="event-content">
-                  <div class="event-category">Bootcamp</div>
-                  <h4 class="event-title">UX/UI Design Intensive Bootcamp</h4>
-                  <div class="event-date">
-                    <i class="fas fa-calendar"></i>
-                    1-3 September 2024
-                  </div>
-                  <p class="event-description">
-                    Bootcamp komprehensif untuk mempelajari UX/UI design dari
-                    dasar. Peserta belajar design thinking, prototyping, dan
-                    usability testing.
-                  </p>
-                  <div class="event-stats">
-                    <div class="stat-item">
-                      <span class="stat-number">80</span>
-                      <span class="stat-label">Peserta</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">94%</span>
-                      <span class="stat-label">Satisfaction</span>
-                    </div>
-                    <div class="stat-item">
-                      <span class="stat-number">20</span>
-                      <span class="stat-label">Jam</span>
-                    </div>
-                  </div>
-                  <button
-                    class="btn-view-docs"
-                    onclick="viewDocumentation('uxui-bootcamp')"
-                  >
-                    <i class="fas fa-images me-2"></i>Lihat Dokumentasi
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Load More Button -->
-          <div class="text-center mt-5" data-aos="fade-up">
-            <button
-              class="btn btn-outline-primary btn-lg px-5"
-              onclick="loadMoreEvents()"
-            >
-              <i class="fas fa-plus me-2"></i>Muat Lebih Banyak Event
-            </button>
+        <hr class="my-3" style="border-color: #495057" />
+        <div class="row justify-content-center">
+          <div class="col-md-4 text-center">
+            <p class="text-light mb-1" style="font-size: 0.8rem">
+              &copy; 2024 idSpora. All rights reserved.
+            </p>
           </div>
         </div>
-      </section>
+      </div>
+    </footer>
+  </div>
 
-      <!-- Footer -->
-      <footer class="footer-section">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-3 col-md-6 mb-4">
-              <a class="navbar-brand" href="index.html"
-                ><img
-                  src="property/logo idspora_nobg_dark.png"
-                  alt="idSpora Logo"
-                  style="height: 60px; width: auto"
-              /></a>
-              <p class="text-light">
-                Belajar tanpa batas, berkembang tanpa henti.
-              </p>
-              <div class="social-links">
-                <a
-                  href="https://www.tiktok.com/@idspora"
-                  class="text-light me-3"
-                  ><i class="fab fa-tiktok"></i
-                ></a>
-                <a
-                  href="https://www.instagram.com/idspora.official/"
-                  class="text-light me-3"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/company/idspora/"
-                  class="text-light"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-              </div>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Quick Links</h6>
-              <ul class="list-unstyled">
-                <li><a href="index.html" class="text-light" style="text-decoration: none;">Beranda</a></li>
-                <li>
-                  <a href="about.html" class="text-light" style="text-decoration: none;">Tentang Kami</a>
-                </li>
-                <li>
-                  <a href="products.html" class="text-light" style="text-decoration: none;">Portofolio</a>
-                </li>
-                <li><a href="reviews.html" class="text-light" style="text-decoration: none;">Ulasan</a></li>
-                <li><a href="news.html" class="text-light" style="text-decoration: none;">Berita</a></li>
-              </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-              <h6 class="text-white mb-3" style="text-decoration: none;">Layanan</h6>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-light" style="text-decoration: none;">Live Webinars</a></li>
-                <li>
-                  <a href="#" class="text-light" style="text-decoration: none;">Training & Mini Workshops</a>
-                </li>
-                <li><a href="#" class="text-light" style="text-decoration: none;">E-Learning</a></li>
-                <li><a href="#" class="text-light" style="text-decoration: none;">Video Production</a></li>
-              </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Hubungi Kami</h6>
-              <p class="text-light mb-2">
-                <i class="fas fa-envelope me-2"></i>info@idspora.com
-              </p>
-              <p class="text-light mb-2">
-                <i class="fas fa-phone me-2"></i>+62 898-926-0731
-              </p>
-              <p class="text-light mb-3">
-                <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
-              </p>
-              <div class="social-links">
-                <a
-                  href="https://www.tiktok.com/@idspora"
-                  class="text-light me-3"
-                  title="TikTok"
-                  ><i class="fab fa-tiktok"></i
-                ></a>
-                <a
-                  href="https://www.instagram.com/idspora.official/"
-                  class="text-light me-3"
-                  title="Instagram"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/company/idspora/"
-                  class="text-light"
-                  title="LinkedIn"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <hr class="my-3" style="border-color: #495057" />
-          <div class="row justify-content-center">
-            <div class="col-md-4 text-center">
-              <p class="text-light mb-1" style="font-size: 0.8rem">
-                &copy; 2024 idSpora. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/628989260731" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-    <!-- WhatsApp Floating Button -->
-    <a
-      href="https://wa.me/6281234567890?text=Halo%20idSpora,%20saya%20tertarik%20dengan%20program%20pelatihan%20yang%20ada"
-      class="whatsapp-float"
-      target="_blank"
-      title="Chat with us on WhatsApp"
-    >
-      <i class="fab fa-whatsapp"></i>
-    </a>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: true,
+    });
+  </script>
+</body>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 800,
-        easing: "ease-in-out",
-        once: true,
-      });
-
-      // Event Filter Functionality
-      function filterEvents(category) {
-        const events = document.querySelectorAll("[data-category]");
-        const tabs = document.querySelectorAll(".filter-tab");
-
-        // Update active tab
-        tabs.forEach((tab) => tab.classList.remove("active"));
-        event.target.classList.add("active");
-
-        // Filter events
-        events.forEach((eventCard) => {
-          if (category === "all" || eventCard.dataset.category === category) {
-            eventCard.style.display = "block";
-            eventCard.style.animation = "fadeIn 0.5s ease";
-          } else {
-            eventCard.style.display = "none";
-          }
-        });
-      }
-
-      // View Documentation Function
-      function viewDocumentation(eventType) {
-        const documentationUrls = {
-          "ai-bootcamp": "dokumentasi-bootcamp.html",
-          "digital-marketing": "dokumentasi-training.html",
-          "data-science-webinar": "dokumentasi-webinar.html",
-          "python-workshop": "dokumentasi-workshop.html",
-          "cybersecurity-webinar": "dokumentasi-webinar.html",
-          "leadership-training": "dokumentasi-training.html",
-          "excel-workshop": "dokumentasi-workshop.html",
-          "future-work-webinar": "dokumentasi-webinar.html",
-          "uxui-bootcamp": "dokumentasi-bootcamp.html",
-        };
-
-        const url = documentationUrls[eventType] || "dokumentasi.html";
-        window.location.href = url;
-      }
-
-      // Load More Events Function
-      function loadMoreEvents() {
-        // Simulate loading more events
-        alert(
-          "Fitur ini akan segera tersedia! Kami sedang mempersiapkan dokumentasi event-event terbaru."
-        );
-      }
-
-      // Add fade-in animation CSS
-      const style = document.createElement("style");
-      style.textContent = `
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `;
-      document.head.appendChild(style);
-    </script>
-  </body>
 </html>
