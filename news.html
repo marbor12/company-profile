@@ -1,399 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>News - idSpora</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <style>
-      :root {
-        --primary-yellow: #f4c430;
-        --dark-blue: #2c3e50;
-        --light-cream: #fdf6e3;
-        --section-spacing: 100px;
-      }
 
-      body {
-        background: #ffffff;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        min-height: 100vh;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News - idSpora</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-yellow: #f4c430;
+      --dark-blue: #2c3e50;
+      --light-cream: #fdf6e3;
+      --section-spacing: 100px;
+    }
 
-      .main-container {
-        background: #ffffff;
-        margin: 0;
-        overflow: hidden;
-      }
+    body {
+      background: #ffffff;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+    }
 
-      /* Navbar */
-      .navbar {
-        background: transparent;
-        padding: 20px 0;
-        border-bottom: 1px solid rgba(244, 196, 48, 0.1);
-      }
+    .main-container {
+      background: #ffffff;
+      margin: 0;
+      overflow: hidden;
+    }
 
-      .navbar-brand {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        position: relative;
-        z-index: 10;
-      }
+    /* Navbar */
+    .navbar {
+      background: transparent;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(244, 196, 48, 0.1);
+    }
 
-      .navbar-brand img {
-        height: 70px;
-        width: auto;
-        transition: all 0.3s ease;
-        margin: -15px 0;
-      }
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      position: relative;
+      z-index: 10;
+    }
 
-      .navbar-brand:hover img {
-        transform: scale(1.05);
-      }
+    .navbar-brand img {
+      height: 70px;
+      width: auto;
+      transition: all 0.3s ease;
+      margin: -15px 0;
+    }
 
-      .navbar-nav .nav-link {
-        color: var(--dark-blue) !important;
-        font-weight: 500;
-        margin: 0 15px;
-        transition: all 0.3s ease;
-        position: relative;
-      }
+    .navbar-brand:hover img {
+      transform: scale(1.05);
+    }
 
-      .navbar-nav .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background: var(--primary-yellow);
-        transition: all 0.3s ease;
-        transform: translateX(-50%);
-      }
+    .navbar-nav .nav-link {
+      color: var(--dark-blue) !important;
+      font-weight: 500;
+      margin: 0 15px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
 
-      .navbar-nav .nav-link:hover::after,
-      .navbar-nav .nav-link.active::after {
-        width: 100%;
-      }
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary-yellow);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
 
-      .btn-contact {
-        background: var(--dark-blue);
-        color: white;
-        border-radius: 25px;
-        padding: 10px 25px;
-        border: none;
-        transition: all 0.3s ease;
-      }
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+      width: 100%;
+    }
 
-      .btn-contact:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      }
+    .btn-contact {
+      background: var(--dark-blue);
+      color: white;
+      border-radius: 25px;
+      padding: 10px 25px;
+      border: none;
+      transition: all 0.3s ease;
+    }
 
-      /* Breadcrumb */
-      .breadcrumb {
-        background: transparent;
-        padding: 20px 0;
-      }
+    .btn-contact:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
 
-      .breadcrumb-item a {
-        color: var(--dark-blue);
-        text-decoration: none;
-      }
+    /* Breadcrumb */
+    .breadcrumb {
+      background: transparent;
+      padding: 20px 0;
+    }
 
-      .breadcrumb-item.active {
-        color: var(--primary-yellow);
-      }
+    .breadcrumb-item a {
+      color: var(--dark-blue);
+      text-decoration: none;
+    }
 
-      /* Page Header */
-      .page-header {
-        padding: 60px 0;
-        background: linear-gradient(
-          135deg,
+    .breadcrumb-item.active {
+      color: var(--primary-yellow);
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 60px 0;
+      background: linear-gradient(135deg,
           rgba(244, 196, 48, 0.05),
-          rgba(255, 215, 0, 0.02)
-        );
-        text-align: center;
-        border-bottom: 2px solid rgba(244, 196, 48, 0.1);
-      }
+          rgba(255, 215, 0, 0.02));
+      text-align: center;
+      border-bottom: 2px solid rgba(244, 196, 48, 0.1);
+    }
 
-      .page-title {
-        font-size: 3rem;
-        font-weight: bold;
-        color: var(--dark-blue);
-        margin-bottom: 20px;
-      }
+    .page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--dark-blue);
+      margin-bottom: 20px;
+    }
 
-      .page-subtitle {
-        font-size: 1.2rem;
-        color: #666;
-        max-width: 600px;
-        margin: 0 auto;
-      }
+    .page-subtitle {
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-      .highlight-yellow {
-        background-color: var(--primary-yellow);
-        padding: 5px 15px;
-        font-weight: bold;
-        border-radius: 10px;
-        display: inline-block;
-      }
+    .highlight-yellow {
+      background-color: var(--primary-yellow);
+      padding: 5px 15px;
+      font-weight: bold;
+      border-radius: 10px;
+      display: inline-block;
+    }
 
-      /* Sections */
-      .section-spacing-sm {
-        padding: 60px 0;
-      }
+    /* Sections */
+    .section-spacing-sm {
+      padding: 60px 0;
+    }
 
-      .section-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: var(--dark-blue);
-      }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--dark-blue);
+    }
 
-      /* Featured Article */
-      .featured-article {
-        background: white;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        border: 2px solid rgba(244, 196, 48, 0.1);
-      }
+    /* Featured Article */
+    .featured-article {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      border: 2px solid rgba(244, 196, 48, 0.1);
+    }
 
-      .featured-article img {
-        border-radius: 15px;
-      }
+    .featured-article img {
+      border-radius: 15px;
+    }
 
-      /* Sidebar */
-      .blog-sidebar {
-        background: white;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(244, 196, 48, 0.1);
-      }
+    /* Sidebar */
+    .blog-sidebar {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(244, 196, 48, 0.1);
+    }
 
-      .sidebar-widget {
-        padding-bottom: 20px;
-        border-bottom: 1px solid #f0f0f0;
-      }
+    .sidebar-widget {
+      padding-bottom: 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
 
-      .sidebar-widget:last-child {
-        border-bottom: none;
-      }
+    .sidebar-widget:last-child {
+      border-bottom: none;
+    }
 
-      .sidebar-widget a {
-        color: var(--dark-blue);
-        transition: color 0.3s ease;
-      }
+    .sidebar-widget a {
+      color: var(--dark-blue);
+      transition: color 0.3s ease;
+    }
 
-      .sidebar-widget a:hover {
-        color: var(--primary-yellow);
-      }
+    .sidebar-widget a:hover {
+      color: var(--primary-yellow);
+    }
 
-      /* News Cards */
-      .news-card {
-        background: white;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.4s ease;
-        border: 1px solid rgba(244, 196, 48, 0.1);
-        height: 100%;
-      }
+    /* News Cards */
+    .news-card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(244, 196, 48, 0.1);
+      height: 100%;
+    }
 
-      .news-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-      }
+    .news-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
 
-      .news-card img {
-        border-radius: 10px;
-        transition: all 0.4s ease;
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-      }
+    .news-card img {
+      border-radius: 10px;
+      transition: all 0.4s ease;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
 
-      .news-card:hover img {
-        transform: scale(1.05);
-      }
+    .news-card:hover img {
+      transform: scale(1.05);
+    }
 
-      .news-card .badge {
-        font-size: 0.8rem;
-      }
+    .news-card .badge {
+      font-size: 0.8rem;
+    }
 
-      /* Pagination */
-      .pagination .page-link {
-        color: var(--dark-blue);
-        border-color: rgba(244, 196, 48, 0.3);
-      }
+    /* Pagination */
+    .pagination .page-link {
+      color: var(--dark-blue);
+      border-color: rgba(244, 196, 48, 0.3);
+    }
 
-      .pagination .page-item.active .page-link {
-        background-color: var(--primary-yellow);
-        border-color: var(--primary-yellow);
-        color: var(--dark-blue);
-      }
+    .pagination .page-item.active .page-link {
+      background-color: var(--primary-yellow);
+      border-color: var(--primary-yellow);
+      color: var(--dark-blue);
+    }
 
-      .pagination .page-link:hover {
-        background-color: rgba(244, 196, 48, 0.1);
-        border-color: var(--primary-yellow);
-        color: var(--dark-blue);
-      }
+    .pagination .page-link:hover {
+      background-color: rgba(244, 196, 48, 0.1);
+      border-color: var(--primary-yellow);
+      color: var(--dark-blue);
+    }
 
-      /* Footer */
-      .footer-section {
-        background: var(--dark-blue) !important;
-        color: white;
-        padding: 30px 0 15px;
-        position: relative;
-      }
+    /* Footer */
+    .footer-section {
+      background: var(--dark-blue) !important;
+      color: white;
+      padding: 30px 0 15px;
+      position: relative;
+    }
 
-      .footer-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
+    .footer-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
           transparent,
           var(--primary-yellow),
-          transparent
-        );
+          transparent);
+    }
+
+    .footer-section a {
+      text-decoration: none !important;
+    }
+
+    .footer-section a:hover {
+      text-decoration: none !important;
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 40px;
+      right: 40px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 2px 2px 3px #999;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      background-color: #128c7e;
+      transform: scale(1.1);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2rem;
       }
 
-      .footer-section a {
-        text-decoration: none !important;
+      .featured-article {
+        padding: 20px;
       }
 
-      .footer-section a:hover {
-        text-decoration: none !important;
+      .blog-sidebar {
+        margin-top: 30px;
       }
+    }
+  </style>
+</head>
 
-      /* WhatsApp Floating Button */
-      .whatsapp-float {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 40px;
-        right: 40px;
-        background-color: #25d366;
-        color: white;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 30px;
-        box-shadow: 2px 2px 3px #999;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        text-decoration: none;
-      }
+<body>
+  <div class="main-container">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_outlined.png"
+            alt="idSpora Logo" /></a>
 
-      .whatsapp-float:hover {
-        background-color: #128c7e;
-        transform: scale(1.1);
-        color: white;
-        text-decoration: none;
-      }
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      /* Responsive */
-      @media (max-width: 768px) {
-        .page-title {
-          font-size: 2rem;
-        }
-
-        .featured-article {
-          padding: 20px;
-        }
-
-        .blog-sidebar {
-          margin-top: 30px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="main-container">
-      <!-- Navigation -->
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="index.html"
-            ><img
-              src="property/logo idspora_nobg_outlined.png"
-              alt="idSpora Logo"
-          /></a>
-
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto me-4">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Beranda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">Tentang</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="products.html">Portofolio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="reviews.html">Ulasan</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="news.html">Berita</a>
-              </li>
-            </ul>
-            <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
-          </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto me-4">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="products.html">Portofolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reviews.html">Ulasan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="news.html">Berita</a>
+            </li>
+          </ul>
+          <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-      <!-- Breadcrumb -->
-      <nav aria-label="breadcrumb">
-        <div class="container">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-            <li class="breadcrumb-item active">Berita</li>
-          </ol>
-        </div>
-      </nav>
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+          <li class="breadcrumb-item active">Berita</li>
+        </ol>
+      </div>
+    </nav>
 
-      <!-- Page Header -->
-      <section class="page-header">
-        <div class="container">
-          <h1 class="page-title">
-            <span class="highlight-yellow">Info </span> Terbaru
-          </h1>
-          <p class="page-subtitle">
-            Dapatkan info terbaru seputar teknologi dan pembelajaran digital
-            dari idSpora.
-          </p>
-        </div>
-      </section>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-title">
+          <span class="highlight-yellow">Info </span> Terbaru
+        </h1>
+        <p class="page-subtitle">
+          Dapatkan info terbaru seputar teknologi dan pembelajaran digital
+          dari idSpora.
+        </p>
+      </div>
+    </section>
 
-       <!-- Blog Articles Grid -->
+    <!-- Blog Articles Grid -->
     <section class="section-spacing-sm" style="background: #ffffff">
       <div class="container">
         <div class="row">
           <!-- Featured Article as Card -->
+
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="news-card">
+              <img src="property/berita-hadiri-fitrahinsani.png" alt="AI Trends" class="img-fluid mb-3" />
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-primary me-2">Seminar AI</span>
+                <small class="text-muted">09 Agustus 2025</small>
+              </div>
+              <h5 class="mb-3">
+                Idspora Menghadiri Event Yayasan Fitrah Insani
+              </h5>
+              <p class="text-muted mb-3">
+                idSpora menghadiri event yang diselenggarakan oleh Yayasan Fitrah Insani. Seminar tersebut membahas
+                materi Media pembelajaran berbasis AI yang kreatif dan islami.
+              </p>
+              <a href="dokumentasi-fgd.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="news-card">
+              <img src="property/berita -buatmateri.png" alt="AI Trends" class="img-fluid mb-3" />
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-primary me-2">Seminar AI</span>
+                <small class="text-muted">08 Agustus 2025</small>
+              </div>
+              <h5 class="mb-3">
+                Idspora Membuat Modul Pelatihan Untuk Kolaborasi Dengan Yayasan Fitrah Insani
+              </h5>
+              <p class="text-muted mb-3">
+               Idspora membuat modul pelatihan untuk berkolaborasi dengan yayasan fitrah insani di hari sabtu
+              </p>
+              <a href="dokumentasi-fgd.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            </div>
+          </div>
+
           <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="50">
             <div class="news-card">
               <img src="property/fgdhibah1.jpg" class="img-fluid mb-3" />
@@ -483,126 +503,95 @@
         </div>
     </section>
 
-      <!-- Footer -->
-      <footer class="footer-section">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-3 col-md-6 mb-4">
-              <a class="navbar-brand" href="index.html"
-                ><img
-                  src="property/logo idspora_nobg_dark.png"
-                  alt="idSpora Logo"
-                  style="height: 60px; width: auto"
-              /></a>
-              <p class="text-light">
-                Belajar tanpa batas, berkembang tanpa henti.
-              </p>
-              <div class="social-links">
-                <a
-                  href="https://www.tiktok.com/@idspora"
-                  class="text-light me-3"
-                  ><i class="fab fa-tiktok"></i
-                ></a>
-                <a
-                  href="https://www.instagram.com/idspora.official/"
-                  class="text-light me-3"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/company/idspora/"
-                  class="text-light"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-              </div>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Quick Links</h6>
-              <ul class="list-unstyled">
-                <li><a href="index.html" class="text-light">Beranda</a></li>
-                <li>
-                  <a href="about.html" class="text-light">Tentang Kami</a>
-                </li>
-                <li>
-                  <a href="products.html" class="text-light">Portofolio</a>
-                </li>
-                <li><a href="reviews.html" class="text-light">Ulasan</a></li>
-                <li><a href="news.html" class="text-light">Berita</a></li>
-              </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Layanan</h6>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-light">Live Webinars</a></li>
-                <li>
-                  <a href="#" class="text-light">Training & Mini Workshops</a>
-                </li>
-                <li><a href="#" class="text-light">E-Learning</a></li>
-                <li><a href="#" class="text-light">Video Production</a></li>
-              </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Hubungi Kami</h6>
-              <p class="text-light mb-2">
-                <i class="fas fa-envelope me-2"></i>info@idspora.com
-              </p>
-              <p class="text-light mb-2">
-                <i class="fas fa-phone me-2"></i>+62 898-926-0731
-              </p>
-              <p class="text-light mb-3">
-                <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
-              </p>
-              <div class="social-links">
-                <a
-                  href="https://www.tiktok.com/@idspora"
-                  class="text-light me-3"
-                  title="TikTok"
-                  ><i class="fab fa-tiktok"></i
-                ></a>
-                <a
-                  href="https://www.instagram.com/idspora.official/"
-                  class="text-light me-3"
-                  title="Instagram"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/company/idspora/"
-                  class="text-light"
-                  title="LinkedIn"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-              </div>
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-6 mb-4">
+            <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_dark.png" alt="idSpora Logo"
+                style="height: 60px; width: auto" /></a>
+            <p class="text-light">
+              Belajar tanpa batas, berkembang tanpa henti.
+            </p>
+            <div class="social-links">
+              <a href="https://www.tiktok.com/@idspora" class="text-light me-3"><i class="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/idspora.official/" class="text-light me-3"><i
+                  class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/idspora/" class="text-light"><i class="fab fa-linkedin"></i></a>
             </div>
           </div>
-          <hr class="my-3" style="border-color: #495057" />
-          <div class="row justify-content-center">
-            <div class="col-md-4 text-center">
-              <p class="text-light mb-1" style="font-size: 0.8rem">
-                &copy; 2024 idSpora. All rights reserved.
-              </p>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6 class="text-white mb-3">Quick Links</h6>
+            <ul class="list-unstyled">
+              <li><a href="index.html" class="text-light">Beranda</a></li>
+              <li>
+                <a href="about.html" class="text-light">Tentang Kami</a>
+              </li>
+              <li>
+                <a href="products.html" class="text-light">Portofolio</a>
+              </li>
+              <li><a href="reviews.html" class="text-light">Ulasan</a></li>
+              <li><a href="news.html" class="text-light">Berita</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h6 class="text-white mb-3">Layanan</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-light">Live Webinars</a></li>
+              <li>
+                <a href="#" class="text-light">Training & Mini Workshops</a>
+              </li>
+              <li><a href="#" class="text-light">E-Learning</a></li>
+              <li><a href="#" class="text-light">Video Production</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h6 class="text-white mb-3">Hubungi Kami</h6>
+            <p class="text-light mb-2">
+              <i class="fas fa-envelope me-2"></i>info@idspora.com
+            </p>
+            <p class="text-light mb-2">
+              <i class="fas fa-phone me-2"></i>+62 898-926-0731
+            </p>
+            <p class="text-light mb-3">
+              <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
+            </p>
+            <div class="social-links">
+              <a href="https://www.tiktok.com/@idspora" class="text-light me-3" title="TikTok"><i
+                  class="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/idspora.official/" class="text-light me-3" title="Instagram"><i
+                  class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/idspora/" class="text-light" title="LinkedIn"><i
+                  class="fab fa-linkedin"></i></a>
             </div>
           </div>
         </div>
-      </footer>
-    </div>
+        <hr class="my-3" style="border-color: #495057" />
+        <div class="row justify-content-center">
+          <div class="col-md-4 text-center">
+            <p class="text-light mb-1" style="font-size: 0.8rem">
+              &copy; 2024 idSpora. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 
-    <!-- WhatsApp Floating Button -->
-    <a
-      href="https://wa.me/628989260731"
-      class="whatsapp-float"
-      target="_blank"
-      title="Chat with us on WhatsApp"
-    >
-      <i class="fab fa-whatsapp"></i>
-    </a>
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/628989260731" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 800,
-        easing: "ease-in-out",
-        once: true,
-      });
-    </script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: true,
+    });
+  </script>
+</body>
+
 </html>
