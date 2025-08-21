@@ -1,570 +1,602 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>idSpora – Tentang</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>News - idSpora</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <style>
-    :root {
-      --primary-yellow: #f4c430;
-      --dark-blue: #2c3e50;
-      --light-cream: #fdf6e3;
-      --section-spacing: 100px;
-    }
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 
-    body {
-      background: #ffffff;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-    }
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
 
-    .main-container {
-      background: #ffffff;
-      margin: 0;
-      overflow: hidden;
-    }
+    <style>
+      :root{
+        /* Samakan warna kuning dengan referensi */
+        --primary-yellow:#f4c430;
+        --primary-yellow-dark:#f4c430;
+        --primary-white:#fff;
+        --primary-gray:#2c3e50;
+        --accent-color:#ffd700;
+        --shadow-color:rgba(44,62,80,.08);
+        --dark-blue:#2c3e50;
+      }
 
-    /* Navbar */
-    .navbar {
-      background: transparent;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(244, 196, 48, 0.1);
-    }
+      *{margin:0;padding:0;box-sizing:border-box}
+       body {
+        background: #ffffff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+      }
 
-    .navbar-brand {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      position: relative;
-      z-index: 10;
-    }
+      .main-container {
+        background: #ffffff;
+        margin: 0;
+        overflow: hidden;
+      }
+      a{
+        text-decoration: none;
+        color: black;
+      }
 
-    .navbar-brand img {
-      height: 70px;
-      width: auto;
-      transition: all 0.3s ease;
-      margin: -15px 0;
-    }
+       /* Navbar */
+      .navbar {
+        background: transparent;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(244, 196, 48, 0.1);
+      }
 
-    .navbar-brand:hover img {
-      transform: scale(1.05);
-    }
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        z-index: 10;
+      }
 
-    .navbar-nav .nav-link {
-      color: var(--dark-blue) !important;
-      font-weight: 500;
-      margin: 0 15px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
+      .navbar-brand img {
+        height: 70px;
+        width: auto;
+        transition: all 0.3s ease;
+        margin: -15px 0;
+      }
 
-    .navbar-nav .nav-link::after {
-      content: "";
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: var(--primary-yellow);
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
+      .navbar-brand:hover img {
+        transform: scale(1.05);
+      }
 
-    .navbar-nav .nav-link:hover::after,
-    .navbar-nav .nav-link.active::after {
-      width: 100%;
-    }
+      .navbar-nav .nav-link {
+        color: var(--dark-blue) !important;
+        font-weight: 500;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
 
-    .btn-contact {
-      background: var(--dark-blue);
-      color: white;
-      border-radius: 25px;
-      padding: 10px 25px;
-      border: none;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--primary-yellow);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+      
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link.active::after {
+        width: 100%;
+      }
 
-    .btn-contact:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
+      .btn-contact {
+        background: var(--dark-blue);
+        color: white;
+        border-radius: 25px;
+        padding: 10px 25px;
+        border: none;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
 
-    /* Breadcrumb */
-    .breadcrumb {
-      background: transparent;
-      padding: 20px 0;
-    }
+      .btn-contact:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
 
-    .breadcrumb-item a {
-      color: var(--dark-blue);
-      text-decoration: none;
-    }
+      .page-header {
+        padding: 100px 0 60px;
+        text-align: center;
+      }
 
-    .breadcrumb-item.active {
-      color: var(--primary-yellow);
-    }
-
-    /* Page Header */
-    .page-header {
-      padding: 60px 0;
-      background: linear-gradient(135deg,
-          rgba(244, 196, 48, 0.05),
-          rgba(255, 215, 0, 0.02));
-      text-align: center;
-      border-bottom: 2px solid rgba(244, 196, 48, 0.1);
-    }
-
-    .page-title {
-      font-size: 3rem;
-      font-weight: bold;
-      color: var(--dark-blue);
-      margin-bottom: 20px;
-    }
-
-    .page-subtitle {
-      font-size: 1.2rem;
-      color: #666;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .highlight-yellow {
-      background-color: var(--primary-yellow);
-      padding: 5px 15px;
-      font-weight: bold;
-      border-radius: 10px;
-      display: inline-block;
-    }
-
-    /* Sections */
-    .section-spacing-sm {
-      padding: 60px 0;
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: var(--dark-blue);
-    }
-
-    /* Featured Article */
-    .featured-article {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-      border: 2px solid rgba(244, 196, 48, 0.1);
-    }
-
-    .featured-article img {
-      border-radius: 15px;
-    }
-
-    /* Sidebar */
-    .blog-sidebar {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(244, 196, 48, 0.1);
-    }
-
-    .sidebar-widget {
-      padding-bottom: 20px;
-      border-bottom: 1px solid #f0f0f0;
-    }
-
-    .sidebar-widget:last-child {
-      border-bottom: none;
-    }
-
-    .sidebar-widget a {
-      color: var(--dark-blue);
-      transition: color 0.3s ease;
-    }
-
-    .sidebar-widget a:hover {
-      color: var(--primary-yellow);
-    }
-
-    /* News Cards */
-    .news-card {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: all 0.4s ease;
-      border: 1px solid rgba(244, 196, 48, 0.1);
-      height: 100%;
-    }
-
-    .news-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-    }
-
-    .news-card img {
-      border-radius: 10px;
-      transition: all 0.4s ease;
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .news-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .news-card .badge {
-      font-size: 0.8rem;
-    }
-
-    /* Pagination */
-    .pagination .page-link {
-      color: var(--dark-blue);
-      border-color: rgba(244, 196, 48, 0.3);
-    }
-
-    .pagination .page-item.active .page-link {
-      background-color: var(--primary-yellow);
-      border-color: var(--primary-yellow);
-      color: var(--dark-blue);
-    }
-
-    .pagination .page-link:hover {
-      background-color: rgba(244, 196, 48, 0.1);
-      border-color: var(--primary-yellow);
-      color: var(--dark-blue);
-
-    }
-
-    /* Footer */
-    .footer-section {
-      background: var(--dark-blue) !important;
-      color: white;
-      padding: 30px 0 15px;
-      position: relative;
-    }
-
-    .footer-section::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg,
-          transparent,
-          var(--primary-yellow),
-          transparent);
-    }
-
-    .footer-section a {
-      text-decoration: none !important;
-    }
-
-    .footer-section a:hover {
-      text-decoration: none !important;
-    }
-
-    /* WhatsApp Floating Button */
-    .whatsapp-float {
-      position: fixed;
-      width: 60px;
-      height: 60px;
-      bottom: 40px;
-      right: 40px;
-      background-color: #25d366;
-      color: white;
-      border-radius: 50px;
-      text-align: center;
-      font-size: 30px;
-      box-shadow: 2px 2px 3px #999;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-
-    .whatsapp-float:hover {
-      background-color: #128c7e;
-      transform: scale(1.1);
-      color: white;
-      text-decoration: none;
-    }
-
-
-    /* Responsive */
-    @media (max-width: 768px) {
       .page-title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--dark-blue);
+        margin-bottom: 20px;
+      }
+
+      .page-subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--dark-blue);
+      }
+        .breadcrumb-item.active {
+        color: var(--primary-yellow);
+      }
+
+
+      .highlight-yellow {
+        background-color: var(--primary-yellow);
+        padding: 5px 15px;
+        font-weight: bold;
+        border-radius: 10px;
+        display: inline-block;
+      }
+
+      .section-spacing {
+        padding: var(--section-spacing) 0;
+      }
+
+      .section-spacing-sm {
+        padding: 60px 0;
+      }
+
+      .stats-section {
+        background: var(--dark-blue);
+        color: white;
+        padding: 40px 0;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 15px;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--primary-yellow);
+      }
+
+      .service-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-yellow);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
         font-size: 2rem;
+        color: var(--dark-blue);
       }
 
-      .featured-article {
-        padding: 20px;
+      .trainer-card {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(244, 196, 48, 0.1);
+        text-align: center;
+        min-width: 280px;
+        flex: 0 0 280px;
+        margin: 0;
       }
 
-      .blog-sidebar {
-        margin-top: 30px;
+      .trainer-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(244, 196, 48, 0.12);
       }
-    }
-  </style>
-</head>
 
-<body>
-  <div class="main-container">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_outlined.png"
-            alt="idSpora Logo" /></a>
+      /* menu center absolute agar selalu di tengah */
+      .nav-centered{position:relative}
+      .navbar-center{position:absolute;left:50%;transform:translateX(-50%)}
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      .navbar-nav .nav-link{
+        color:var(--dark-blue) !important;
+        font-weight:500;
+        margin:0 15px;
+        transition:all .3s ease;
+        position:relative;
+        padding:8px 0; /* seragam */
+      }
+      .navbar-nav .nav-link::after{
+        content:"";
+        position:absolute;
+        bottom:-5px;left:50%;
+        width:0;height:2px;
+        background:var(--primary-yellow);
+        transition:all .3s ease;
+        transform:translateX(-50%);
+      }
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link.active::after{width:100%}
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto me-4">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Beranda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">Tentang</a>
-            </li>
-            <li class="nav-item">
+      .btn-contact{
+        background:var(--dark-blue);
+        color:#fff;border-radius:25px;
+        padding:10px 25px;border:none;
+        text-decoration:none;transition:all .3s ease;
+      }
+      .btn-contact:hover{
+        transform:translateY(-2px);
+        box-shadow:0 5px 15px rgba(0,0,0,.2);
+      }
 
-              <a class="nav-link active" href="products.html">Portofolio</a>
+      /* breadcrumb */
+      .breadcrumb-wrap{border-top:1px solid rgba(244,196,48,.15);background:#fff}
+      .breadcrumb{margin:0;padding:.75rem 0;font-size:.95rem}
+      .breadcrumb .sep{color:#999;margin:0 .35rem}
 
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="reviews.html">Ulasan</a>
-            </li>
-            <li class="nav-item">
+      /* container utama */
+      .page-container{max-width:1200px;margin:0 auto;padding:0 32px}
+      .card-like{
+        background:var(--primary-white);box-shadow:0 4px 24px var(--shadow-color);border-radius:24px
+      }
 
-              <a class="nav-link" href="news.html">Berita</a>
+      /* Main Content */
+      .main-content{
+        display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:40px
+      }
+      .content-left{
+        z-index:5;transition:.3s ease-out;background:var(--primary-white);
+        border-radius:16px;box-shadow:0 2px 8px var(--shadow-color);padding:32px 24px; margin-left: 50px; margin-top: -50px;
+      }
+      .subtitle{color:var(--primary-yellow-dark);font-size:12px;letter-spacing:1.5px;margin-bottom:8px;text-transform:uppercase}
+      .main-title{font-size:44px;font-weight:700;line-height:1.15;margin-bottom:6px;color:var(--primary-gray)}
+      .year{font-size:16px;color:#caa800;margin-bottom:16px}
+      .description{font-size:15px;margin-bottom:16px;color:#425466}
+      .features{list-style:none;margin:0;padding:0}
+      .features li{
+        margin-bottom:10px;font-size:15px;position:relative;padding-left:18px;color:var(--primary-gray);
+        background:var(--primary-white);border-radius:8px;padding:6px 16px 6px 18px;box-shadow:0 1px 4px var(--shadow-color)
+      }
+      .features li::before{content:"•";color:var(--primary-yellow-dark);position:absolute;left:6px;font-size:18px}
 
-            </li>
+      /* Carousel (versi besar) */
+      .carousel-container{
+        position:relative;overflow-x:hidden;overflow-y:visible;width:100%;display:flex;justify-content:center;align-items:center;
+        height:520px;background:var(--primary-white);border-radius:20px;box-shadow:0 2px 12px var(--shadow-color);padding:0 28px;margin-left: -30px; margin-top: -40px;
+      }
+      .nft-cards{display:flex;gap:30px;justify-content:center;align-items:center;position:relative;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+      .nft-card{
+        background:var(--primary-yellow);backdrop-filter:blur(8px);border-radius:16px;padding:18px 14px 14px;border:1px solid var(--primary-yellow-dark);
+        transition:all .4s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative;overflow:hidden;flex-shrink:0;transform-origin:center;box-shadow:0 2px 8px var(--shadow-color)
+      }
+      .nft-card.center{
+        width:340px;height:420px;opacity:1;transform:scale(1);z-index:10;background:var(--primary-white);
+        border:2px solid var(--primary-yellow-dark);box-shadow:0 4px 24px var(--shadow-color)
+      }
+      .nft-card.side{width:220px;height:280px;opacity:.85;transform:scale(.95);z-index:1}
+      .nft-card.hidden{width:160px;height:180px;opacity:.25;transform:scale(.7);z-index:0}
+      .nft-card:hover{transform:scale(1.03) translateY(-2px)}
+      .nft-card.center:hover{transform:scale(1.01) translateY(-2px)}
+
+      .nft-image{
+        width:100%;height:140px;background:linear-gradient(135deg,var(--primary-yellow),var(--primary-white));
+        border-radius:10px;margin-bottom:10px;display:flex;align-items:center;justify-content:center
+      }
+      .nft-card.center .nft-image{height:220px}
+      .nft-sphere{
+        width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--primary-yellow-dark),var(--primary-yellow),var(--primary-white));
+        box-shadow:0 0 8px var(--primary-yellow-dark);animation:float 3s ease-in-out infinite;position:relative
+      }
+      .nft-card.center .nft-sphere{width:96px;height:96px}
+      .nft-sphere::before{
+        width:14px;height:14px;background:rgba(255,255,255,.7);border-radius:50%;filter:blur(2px);content:"";position:absolute;top:15%;left:25%
+      }
+      .nft-title{font-size:18px;font-weight:700;color:#22324a;margin-bottom:6px;text-align:center}
+      .nft-card.center .nft-title{font-size:24px;margin-bottom:10px}
+      .reward-badge{background:var(--primary-yellow-dark);color:#22324a;box-shadow:0 1px 4px var(--shadow-color);padding:7px 16px;border-radius:14px;
+        font-size:12px;font-weight:800;text-align:center;margin-bottom:8px;text-transform:uppercase}
+      .nft-card.center .reward-badge{font-size:13px;padding:9px 18px}
+      .availability{color:#425466;background:var(--primary-white);border-radius:8px;padding:6px 12px;text-align:center;font-size:14px}
+      .nft-card.center .availability{font-size:15px}
+      .nft-stats{color:#425466;background:var(--primary-white);border-radius:8px;padding:4px 10px;text-align:center;margin-bottom:6px}
+
+      .carousel-nav{
+        position:absolute;top:50%;transform:translateY(-50%);background:var(--primary-white);border:1px solid var(--primary-yellow-dark);border-radius:50%;
+        width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:20;transition:all .2s;box-shadow:0 4px 12px rgba(0,0,0,.12)
+      }
+      .carousel-nav:hover{background:var(--primary-yellow);transform:translateY(-50%) scale(1.07)}
+      .carousel-nav.prev{left:10px}
+      .carousel-nav.next{right:10px}
+      .carousel-nav.prev::after{content:"";display:block;border-style:solid;border-width:7px 12px 7px 0;border-color:transparent var(--primary-yellow-dark) transparent transparent;margin-left:-2px}
+      .carousel-nav.next::after{content:"";display:block;border-style:solid;border-width:7px 0 7px 12px;border-color:transparent transparent transparent var(--primary-yellow-dark);margin-right:-2px}
+
+      /* background effect */
+      .bg-effects{position:fixed;inset:0;pointer-events:none;z-index:1}
+      .bg-circle{position:absolute;border-radius:50%;background:radial-gradient(circle,var(--primary-yellow) 0%,transparent 80%);animation:pulse 4s ease-in-out infinite}
+      .bg-circle:nth-child(1){width:180px;height:180px;top:18%;right:8%;animation-delay:0s}
+      .bg-circle:nth-child(2){width:120px;height:120px;bottom:22%;left:12%;animation-delay:2s}
+      @keyframes pulse{0%,100%{opacity:.1;transform:scale(1)}50%{opacity:.3;transform:scale(1.1)}}
+      @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+      /* Responsive */
+      @media (min-width: 992px){
+        .main-content{grid-template-columns:0.95fr 1.05fr;}
+      }
+      @media (max-width: 991.98px){
+        .navbar-center{position:static;transform:none;width:100%}
+        .navbar-collapse{padding:12px 0}
+        .btn-contact{display:inline-flex !important;margin-left:12px}
+      }
+      @media (max-width: 968px){
+        .carousel-container{height:400px}
+        .nft-card.center{width:280px;height:360px}
+        .nft-card.side{width:200px;height:250px}
+        .nft-card.hidden{width:140px;height:170px}
+        .nft-card .nft-image{height:120px}
+        .nft-card.center .nft-image{height:180px}
+        .nft-card.center .nft-sphere{width:80px;height:80px}
+        .main-content{grid-template-columns:1fr;gap:32px;text-align:center}
+        .carousel-container{margin:0 -20px;padding:0 20px;}
+        .nft-cards{justify-content:flex-start;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;padding:20px 0}
+        .nft-cards::-webkit-scrollbar{display:none}
+        .nft-card{scroll-snap-align:center;min-width:200px}
+      }
+      @media (max-width: 480px){
+        .page-container{padding:0 16px}
+        .main-title{font-size:30px}
+        .carousel-nav{width:40px;height:40px}
+        .carousel-nav.prev{left:-20px}.carousel-nav.next{right:-20px}
+      }
+    </style>
+  </head>
+
+  <body>
+   
+   <div class="main-container">
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"
+            ><img
+              src="property/logo idspora_nobg_outlined.png"
+              alt="idSpora Logo"
+          /></a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-4">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Beranda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">Tentang</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="products.html">Portofolio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="reviews.html">Ulasan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="news.html">Berita</a>
+              </li>
+            </ul>
+            <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+            <li class="breadcrumb-item active">Portofolio</li>
+          </ol>
+        </div>
+      </nav>
+
+
+    <!-- ===== MAIN ===== -->
+      <main class="main-content">
+        <div class="content-left">
+          <div class="subtitle">Complete Sunset Journey</div>
+          <h1 class="main-title">Sunset Phase</h1>
+          <div class="year">(Late 2024)</div>
+          <p class="description">Complete sunset journey and get 3 of 4 NFT.</p>
+          <ul class="features">
+            <li>Non-EVM Networks Expansion</li>
+            <li>Non-EVM Cross Chain Swaps</li>
+            <li>Multichain Portal</li>
           </ul>
-          <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
         </div>
-      </div>
-    </nav>
 
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb">
-      <div class="container">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+        <!-- Carousel -->
+        <div class="carousel-container">
+          <div class="carousel-nav prev" onclick="slideCarousel(-1)"></div>
+          <div class="carousel-nav next" onclick="slideCarousel(1)"></div>
 
-          <li class="breadcrumb-item active">Portofolio</li>
-
-        </ol>
-      </div>
-    </nav>
-
-    <!-- Page Header -->
-    <section class="page-header">
-      <div class="container">
-        <h1 class="page-title">
-          <span class="highlight-yellow">Portofolio </span> Terbaru
-        </h1>
-        <p class="page-subtitle">
-          Dapatkan Portofolio terbaru seputar Event yang kami adakan di idSpora.
-        </p>
-      </div>
-    </section>
-
-    <!-- Blog Articles Grid -->
-    <section class="section-spacing-sm" style="background: #ffffff">
-      <div class="container">
-        <div class="row">
-          <!-- Featured Article as Card -->
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="50">
-            <div class="news-card">
-              <img src="property/fgdhibah1.jpg" class="img-fluid mb-3" />
-              <div class="d-flex align-items-center mb-2">
-                <span class="badge bg-primary me-2">FGD Literature & Review</span>
-                <small class="text-muted">20 Oktober 2024</small>
-              </div>
-              <h5 class="mb-3">
-                FGD Hibah Penelitian KerjaSama
-              </h5>
-              <p class="text-muted mb-3">
-                idSpora melakukan kolaborasi dengan kemenristekdikti untuk melalukan FGD Hibah Penelitian KerjaSama
-              </p>
-              <a href="dokumentasi-fgd.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="news-card">
-              <img src="property/workshopumkm1.jpg" alt="AI Trends" class="img-fluid mb-3" />
-              <div class="d-flex align-items-center mb-2">
-                <span class="badge bg-success me-2">Workshop AI</span>
-                <small class="text-muted">12 November 2024</small>
-              </div>
-              <h5 class="mb-3">
-                Workshop Jago AI For UMKM
-              </h5>
-              <p class="text-muted mb-3">
-                Kegiatan workshop yang diadakan oleh idSpora untuk UMKM dalam memanfaatkan AI untuk meningkatkan
-                produktivitas bisnis.
-              </p>
-              <a href="dokumentasi-workshop.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="news-card">
-              <img src="property/seminarai1.JPG" alt="AI Trends" class="img-fluid mb-3" />
-              <div class="d-flex align-items-center mb-2">
-                <span class="badge bg-success me-2">Seminar AI</span>
-                <small class="text-muted">09 November 2024</small>
-              </div>
-              <h5 class="mb-3">
-                Seminar Jago AI For UMKM
-              </h5>
-              <p class="text-muted mb-3">
-                KKegiatan seminar yang diadakan oleh idSpora untuk UMKM dalam memanfaatkan AI untuk meningkatkan
-                produktivitas bisnis.
-              </p>
-              <a href="dokumentasi-seminar.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="news-card">
-              <img src="property/cheva1.jpg" alt="Cybersecurity" class="img-fluid mb-3" />
-              <div class="d-flex align-items-center mb-2">
-                <span class="badge bg-danger me-2">Webinar Literature Review</span>
-                <small class="text-muted">29 November 2024</small>
-              </div>
-              <h5 class="mb-3">
-                Webinar idspora In Collaboration With Cheva
-              </h5>
-              <p class="text-muted mb-3">
-                Berisi materi All about publikasi ilmiah: Memahami dunia jurnal dan konferensi untuk pemula
-              </p>
-              <a href="dokumentasi-webinar.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
-            </div>
-          </div>
-
-          <!-- Pagination -->
-          <nav aria-label="Blog pagination" class="mt-5">
-            <ul class="pagination justify-content-center">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Sebelumnya</a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Selanjutnya</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer-section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-3 col-md-6 mb-4">
-            <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_dark.png" alt="idSpora Logo"
-                style="height: 60px; width: auto" /></a>
-            <p class="text-light">
-              Belajar tanpa batas, berkembang tanpa henti.
-            </p>
-            <div class="social-links">
-              <a href="https://www.tiktok.com/@idspora" class="text-light me-3"><i class="fab fa-tiktok"></i></a>
-              <a href="https://www.instagram.com/idspora.official/" class="text-light me-3"><i
-                  class="fab fa-instagram"></i></a>
-              <a href="https://www.linkedin.com/company/idspora/" class="text-light"><i class="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-6 mb-4">
-            <h6 class="text-white mb-3">Quick Links</h6>
-            <ul class="list-unstyled">
-              <li><a href="index.html" class="text-light">Beranda</a></li>
-              <li>
-                <a href="about.html" class="text-light">Tentang Kami</a>
-              </li>
-              <li>
-                <a href="products.html" class="text-light">Portofolio</a>
-              </li>
-
-              <li><a href="reviews.html" class="text-light">Ulasan</a></li>
-              <li><a href="news.html" class="text-light">Berita</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-4">
-            <h6 class="text-white mb-3">Layanan</h6>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-light">Live Webinars</a></li>
-              <li>
-                <a href="#" class="text-light">Training & Mini Workshops</a>
-              </li>
-              <li><a href="#" class="text-light">E-Learning</a></li>
-              <li><a href="#" class="text-light">Video Production</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-4">
-            <h6 class="text-white mb-3">Hubungi Kami</h6>
-            <p class="text-light mb-2">
-              <i class="fas fa-envelope me-2"></i>info@idspora.com
-            </p>
-            <p class="text-light mb-2">
-              <i class="fas fa-phone me-2"></i>+62 898-926-0731
-            </p>
-            <p class="text-light mb-3">
-              <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
-            </p>
-            <div class="social-links">
-              <a href="https://www.tiktok.com/@idspora" class="text-light me-3" title="TikTok"><i
-                  class="fab fa-tiktok"></i></a>
-              <a href="https://www.instagram.com/idspora.official/" class="text-light me-3" title="Instagram"><i
-                  class="fab fa-instagram"></i></a>
-              <a href="https://www.linkedin.com/company/idspora/" class="text-light" title="LinkedIn"><i
-                  class="fab fa-linkedin"></i></a>
-            </div>
+          <div class="nft-cards" id="nftCarousel">
+            <!-- rendered by JS -->
           </div>
         </div>
-        <hr class="my-3" style="border-color: #495057" />
-        <div class="row justify-content-center">
-          <div class="col-md-4 text-center">
-            <p class="text-light mb-1" style="font-size: 0.8rem">
-              &copy; 2024 idSpora. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
+      </main>
 
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/628989260731" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+      const cardsData = [
+        {
+          phase: "midday",
+          html: `
+            <div class="nft-image"><div class="nft-sphere"></div></div>
+            <div class="nft-title">Retro Bridge Midday</div>
+            <div class="nft-stats">0.5% - 0.5%</div>
+            <div class="availability">Midday Journey</div>
+          `,
+        },
+        {
+          phase: "sunset",
+          html: `
+            <div class="nft-image"><div class="nft-sphere"></div></div>
+            <div class="reward-badge">GET 1 OF 4 NFT REWARD</div>
+            <div class="nft-title">Retro Bridge Sunset</div>
+            <div class="availability">Available in Sunset Phase</div>
+          `,
+        },
+        {
+          phase: "midnight",
+          html: `
+            <div class="nft-image"><div class="nft-sphere"></div></div>
+            <div class="nft-title">Retro Bridge Midnight</div>
+            <div class="availability">Midnight Journey</div>
+          `,
+        },
+      ];
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 800,
-      easing: "ease-in-out",
-      once: true,
-    });
-  </script>
-</body>
+      let currentCenterIndex = 1;
+      const totalCards = cardsData.length;
 
+      function renderCards(){
+        const carousel = document.getElementById("nftCarousel");
+        carousel.innerHTML = "";
+        cardsData.forEach((card, i) => {
+          const div = document.createElement("div");
+          div.className = "nft-card";
+          div.dataset.phase = card.phase;
+          div.dataset.index = i;
+          div.innerHTML = card.html;
+          div.onclick = () => centerCard(i);
+          carousel.appendChild(div);
+        });
+        updateCardPositions();
+        updateCarouselTransform();
+      }
+
+      function centerCard(index){
+        currentCenterIndex = index;
+        updateCardPositions();
+        updateCarouselTransform();
+        updateContentForCurrentCard();
+      }
+
+      function slideCarousel(direction){
+        currentCenterIndex += direction;
+        if (currentCenterIndex < 0) currentCenterIndex = totalCards - 1;
+        if (currentCenterIndex >= totalCards) currentCenterIndex = 0;
+        updateCardPositions();
+        updateCarouselTransform();
+        updateContentForCurrentCard();
+      }
+
+      function updateCardPositions(){
+        const cards = document.querySelectorAll(".nft-card");
+        cards.forEach((card, index) => {
+          card.classList.remove("center","side","hidden");
+          if (index === currentCenterIndex){
+            card.classList.add("center");
+          } else if (
+            Math.abs(index - currentCenterIndex) === 1 ||
+            (currentCenterIndex === 0 && index === totalCards - 1) ||
+            (currentCenterIndex === totalCards - 1 && index === 0)
+          ){
+            card.classList.add("side");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      }
+
+      function updateCarouselTransform(){
+        const carousel = document.getElementById("nftCarousel");
+        const cards = carousel.querySelectorAll(".nft-card");
+        if (!cards.length) return;
+        const center = cards[currentCenterIndex];
+        const carouselRect = carousel.getBoundingClientRect();
+        const cardRect = center.getBoundingClientRect();
+        const offset = cardRect.left + cardRect.width/2 - (carouselRect.left + carouselRect.width/2);
+        carousel.style.transition = "transform .6s cubic-bezier(.4,0,.2,1)";
+        carousel.style.transform = `translateX(${-offset}px)`;
+      }
+
+      function updateContentForCurrentCard(){
+        const currentCard = document.querySelectorAll(".nft-card")[currentCenterIndex];
+        const phase = currentCard?.dataset.phase;
+        const titleEl = document.querySelector(".main-title");
+        const subtitleEl = document.querySelector(".subtitle");
+        const yearEl = document.querySelector(".year");
+        const descEl = document.querySelector(".description");
+        const featuresEl = document.querySelector(".features");
+
+        const phaseData = {
+          midday: {
+            title: "Midday Phase",
+            year: "(Mid 2024)",
+            subtitle: "Complete Midday Journey",
+            description: "Complete midday journey and get 2 of 4 NFT.",
+            features: ["EVM Networks Integration","Basic Cross Chain Swaps","Initial Portal Access"],
+          },
+          sunset: {
+            title: "Sunset Phase",
+            year: "(Late 2024)",
+            subtitle: "Complete Sunset Journey",
+            description: "Complete sunset journey and get 3 of 4 NFT.",
+            features: ["Non-EVM Networks Expansion","Non-EVM Cross Chain Swaps","Multichain Portal"],
+          },
+          midnight: {
+            title: "Midnight Phase",
+            year: "(Early 2025)",
+            subtitle: "Complete Midnight Journey",
+            description: "Complete midnight journey and get 4 of 4 NFT.",
+            features: ["Advanced Protocol Integration","Cross-Reality Swaps","Ultimate Portal Access"],
+          },
+        };
+
+        const data = phaseData[phase] || phaseData.sunset;
+        titleEl.textContent = data.title;
+        yearEl.textContent = data.year;
+        subtitleEl.textContent = data.subtitle;
+        descEl.textContent = data.description;
+        featuresEl.innerHTML = data.features.map(f=>`<li>${f}</li>`).join("");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        renderCards();
+        updateContentForCurrentCard();
+
+        // swipe
+        let startX = 0;
+        const carousel = document.getElementById("nftCarousel");
+        carousel.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+        carousel.addEventListener("touchend", e => {
+          const endX = e.changedTouches[0].clientX;
+          if (endX - startX > 50) slideCarousel(-1);
+          else if (startX - endX > 50) slideCarousel(1);
+        });
+
+        // sphere animation delay
+        setTimeout(()=> {
+          document.querySelectorAll(".nft-sphere").forEach((s,i)=> s.style.animationDelay = `${i*.5}s`);
+        }, 0);
+      });
+
+      window.addEventListener("resize", updateCarouselTransform);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
