@@ -415,7 +415,7 @@
     <!-- ===== MAIN ===== -->
       <main class="main-content">
         <div class="content-left">
-          <div class="subtitle">Complete Sunset Journey</div>
+          <div class="subtitle">Focus Group Discussion</div>
           <h1 class="main-title">Sunset Phase</h1>
           <div class="year">(Late 2024)</div>
           <p class="description">Complete sunset journey and get 3 of 4 NFT.</p>
@@ -441,16 +441,15 @@
     <script>
       const cardsData = [
         {
-          phase: "midday",
+          phase: "hibah_penelitian",
           html: `
-            <div class="nft-image"><div class="nft-sphere"></div></div>
-            <div class="nft-title">Retro Bridge Midday</div>
-            <div class="nft-stats">0.5% - 0.5%</div>
-            <div class="availability">Midday Journey</div>
-          `,
+            <div class="nft-image"><img src="property/fgd_bu_yayu.JPG" alt="FGD Hibah Penelitian Kerjasama" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
+            <div class="nft-title">FGD Hibah Penelitian Kerjasama</div>
+            <div class="nft-stats">10 Oktober 2024</div>
+            <div class="availability">Telkom University</div>`,
         },
         {
-          phase: "sunset",
+          phase: "jagoai_series",
           html: `
             <div class="nft-image"><div class="nft-sphere"></div></div>
             <div class="reward-badge">GET 1 OF 4 NFT REWARD</div>
@@ -543,12 +542,15 @@
         const featuresEl = document.querySelector(".features");
 
         const phaseData = {
-          midday: {
-            title: "Midday Phase",
-            year: "(Mid 2024)",
-            subtitle: "Complete Midday Journey",
-            description: "Complete midday journey and get 2 of 4 NFT.",
-            features: ["EVM Networks Integration","Basic Cross Chain Swaps","Initial Portal Access"],
+          hibah_penelitian: {
+            title: "Hibah Penelitian Kerjasama - Dalam Negerti Kemenristekdikti",
+            year: "10 Oktober 2024",
+            subtitle: "Forum Group Discussion",
+            description: "ini deskripsi",
+            features: [
+                "15 Peserta dari Telkom University & STIK Siti Khadijah Palembang",
+                "Dilaksanan secara onsite di Fakultas Ilmu Terapan Telkom University",
+            ],
           },
           sunset: {
             title: "Sunset Phase",
