@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Retno Setyorini - Mentor Profile | idSpora</title>
+    <title>Kristina Sisilia - Mentor Profile | idSpora</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -460,171 +460,171 @@
 
 <body>
     <div class="main-container">
-        <!-- Navbar -->
-        <div class="main-container">
-            <!-- Navigation -->
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_outlined.png"
-                            alt="idSpora Logo" /></a>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.php"><img src="property/logo idspora_nobg_outlined.png"
+                        alt="idSpora Logo" /></a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto me-4">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Beranda</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">Tentang</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="products.html">Portofolio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="reviews.html">Ulasan</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="news.html">Berita</a>
-                            </li>
-                        </ul>
-                        <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
-                    </div>
-                </div>
-            </nav>
-          
-            <!-- Breadcrumb -->
-            <nav aria-label="breadcrumb">
-                <div class="container">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-                        <li class="breadcrumb-item">
-                            <a href="index.html#mentors">Mentor</a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto me-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Beranda</a>
                         </li>
-                        <li class="breadcrumb-item active">Retno Setyorini, S.T., M.M.</li>
-                    </ol>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.php">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="products.php">Portofolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reviews.php">Ulasan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="news.php">Berita</a>
+                        </li>
+                    </ul>
+                    <a href="contact.php" class="btn btn-contact">Hubungi Kami</a>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
-            <!-- Profile Header -->
-            <section class="profile-header">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4 text-center" data-aos="fade-right">
-                            <img src="property/buretno.png" alt="Retno Setyorini" class="mentor-photo" />
-                            <div class="social-links-large">
-                                <a href="https://www.linkedin.com/in/retno-setyorini/" target="_blank">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="mailto:retno.setyorini@idSpora.com">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                                <a href="https://scholar.google.com/citations?user=retno" target="_blank">
-                                    <i class="fas fa-user-graduate"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-8" data-aos="fade-left">
-                            <h1 class="mentor-name">Retno Setyorini, S.T., M.M.</h1>
-                            <p class="mentor-title">ERP & Project Management Specialist</p>
-                            <p class="mentor-description">
-                                Seorang pakar di bidang Enterprise Resource Planning (ERP) dan
-                                manajemen proyek dengan pengalaman 10 tahun. Memiliki latar
-                                belakang pendidikan Sarjana Teknik Industri dari Universitas
-                                Pasundan dan Magister Manajemen dari Universitas Telkom. Saat
-                                ini sedang menempuh program S3 Manajemen di Universitas
-                                Pendidikan Indonesia. Berpengalaman dalam implementasi sistem
-                                ERP untuk berbagai industri dan memiliki sertifikasi sebagai
-                                Certified Practising Project Practitioner (CPPP) dari IAMPI.
-                            </p>
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
+                    <li class="breadcrumb-item">
+                        <a href="index.php#mentors">Mentor</a>
+                    </li>
+                    <li class="breadcrumb-item active">Kristina Sisilia</li>
+                </ol>
+            </div>
+        </nav>
+
+        <!-- Profile Header -->
+        <section class="profile-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-center" data-aos="fade-right">
+                        <img src="property/bukris.png" alt="Kristina Sisilia" class="mentor-photo" />
+                        <div class="social-links-large">
+                            <a href="https://www.linkedin.com/in/kristina-sisilia-41643b42/" target="_blank">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="mailto:kristina.sisilia@idSpora.com">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="property/cv_bukristina.pdf" target="_blank">
+                                <i class="fas fa-file-alt"></i>
+                            </a>
                         </div>
                     </div>
+                    <div class="col-lg-8" data-aos="fade-left">
+                        <h1 class="mentor-name">Kristina Sisilia, S.T., M.B.A.</h1>
+                        <p class="mentor-title">
+                            Business Strategy & Project Management Expert
+                        </p>
+                        <p class="mentor-description">
+                            Seorang pakar di bidang strategi bisnis dan manajemen proyek
+                            dengan pengalaman 16 tahun. Memiliki latar belakang pendidikan
+                            Sarjana Teknik Geologi dan Magister Administrasi Bisnis dari
+                            Institut Teknologi Bandung. Berpengalaman dalam mengelola
+                            berbagai proyek strategis untuk perusahaan multinasional dan
+                            BUMN, mulai dari CRM implementation, business incubator, hingga
+                            strategy mapping. Memiliki keahlian khusus dalam ERP analysis
+                            dan Six Sigma methodology.
+                        </p>
+                    </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Expertise Section -->
-            <section class="profile-section">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-10" data-aos="fade-up">
-                            <h2 class="section-title text-center mb-5">
-                                <span class="highlight-yellow">Keahlian</span> Utama
-                            </h2>
+        <!-- Expertise Section -->
+        <section class="profile-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10" data-aos="fade-up">
+                        <h2 class="section-title text-center mb-5">
+                            <span class="highlight-yellow">Keahlian</span> Utama
+                        </h2>
 
-                            <div class="row">
-                                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                                    <div class="skill-item d-flex align-items-center">
-                                        <div class="skill-icon">
-                                            <i class="fas fa-cogs"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="mb-2">Enterprise Resource Planning (ERP)</h5>
-                                            <p class="text-muted mb-0">
-                                                Implementasi dan optimasi sistem ERP untuk meningkatkan
-                                                efisiensi operasional perusahaan.
-                                            </p>
-                                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                                <div class="skill-item d-flex align-items-center">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-chart-line"></i>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                                    <div class="skill-item d-flex align-items-center">
-                                        <div class="skill-icon">
-                                            <i class="fas fa-tasks"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="mb-2">Project Management</h5>
-                                            <p class="text-muted mb-0">
-                                                Manajemen proyek dengan metodologi CPPP untuk mencapai
-                                                target dan deadline yang tepat.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-                                    <div class="skill-item d-flex align-items-center">
-                                        <div class="skill-icon">
-                                            <i class="fas fa-industry"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="mb-2">Industrial Engineering</h5>
-                                            <p class="text-muted mb-0">
-                                                Optimasi proses industri dan peningkatan produktivitas
-                                                dengan pendekatan teknik industri.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="400">
-                                    <div class="skill-item d-flex align-items-center">
-                                        <div class="skill-icon">
-                                            <i class="fas fa-chart-line"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="mb-2">Business Process Management</h5>
-                                            <p class="text-muted mb-0">
-                                                Analisis dan perbaikan proses bisnis untuk meningkatkan
-                                                efektivitas organisasi.
-                                            </p>
-                                        </div>
+                                    <div>
+                                        <h5 class="mb-2">Business Strategy & Planning</h5>
+                                        <p class="text-muted mb-0">
+                                            Pengembangan strategi bisnis dan perencanaan dengan
+                                            Strategy Map methodology.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                                <div class="skill-item d-flex align-items-center">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-2">Project Management</h5>
+                                        <p class="text-muted mb-0">
+                                            Manajemen proyek skala besar dengan metodologi Six Sigma
+                                            dan ERP implementation.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                                <div class="skill-item d-flex align-items-center">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-users-cog"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-2">Team Leadership & Development</h5>
+                                        <p class="text-muted mb-0">
+                                            Kepemimpinan tim dan pengembangan organisasi untuk
+                                            mencapai target bisnis.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                                <div class="skill-item d-flex align-items-center">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-chart-pie"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-2">Marketing Analysis & CRM</h5>
+                                        <p class="text-muted mb-0">
+                                            Analisis pasar mendalam dan implementasi Customer
+                                            Relationship Management.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-          <!-- Footer -->
+        <!-- Footer -->
         <footer class="footer-section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_dark.png"
+                        <a class="navbar-brand" href="index.php"><img src="property/logo idspora_nobg_dark.png"
                                 alt="idSpora Logo" style="height: 60px; width: auto" /></a>
                         <p class="text-light">
                             Belajar tanpa batas, berkembang tanpa henti.
@@ -641,15 +641,15 @@
                     <div class="col-lg-2 col-md-6 mb-4">
                         <h6 class="text-white mb-3">Quick Links</h6>
                         <ul class="list-unstyled">
-                            <li><a href="index.html" class="text-light">Beranda</a></li>
+                            <li><a href="index.php" class="text-light">Beranda</a></li>
                             <li>
-                                <a href="about.html" class="text-light">Tentang Kami</a>
+                                <a href="about.php" class="text-light">Tentang Kami</a>
                             </li>
                             <li>
-                                <a href="products.html" class="text-light">Portofolio</a>
+                                <a href="products.php" class="text-light">Portofolio</a>
                             </li>
-                            <li><a href="reviews.html" class="text-light">Ulasan</a></li>
-                            <li><a href="news.html" class="text-light">Berita</a></li>
+                            <li><a href="reviews.php" class="text-light">Ulasan</a></li>
+                            <li><a href="news.php" class="text-light">Berita</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4">

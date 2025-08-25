@@ -320,7 +320,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_outlined.png"
+        <a class="navbar-brand" href="index.php"><img src="property/logo idspora_nobg_outlined.png"
             alt="idSpora Logo" /></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -330,22 +330,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto me-4">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Beranda</a>
+              <a class="nav-link" href="index.php">Beranda</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">Tentang</a>
+              <a class="nav-link" href="about.php">Tentang</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="products.html">Portofolio</a>
+              <a class="nav-link" href="products.php">Portofolio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="reviews.html">Ulasan</a>
+              <a class="nav-link" href="reviews.php">Ulasan</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="news.html">Berita</a>
+              <a class="nav-link active" href="news.php">Berita</a>
             </li>
           </ul>
-          <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
+          <a href="contact.php" class="btn btn-contact">Hubungi Kami</a>
         </div>
       </div>
     </nav>
@@ -354,7 +354,7 @@
     <nav aria-label="breadcrumb">
       <div class="container">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
           <li class="breadcrumb-item active">Berita</li>
         </ol>
       </div>
@@ -393,7 +393,7 @@
                 idSpora menghadiri event yang diselenggarakan oleh Yayasan Fitrah Insani. Seminar tersebut membahas
                 materi Media pembelajaran berbasis AI yang kreatif dan islami. 
               </p>
-              <a href="dokumentasi-fgd.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+              <a href="dokumentasi-fgd.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
             </div>
           </div>
 
@@ -410,7 +410,7 @@
               <p class="text-muted mb-3">
                Idspora membuat modul pelatihan untuk berkolaborasi dengan yayasan fitrah insani di hari sabtu
               </p>
-              <a href="dokumentasi-fgd.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+              <a href="dokumentasi-fgd.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
             </div>
           </div>
 
@@ -427,7 +427,7 @@
               <p class="text-muted mb-3">
                 idSpora melakukan kolaborasi dengan kemenristekdikti untuk melalukan FGD Hibah Penelitian KerjaSama
               </p>
-              <a href="dokumentasi-fgd.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+              <a href="dokumentasi-fgd.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
             </div>
           </div>
 
@@ -445,7 +445,7 @@
                 Kegiatan workshop yang diadakan oleh idSpora untuk UMKM dalam memanfaatkan AI untuk meningkatkan
                 produktivitas bisnis.
               </p>
-              <a href="dokumentasi-workshop.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+              <a href="dokumentasi-workshop.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
             </div>
           </div>
 
@@ -463,7 +463,7 @@
                 KKegiatan seminar yang diadakan oleh idSpora untuk UMKM dalam memanfaatkan AI untuk meningkatkan
                 produktivitas bisnis.
               </p>
-              <a href="dokumentasi-seminar.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+              <a href="dokumentasi-seminar.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
             </div>
           </div>
 
@@ -480,7 +480,7 @@
               <p class="text-muted mb-3">
                 Berisi materi All about publikasi ilmiah: Memahami dunia jurnal dan konferensi untuk pemula
               </p>
-              <a href="dokumentasi-webinar.html" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+              <a href="dokumentasi-webinar.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
             </div>
           </div>
 
@@ -508,7 +508,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-3 col-md-6 mb-4">
-            <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_dark.png" alt="idSpora Logo"
+            <a class="navbar-brand" href="index.php"><img src="property/logo idspora_nobg_dark.png" alt="idSpora Logo"
                 style="height: 60px; width: auto" /></a>
             <p class="text-light">
               Belajar tanpa batas, berkembang tanpa henti.
@@ -523,15 +523,15 @@
           <div class="col-lg-2 col-md-6 mb-4">
             <h6 class="text-white mb-3">Quick Links</h6>
             <ul class="list-unstyled">
-              <li><a href="index.html" class="text-light">Beranda</a></li>
+              <li><a href="index.php" class="text-light">Beranda</a></li>
               <li>
-                <a href="about.html" class="text-light">Tentang Kami</a>
+                <a href="about.php" class="text-light">Tentang Kami</a>
               </li>
               <li>
-                <a href="products.html" class="text-light">Portofolio</a>
+                <a href="products.php" class="text-light">Portofolio</a>
               </li>
-              <li><a href="reviews.html" class="text-light">Ulasan</a></li>
-              <li><a href="news.html" class="text-light">Berita</a></li>
+              <li><a href="reviews.php" class="text-light">Ulasan</a></li>
+              <li><a href="news.php" class="text-light">Berita</a></li>
             </ul>
           </div>
           <div class="col-lg-3 col-md-6 mb-4">

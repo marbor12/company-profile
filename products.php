@@ -363,7 +363,7 @@
       <!-- Navigation -->
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"
+          <a class="navbar-brand" href="index.php"
             ><img
               src="property/logo idspora_nobg_outlined.png"
               alt="idSpora Logo"
@@ -381,22 +381,22 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Beranda</a>
+                <a class="nav-link" href="index.php">Beranda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">Tentang</a>
+                <a class="nav-link" href="about.php">Tentang</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="products.html">Portofolio</a>
+                <a class="nav-link active" href="products.php">Portofolio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="reviews.html">Ulasan</a>
+                <a class="nav-link" href="reviews.php">Ulasan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="news.html">Berita</a>
+                <a class="nav-link" href="news.php">Berita</a>
               </li>
             </ul>
-            <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
+            <a href="contact.php" class="btn btn-contact">Hubungi Kami</a>
           </div>
         </div>
       </nav>
@@ -405,7 +405,7 @@
       <nav aria-label="breadcrumb">
         <div class="container">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
             <li class="breadcrumb-item active">Portofolio</li>
           </ol>
         </div>

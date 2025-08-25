@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kristina Sisilia - Mentor Profile | idSpora</title>
+    <title>Dr. Erna Hikmawati - Mentor Profile | idSpora</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -463,7 +463,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_outlined.png"
+                <a class="navbar-brand" href="index.php"><img src="property/logo idspora_nobg_outlined.png"
                         alt="idSpora Logo" /></a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -473,22 +473,22 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto me-4">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Beranda</a>
+                            <a class="nav-link" href="index.php">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">Tentang</a>
+                            <a class="nav-link" href="about.php">Tentang</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="products.html">Portofolio</a>
+                            <a class="nav-link" href="products.php">Portofolio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="reviews.html">Ulasan</a>
+                            <a class="nav-link" href="reviews.php">Ulasan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="news.html">Berita</a>
+                            <a class="nav-link" href="news.php">Berita</a>
                         </li>
                     </ul>
-                    <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
+                    <a href="contact.php" class="btn btn-contact">Hubungi Kami</a>
                 </div>
             </div>
         </nav>
@@ -497,11 +497,11 @@
         <nav aria-label="breadcrumb">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+                    <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
                     <li class="breadcrumb-item">
-                        <a href="index.html#mentors">Mentor</a>
+                        <a href="index.php#mentors">Mentor</a>
                     </li>
-                    <li class="breadcrumb-item active">Kristina Sisilia</li>
+                    <li class="breadcrumb-item active">Dr. Erna Hikmawati</li>
                 </ol>
             </div>
         </nav>
@@ -511,33 +511,32 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-center" data-aos="fade-right">
-                        <img src="property/bukris.png" alt="Kristina Sisilia" class="mentor-photo" />
+                        <img src="property/buerna.png" alt="Dr. Erna Hikmawati" class="mentor-photo" />
                         <div class="social-links-large">
-                            <a href="https://www.linkedin.com/in/kristina-sisilia-41643b42/" target="_blank">
+                            <a href="https://www.linkedin.com/in/erna-hikmawati" target="_blank">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="mailto:kristina.sisilia@idSpora.com">
+                            <a href="mailto:erna.hikmawati@idSpora.com">
                                 <i class="fas fa-envelope"></i>
                             </a>
-                            <a href="property/cv_bukristina.pdf" target="_blank">
+                            <a href="property/cv_buerna.pdf" target="_blank">
                                 <i class="fas fa-file-alt"></i>
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-8" data-aos="fade-left">
-                        <h1 class="mentor-name">Kristina Sisilia, S.T., M.B.A.</h1>
+                        <h1 class="mentor-name">Dr. Erna Hikmawati, S.Kom., M.Kom</h1>
                         <p class="mentor-title">
-                            Business Strategy & Project Management Expert
+                            Data Analytics & Information System Expert
                         </p>
                         <p class="mentor-description">
-                            Seorang pakar di bidang strategi bisnis dan manajemen proyek
-                            dengan pengalaman 16 tahun. Memiliki latar belakang pendidikan
-                            Sarjana Teknik Geologi dan Magister Administrasi Bisnis dari
-                            Institut Teknologi Bandung. Berpengalaman dalam mengelola
-                            berbagai proyek strategis untuk perusahaan multinasional dan
-                            BUMN, mulai dari CRM implementation, business incubator, hingga
-                            strategy mapping. Memiliki keahlian khusus dalam ERP analysis
-                            dan Six Sigma methodology.
+                            Seorang pakar di bidang sistem informasi dan analitik data
+                            dengan pengalaman 10 tahun. Memiliki latar belakang pendidikan
+                            hingga jenjang doktor di bidang Teknik Elektro dan Informatika
+                            dari Institut Teknologi Bandung. Berpengalaman dalam mengelola
+                            berbagai proyek teknologi informasi, mulai dari enterprise
+                            resource planning, customer relationship management, hingga
+                            pengembangan sistem pembelajaran digital.
                         </p>
                     </div>
                 </div>
@@ -560,10 +559,10 @@
                                         <i class="fas fa-chart-line"></i>
                                     </div>
                                     <div>
-                                        <h5 class="mb-2">Business Strategy & Planning</h5>
+                                        <h5 class="mb-2">Data Analytics & Visualization</h5>
                                         <p class="text-muted mb-0">
-                                            Pengembangan strategi bisnis dan perencanaan dengan
-                                            Strategy Map methodology.
+                                            Analisis data lanjutan dan visualisasi untuk mendukung
+                                            pengambilan keputusan bisnis.
                                         </p>
                                     </div>
                                 </div>
@@ -572,13 +571,13 @@
                             <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                                 <div class="skill-item d-flex align-items-center">
                                     <div class="skill-icon">
-                                        <i class="fas fa-tasks"></i>
+                                        <i class="fas fa-project-diagram"></i>
                                     </div>
                                     <div>
                                         <h5 class="mb-2">Project Management</h5>
                                         <p class="text-muted mb-0">
-                                            Manajemen proyek skala besar dengan metodologi Six Sigma
-                                            dan ERP implementation.
+                                            Manajemen proyek teknologi informasi dengan metodologi
+                                            Scrum dan Agile.
                                         </p>
                                     </div>
                                 </div>
@@ -587,13 +586,13 @@
                             <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
                                 <div class="skill-item d-flex align-items-center">
                                     <div class="skill-icon">
-                                        <i class="fas fa-users-cog"></i>
+                                        <i class="fas fa-database"></i>
                                     </div>
                                     <div>
-                                        <h5 class="mb-2">Team Leadership & Development</h5>
+                                        <h5 class="mb-2">Information System Development</h5>
                                         <p class="text-muted mb-0">
-                                            Kepemimpinan tim dan pengembangan organisasi untuk
-                                            mencapai target bisnis.
+                                            Pengembangan sistem informasi enterprise dan aplikasi
+                                            bisnis.
                                         </p>
                                     </div>
                                 </div>
@@ -602,13 +601,13 @@
                             <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                                 <div class="skill-item d-flex align-items-center">
                                     <div class="skill-icon">
-                                        <i class="fas fa-chart-pie"></i>
+                                        <i class="fab fa-java"></i>
                                     </div>
                                     <div>
-                                        <h5 class="mb-2">Marketing Analysis & CRM</h5>
+                                        <h5 class="mb-2">Java Programming & Oracle Database</h5>
                                         <p class="text-muted mb-0">
-                                            Analisis pasar mendalam dan implementasi Customer
-                                            Relationship Management.
+                                            Pengembangan aplikasi Java dan manajemen database Oracle
+                                            tingkat profesional.
                                         </p>
                                     </div>
                                 </div>
@@ -624,7 +623,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_dark.png"
+                        <a class="navbar-brand" href="index.php"><img src="property/logo idspora_nobg_dark.png"
                                 alt="idSpora Logo" style="height: 60px; width: auto" /></a>
                         <p class="text-light">
                             Belajar tanpa batas, berkembang tanpa henti.
@@ -641,15 +640,15 @@
                     <div class="col-lg-2 col-md-6 mb-4">
                         <h6 class="text-white mb-3">Quick Links</h6>
                         <ul class="list-unstyled">
-                            <li><a href="index.html" class="text-light">Beranda</a></li>
+                            <li><a href="index.php" class="text-light">Beranda</a></li>
                             <li>
-                                <a href="about.html" class="text-light">Tentang Kami</a>
+                                <a href="about.php" class="text-light">Tentang Kami</a>
                             </li>
                             <li>
-                                <a href="products.html" class="text-light">Portofolio</a>
+                                <a href="products.php" class="text-light">Portofolio</a>
                             </li>
-                            <li><a href="reviews.html" class="text-light">Ulasan</a></li>
-                            <li><a href="news.html" class="text-light">Berita</a></li>
+                            <li><a href="reviews.php" class="text-light">Ulasan</a></li>
+                            <li><a href="news.php" class="text-light">Berita</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4">

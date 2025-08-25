@@ -337,7 +337,7 @@
       <!-- Navigation -->
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"
+          <a class="navbar-brand" href="index.php"
             ><img
               src="public/images/logo idspora_nobg_outlined.png"
               alt="idSpora Logo"
@@ -355,22 +355,22 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="about.php">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="products.html">Product</a>
+                <a class="nav-link" href="products.php">Product</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="reviews.html">Review</a>
+                <a class="nav-link" href="reviews.php">Review</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="news.html">News</a>
+                <a class="nav-link active" href="news.php">News</a>
               </li>
             </ul>
-            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+            <a href="contact.php" class="btn btn-contact">Contact Us</a>
           </div>
         </div>
       </nav>
@@ -379,8 +379,8 @@
       <nav aria-label="breadcrumb">
         <div class="container">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="news.html">News</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="news.php">News</a></li>
             <li class="breadcrumb-item active">AI Bootcamp Program</li>
           </ol>
         </div>
@@ -522,7 +522,7 @@
                   >
                     <i class="fab fa-whatsapp me-2"></i>Daftar Sekarang
                   </a>
-                  <a href="products.html" class="btn btn-outline-dark btn-lg">
+                  <a href="products.php" class="btn btn-outline-dark btn-lg">
                     Lihat Program Lainnya
                   </a>
                 </div>
@@ -615,7 +615,7 @@
                   yang sedang booming.
                 </p>
                 <a
-                  href="article-data-science-career.html"
+                  href="article-data-science-career.php"
                   class="btn btn-outline-dark btn-sm"
                   >Read More</a
                 >
@@ -657,7 +657,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-4 col-md-4 mb-4">
-              <a class="navbar-brand" href="index.html"
+              <a class="navbar-brand" href="index.php"
                 ><img
                   src="public/images/logo idspora_nobg_dark.png"
                   alt="idSpora Logo"
@@ -683,7 +683,7 @@
               <ul class="list-unstyled">
                 <li>
                   <a
-                    href="index.html"
+                    href="index.php"
                     class="text-light"
                     style="text-decoration: none"
                     >Home</a
@@ -691,7 +691,7 @@
                 </li>
                 <li>
                   <a
-                    href="products.html"
+                    href="products.php"
                     class="text-light"
                     style="text-decoration: none"
                     >Portofolio</a
@@ -699,7 +699,7 @@
                 </li>
                 <li>
                   <a
-                    href="about.html"
+                    href="about.php"
                     class="text-light"
                     style="text-decoration: none"
                     >About Us</a
@@ -707,7 +707,7 @@
                 </li>
                 <li>
                   <a
-                    href="reviews.html"
+                    href="reviews.php"
                     class="text-light"
                     style="text-decoration: none"
                     >Review</a
@@ -715,7 +715,7 @@
                 </li>
                 <li>
                   <a
-                    href="news.html"
+                    href="news.php"
                     class="text-light"
                     style="text-decoration: none"
                     >News</a

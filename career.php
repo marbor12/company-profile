@@ -191,7 +191,7 @@
       <!-- Navigation -->
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"> idSpora </a>
+          <a class="navbar-brand" href="index.php"> idSpora </a>
 
           <button
             class="navbar-toggler"
@@ -205,22 +205,22 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="about.php">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="products.html">Product</a>
+                <a class="nav-link" href="products.php">Product</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="reviews.html">Review</a>
+                <a class="nav-link" href="reviews.php">Review</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="news.html">News</a>
+                <a class="nav-link" href="news.php">News</a>
               </li>
             </ul>
-            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+            <a href="contact.php" class="btn btn-contact">Contact Us</a>
           </div>
         </div>
       </nav>
@@ -229,7 +229,7 @@
       <nav aria-label="breadcrumb">
         <div class="container">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item active">Career</li>
           </ol>
         </div>
@@ -546,7 +546,7 @@
             you in mind for future opportunities.
           </p>
           <button class="btn btn-dark btn-lg me-3">Submit Resume</button>
-          <a href="contact.html" class="btn btn-outline-dark btn-lg"
+          <a href="contact.php" class="btn btn-outline-dark btn-lg"
             >Contact HR</a
           >
         </div>
@@ -577,11 +577,11 @@
             <div class="col-lg-2 col-md-6 mb-4">
               <h6 class="text-white mb-3">Quick Links</h6>
               <ul class="list-unstyled">
-                <li><a href="index.html" class="text-light">Home</a></li>
-                <li><a href="products.html" class="text-light">Products</a></li>
-                <li><a href="about.html" class="text-light">About Us</a></li>
-                <li><a href="reviews.html" class="text-light">Review</a></li>
-                <li><a href="news.html" class="text-light">News</a></li>
+                <li><a href="index.php" class="text-light">Home</a></li>
+                <li><a href="products.php" class="text-light">Products</a></li>
+                <li><a href="about.php" class="text-light">About Us</a></li>
+                <li><a href="reviews.php" class="text-light">Review</a></li>
+                <li><a href="news.php" class="text-light">News</a></li>
               </ul>
             </div>
             <div class="col-lg-2 col-md-6 mb-4">

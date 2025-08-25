@@ -19,7 +19,7 @@
       <!-- Navigation -->
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"> idSpora </a>
+          <a class="navbar-brand" href="index.php"> idSpora </a>
 
           <button
             class="navbar-toggler"
@@ -33,22 +33,22 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="services.html">Services</a>
+                <a class="nav-link" href="services.php">Services</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="about.php">About Us</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="portfolio.html">Portfolio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="blog.html">Blog</a>
+                <a class="nav-link active" href="blog.php">Blog</a>
               </li>
             </ul>
-            <a href="contact.html" class="btn btn-contact">Contact Us</a>
+            <a href="contact.php" class="btn btn-contact">Contact Us</a>
           </div>
         </div>
       </nav>
@@ -57,7 +57,7 @@
       <nav aria-label="breadcrumb">
         <div class="container">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item active">Blog</li>
           </ol>
         </div>
@@ -386,32 +386,32 @@
             <div class="col-lg-2 col-md-6 mb-4">
               <h6 class="text-white mb-3">Quick Links</h6>
               <ul class="list-unstyled">
-                <li><a href="index.html" class="text-light">Home</a></li>
-                <li><a href="about.html" class="text-light">About Us</a></li>
-                <li><a href="services.html" class="text-light">Services</a></li>
-                <li><a href="contact.html" class="text-light">Contact</a></li>
+                <li><a href="index.php" class="text-light">Home</a></li>
+                <li><a href="about.php" class="text-light">About Us</a></li>
+                <li><a href="services.php" class="text-light">Services</a></li>
+                <li><a href="contact.php" class="text-light">Contact</a></li>
               </ul>
             </div>
             <div class="col-lg-2 col-md-6 mb-4">
               <h6 class="text-white mb-3">Services</h6>
               <ul class="list-unstyled">
                 <li>
-                  <a href="services.html#training" class="text-light"
+                  <a href="services.php#training" class="text-light"
                     >Corporate Training</a
                   >
                 </li>
                 <li>
-                  <a href="services.html#events" class="text-light"
+                  <a href="services.php#events" class="text-light"
                     >Event Management</a
                   >
                 </li>
                 <li>
-                  <a href="services.html#team" class="text-light"
+                  <a href="services.php#team" class="text-light"
                     >Team Building</a
                   >
                 </li>
                 <li>
-                  <a href="services.html#workshop" class="text-light"
+                  <a href="services.php#workshop" class="text-light"
                     >Workshops</a
                   >
                 </li>

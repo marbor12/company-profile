@@ -1,3 +1,42 @@
+<?php
+// Include database connection
+require_once 'Admin/config/database.php';
+
+// Get database connection
+$pdo = getDBConnection();
+
+// Fetch past events for the dropdown
+$today = date('Y-m-d');
+$stmt = $pdo->prepare("
+    SELECT id, title, date 
+    FROM event 
+    WHERE date < ? 
+    ORDER BY date DESC
+");
+$stmt->execute([$today]);
+$past_events = $stmt->fetchAll();
+
+// Fetch latest 6 reviews from database
+$stmt = $pdo->prepare("
+    SELECT r.*, e.title as event_title, e.date as event_date
+    FROM review r 
+    LEFT JOIN event e ON r.id_event = e.id 
+    ORDER BY r.id DESC 
+    LIMIT 6
+");
+$stmt->execute();
+$reviews = $stmt->fetchAll();
+
+// Handle success/error messages
+$success_message = '';
+$error_message = '';
+
+if (isset($_GET['success'])) {
+    $success_message = 'Review berhasil dikirim! Terima kasih atas ulasan Anda.';
+} elseif (isset($_GET['error'])) {
+    $error_message = $_GET['error'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -350,6 +389,25 @@
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       }
 
+      /* Alert Messages */
+      .alert {
+        border-radius: 15px;
+        border: none;
+        margin-bottom: 20px;
+      }
+
+      .alert-success {
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        color: #155724;
+        border-left: 4px solid #28a745;
+      }
+
+      .alert-danger {
+        background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+      }
+
       /* Footer */
       .footer-section {
         background: var(--dark-blue) !important;
@@ -459,7 +517,7 @@
       <!-- Navigation -->
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"
+          <a class="navbar-brand" href="index.php"
             ><img
               src="property/logo idspora_nobg_outlined.png"
               alt="idSpora Logo"
@@ -477,22 +535,22 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-4">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Beranda</a>
+                <a class="nav-link" href="index.php">Beranda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">Tentang</a>
+                <a class="nav-link" href="about.php">Tentang</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="products.html">Portofolio</a>
+                <a class="nav-link" href="products.php">Portofolio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="reviews.html">Ulasan</a>
+                <a class="nav-link active" href="reviews.php">Ulasan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="news.html">Berita</a>
+                <a class="nav-link" href="news.php">Berita</a>
               </li>
             </ul>
-            <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
+            <a href="contact.php" class="btn btn-contact">Hubungi Kami</a>
           </div>
         </div>
       </nav>
@@ -525,242 +583,54 @@
         <div class="container">
           <!-- Reviews Grid -->
           <div class="reviews-grid" id="reviewsGrid">
-            <!-- Webinar Reviews -->
-            <div
-              class="review-item webinar"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <div class="review-card">
-                <div class="review-header">
-                  <div class="d-flex align-items-center">
-                    <img
-                      src="property/profile.png"
-                      alt="Sarah Putri"
-                      class="reviewer-photo"
-                    />
-                    <div class="ms-3">
-                      <h6 class="reviewer-name">Sarah Putri</h6>
-                      <p class="reviewer-title">Digital Marketing Manager</p>
-                      <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+            <?php if (!empty($reviews)): ?>
+              <?php foreach ($reviews as $index => $review): ?>
+                <div
+                  class="review-item"
+                  data-aos="fade-up"
+                  data-aos-delay="<?php echo ($index + 1) * 100; ?>"
+                >
+                  <div class="review-card">
+                    <div class="review-header">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="property/profile.png"
+                          alt="<?php echo htmlspecialchars($review['name']); ?>"
+                          class="reviewer-photo"
+                        />
+                        <div class="ms-3">
+                          <h6 class="reviewer-name"><?php echo htmlspecialchars($review['name']); ?></h6>
+                          <p class="reviewer-title"><?php echo htmlspecialchars($review['job_title']); ?></p>
+                          <div class="review-stars">
+                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                              <i class="fas fa-star<?php echo $i <= $review['rate'] ? '' : '-o'; ?>"></i>
+                            <?php endfor; ?>
+                          </div>
+                        </div>
                       </div>
+                    </div>
+                    <div class="review-content">
+                      <p>
+                        "<?php echo htmlspecialchars($review['review']); ?>"
+                      </p>
+                    </div>
+                    <div class="review-footer">
+                      <small class="text-muted">
+                        <?php 
+                        if ($review['event_title']) {
+                          echo htmlspecialchars($review['event_title']);
+                        } else {
+                          echo 'Event tidak tersedia';
+                        }
+                        ?>
+                      </small>
                     </div>
                   </div>
                 </div>
-                <div class="review-content">
-                  <p>
-                    "Webinar digital marketing di idSpora sangat insightful!
-                    Materi yang disampaikan sangat praktis dan langsung bisa
-                    diterapkan di pekerjaan. Speakernya juga sangat
-                    berpengalaman."
-                  </p>
-                </div>
-                <div class="review-footer">
-                  <small class="text-muted">2 minggu lalu</small>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="review-item training"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <div class="review-card">
-                <div class="review-header">
-                  <div class="d-flex align-items-center">
-                    <img
-                      src="property/profile.png"
-                      alt="Budi Santoso"
-                      class="reviewer-photo"
-                    />
-                    <div class="ms-3">
-                      <h6 class="reviewer-name">Budi Santoso</h6>
-                      <p class="reviewer-title">Software Developer</p>
-                      <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="review-content">
-                  <p>
-                    "Program training data science sangat komprehensif! Dari
-                    basic sampai advanced semua dicover dengan baik.
-                    Instrukturnya sabar dan materinya mudah dipahami."
-                  </p>
-                </div>
-                <div class="review-footer">
-                  <small class="text-muted">1 bulan lalu</small>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="review-item workshop"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <div class="review-card">
-                <div class="review-header">
-                  <div class="d-flex align-items-center">
-                    <img
-                      src="property/profile.png"
-                      alt="Rina Dewi"
-                      class="reviewer-photo"
-                    />
-                    <div class="ms-3">
-                      <h6 class="reviewer-name">Rina Dewi</h6>
-                      <p class="reviewer-title">UMKM Owner</p>
-                      <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="review-content">
-                  <p>
-                    "Workshop AI untuk UMKM sangat membantu! Sekarang saya bisa
-                    menggunakan AI tools untuk meningkatkan produktivitas bisnis
-                    saya. Terima kasih idSpora!"
-                  </p>
-                </div>
-                <div class="review-footer">
-                  <small class="text-muted">3 minggu lalu</small>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="review-item training"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              <div class="review-card">
-                <div class="review-header">
-                  <div class="d-flex align-items-center">
-                    <img
-                      src="property/profile.png"
-                      alt="Ahmad Fauzi"
-                      class="reviewer-photo"
-                    />
-                    <div class="ms-3">
-                      <h6 class="reviewer-name">Ahmad Fauzi</h6>
-                      <p class="reviewer-title">IT Security Specialist</p>
-                      <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="review-content">
-                  <p>
-                    "Training cybersecurity sangat mendalam dan up-to-date
-                    dengan threat terbaru. Materi sangat relevan dengan
-                    pekerjaan sehari-hari. Hanya saja durasi bisa diperpanjang
-                    lagi."
-                  </p>
-                </div>
-                <div class="review-footer">
-                  <small class="text-muted">1 minggu lalu</small>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="review-item webinar"
-              data-aos="fade-up"
-              data-aos-delay="500"
-            >
-              <div class="review-card">
-                <div class="review-header">
-                  <div class="d-flex align-items-center">
-                    <img
-                      src="property/profile.png"
-                      alt="Lisa Maharani"
-                      class="reviewer-photo"
-                    />
-                    <div class="ms-3">
-                      <h6 class="reviewer-name">Lisa Maharani</h6>
-                      <p class="reviewer-title">Product Manager</p>
-                      <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="review-content">
-                  <p>
-                    "Webinar product management sangat inspiring! Banyak case
-                    study real yang dibagikan. Networking sessionnya juga bagus,
-                    bisa connect dengan PM lain dari berbagai industri."
-                  </p>
-                </div>
-                <div class="review-footer">
-                  <small class="text-muted">2 bulan lalu</small>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="review-item workshop"
-              data-aos="fade-up"
-              data-aos-delay="600"
-            >
-              <div class="review-card">
-                <div class="review-header">
-                  <div class="d-flex align-items-center">
-                    <img
-                      src="property/profile.png"
-                      alt="Doni Pratama"
-                      class="reviewer-photo"
-                    />
-                    <div class="ms-3">
-                      <h6 class="reviewer-name">Doni Pratama</h6>
-                      <p class="reviewer-title">Freelance Designer</p>
-                      <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="review-content">
-                  <p>
-                    "Workshop UI/UX design sangat hands-on! Langsung praktek
-                    bikin prototype dari awal sampai akhir. Mentornya juga
-                    memberikan feedback yang konstruktif untuk setiap peserta."
-                  </p>
-                </div>
-                <div class="review-footer">
-                  <small class="text-muted">6 minggu lalu</small>
-                </div>
-              </div>
-            </div>
+              <?php endforeach; ?>
+            <?php else: ?>
+              
+            <?php endif; ?>
           </div>
 
           <!-- Load More Button -->
@@ -782,7 +652,21 @@
             <div class="col-lg-8">
               <div class="write-review-card" data-aos="zoom-in">
                 <h3 class="text-center mb-4">Bagikan Pengalaman</h3>
-                <form class="review-form">
+                
+                <!-- Success/Error Messages -->
+                <?php if ($success_message): ?>
+                  <div class="alert alert-success">
+                    <i class="fas fa-check-circle me-2"></i><?php echo $success_message; ?>
+                  </div>
+                <?php endif; ?>
+                
+                <?php if ($error_message): ?>
+                  <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle me-2"></i><?php echo $error_message; ?>
+                  </div>
+                <?php endif; ?>
+                
+                <form class="review-form" method="POST" action="submit_review.php">
                   <div class="row">
                     <div class="col-md-6 mb-3">
                       <label for="reviewerName" class="form-label"
@@ -792,42 +676,44 @@
                         type="text"
                         class="form-control"
                         id="reviewerName"
+                        name="name"
                         required
                       />
                     </div>
                     <div class="col-md-6 mb-3">
                       <label for="reviewerTitle" class="form-label"
-                        >Pekerjaan</label
+                        >Pekerjaan *</label
                       >
                       <input
                         type="text"
                         class="form-control"
                         id="reviewerTitle"
+                        name="job_title"
+                        required
                       />
                     </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="reviewerCompany" class="form-label"
-                        >Perusahaan</label
+                    <div class="col-md-12 mb-3">
+                      <label for="id_event" class="form-label"
+                        >Event yang Dihadiri *</label
                       >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="reviewerCompany"
-                      />
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="serviceType" class="form-label"
-                        >Tipe Program *</label
-                      >
-                      <select class="form-control" id="serviceType" required>
-                        <option value="">Pilih program</option>
-                        <option value="webinar">Live Webinars</option>
-                        <option value="training">
-                          Program Training & Mini Workshop
-                        </option>
-                        <option value="elearning">E-Learning</option>
-                        <option value="workshop">Video Production</option>
+                      <select class="form-control" id="id_event" name="id_event" required>
+                        <option value="">Pilih event yang sudah dihadiri</option>
+                        <?php if (!empty($past_events)): ?>
+                          <?php foreach ($past_events as $event): ?>
+                            <option value="<?php echo $event['id']; ?>">
+                              <?php echo htmlspecialchars($event['title']); ?> 
+                              (<?php echo date('d M Y', strtotime($event['date'])); ?>)
+                            </option>
+                          <?php endforeach; ?>
+                        <?php else: ?>
+                          <option value="" disabled>Tidak ada event yang sudah lewat</option>
+                        <?php endif; ?>
                       </select>
+                      <?php if (empty($past_events)): ?>
+                        <small class="text-danger">Belum ada event yang sudah selesai. Review hanya bisa ditambahkan untuk event yang sudah dihadiri.</small>
+                      <?php else: ?>
+                        <small class="text-muted">Pilih event yang sudah Anda hadiri untuk memberikan review</small>
+                      <?php endif; ?>
                     </div>
                     <div class="col-12 mb-3">
                       <label class="form-label">Skor *</label>
@@ -838,6 +724,7 @@
                         <i class="far fa-star" data-rating="4"></i>
                         <i class="far fa-star" data-rating="5"></i>
                       </div>
+                      <input type="hidden" id="selectedRating" name="rate" value="" required />
                     </div>
                     <div class="col-12 mb-3">
                       <label for="reviewText" class="form-label"
@@ -846,13 +733,14 @@
                       <textarea
                         class="form-control"
                         id="reviewText"
+                        name="review"
                         rows="4"
                         required
                         placeholder="Share your experience with idSpora..."
                       ></textarea>
                     </div>
                     <div class="col-12">
-                      <button type="submit" class="btn btn-dark btn-lg">
+                      <button type="submit" class="btn btn-dark btn-lg" <?php echo empty($past_events) ? 'disabled' : ''; ?>>
                         <i class="fas fa-paper-plane me-2"></i>Kirim Ulasan
                       </button>
                     </div>
@@ -1018,6 +906,7 @@
         // Star Rating Functionality
         const stars = document.querySelectorAll(".star-rating i");
         let currentRating = 0;
+        const selectedRatingInput = document.getElementById('selectedRating');
 
         stars.forEach((star) => {
           star.addEventListener("mouseover", function () {
@@ -1028,6 +917,7 @@
           star.addEventListener("click", function () {
             currentRating = parseInt(this.getAttribute("data-rating"));
             highlightStars(currentRating);
+            selectedRatingInput.value = currentRating;
           });
         });
 
@@ -1050,6 +940,28 @@
             }
           });
         }
+
+        // Form Validation
+        const reviewForm = document.querySelector('.review-form');
+        reviewForm.addEventListener('submit', function(e) {
+          const name = document.getElementById('reviewerName').value.trim();
+          const jobTitle = document.getElementById('reviewerTitle').value.trim();
+          const eventSelect = document.getElementById('id_event').value;
+          const rating = selectedRatingInput.value;
+          const reviewText = document.getElementById('reviewText').value.trim();
+
+          if (!name || !jobTitle || !eventSelect || !rating || !reviewText) {
+            e.preventDefault();
+            alert('Mohon lengkapi semua field yang wajib diisi!');
+            return false;
+          }
+
+          if (rating < 1 || rating > 5) {
+            e.preventDefault();
+            alert('Mohon pilih rating antara 1-5 bintang!');
+            return false;
+          }
+        });
 
         // Load More Functionality
         const loadMoreBtn = document.querySelector(".load-more-btn");
