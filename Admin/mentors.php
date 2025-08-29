@@ -40,9 +40,10 @@ $mentors = $stmt->fetchAll();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
+    <link href="admin.css" rel="stylesheet">
     <style>
         .admin-container {
-            background: var(--light-cream);
+            background: #ffffff;
             border-radius: 20px;
             margin: 20px;
             overflow: hidden;
@@ -51,30 +52,32 @@ $mentors = $stmt->fetchAll();
         }
         
         .admin-header {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, #FF8C42 100%);
-            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #fff9e6 100%);
+            color: var(--dark-blue);
             padding: 30px;
             text-align: center;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .admin-nav {
-            background: var(--dark-blue);
+            background: #ffffff;
             padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .admin-nav .nav-link {
-            color: white !important;
+            color: var(--dark-blue) !important;
             margin: 0 15px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         
         .admin-nav .nav-link:hover {
-            color: var(--primary-orange) !important;
+            color: var(--primary-yellow) !important;
         }
         
         .admin-nav .nav-link.active {
-            color: var(--primary-orange) !important;
+            color: var(--primary-yellow) !important;
             font-weight: 700;
         }
         
@@ -124,15 +127,31 @@ $mentors = $stmt->fetchAll();
         }
         
         .btn-action {
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 8px 12px;
+            border-radius: 8px;
             text-decoration: none;
-            margin: 0 2px;
+            margin: 0 3px;
             font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 35px;
+            height: 35px;
+        }
+        
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         .btn-edit {
             background: #3498db;
+            color: white;
+        }
+        
+        .btn-edit:hover {
+            background: #2980b9;
             color: white;
         }
         
@@ -141,9 +160,50 @@ $mentors = $stmt->fetchAll();
             color: white;
         }
         
+        .btn-delete:hover {
+            background: #c0392b;
+            color: white;
+        }
+        
         .btn-view {
             background: var(--primary-orange);
             color: white;
+        }
+        
+        .btn-view:hover {
+            background: #e67e22;
+            color: white;
+        }
+        
+        .btn-cv {
+            background: #27ae60;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-cv:hover {
+            background: #229954;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .table td {
+            vertical-align: middle;
         }
         
         .logout-btn {
@@ -254,6 +314,11 @@ $mentors = $stmt->fetchAll();
                             <i class="fas fa-star"></i> Reviews
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documentation.php">
+                            <i class="fas fa-images"></i> Documentation
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -338,7 +403,7 @@ $mentors = $stmt->fetchAll();
                                             <td>
                                                 <?php if ($mentor['cv']): ?>
                                                     <a href="../uploads/cv/<?php echo htmlspecialchars($mentor['cv']); ?>" 
-                                                       target="_blank" class="btn-action btn-view">
+                                                       target="_blank" class="btn-cv">
                                                         <i class="fas fa-file-pdf"></i> View CV
                                                     </a>
                                                 <?php else: ?>
@@ -346,17 +411,20 @@ $mentors = $stmt->fetchAll();
                                                 <?php endif; ?>
                                             </td>
                                             <td>
-                                                <a href="edit_mentor.php?id=<?php echo $mentor['id']; ?>" class="btn-action btn-edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="view_mentor.php?id=<?php echo $mentor['id']; ?>" class="btn-action btn-view">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="mentors.php?delete=<?php echo $mentor['id']; ?>" 
-                                                   class="btn-action btn-delete"
-                                                   onclick="return confirm('Are you sure you want to delete this mentor?')">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
+                                                <div class="action-buttons">
+                                                    <a href="edit_mentor.php?id=<?php echo $mentor['id']; ?>" class="btn-action btn-edit" title="Edit Mentor">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="view_mentor.php?id=<?php echo $mentor['id']; ?>" class="btn-action btn-view" title="View Details">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a href="mentors.php?delete=<?php echo $mentor['id']; ?>" 
+                                                       class="btn-action btn-delete"
+                                                       onclick="return confirm('Are you sure you want to delete this mentor?')"
+                                                       title="Delete Mentor">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -379,5 +447,12 @@ $mentors = $stmt->fetchAll();
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="admin-footer">
+        <a class="brand" href="index.php">
+            <img src="../property/logo idspora_nobg_outlined.png" alt="idSpora" />
+            <span>idSpora Admin</span>
+        </a>
+        <div class="small">© <?php echo date('Y'); ?> idSpora</div>
+    </footer>
 </body>
 </html> 

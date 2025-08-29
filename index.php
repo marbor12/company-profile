@@ -1,3 +1,15 @@
+<?php
+// Load home data via controller (gallery + stats)
+[$event_gallery, $total_events, $total_audience, $total_partners] = (function () {
+    $data = require __DIR__ . '/Admin/controller/get_home_data.php';
+    return [
+        $data['event_gallery'] ?? [],
+        $data['total_events'] ?? 0,
+        $data['total_audience'] ?? 0,
+        $data['total_partners'] ?? 0,
+    ];
+})();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -976,37 +988,7 @@
 <body>
   <div class="main-container">
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_outlined.png"
-            alt="idSpora Logo" /></a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto me-4">
-            <li class="nav-item">
-              <a class="nav-link active" href="index.html">Beranda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">Tentang</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="products.html">Portofolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="reviews.html">Ulasan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="news.html">Berita</a>
-            </li>
-          </ul>
-          <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
-        </div>
-      </div>
-    </nav>
+    <?php $activePage = 'index'; include __DIR__ . '/includes/header.php'; ?>
 
     <!-- Hero Carousel Section -->
     <section class="hero-section">
@@ -1140,20 +1122,6 @@
                 <div class="col-lg-6">
                   <div class="hero-image text-center position-relative">
                     <img src="property/training.jpg" alt="Training Program" class="img-fluid" />
-
-                    <!-- <div class="floating-card floating-card-1">
-                        <div class="text-center">
-                          <div class="h4 text-warning mb-1">50+</div>
-                          <small><strong>Program Training</strong></small>
-                        </div>
-                      </div> -->
-
-                    <!-- <div class="floating-card floating-card-2">
-                        <div class="text-center">
-                          <div class="h4 text-info mb-1">95%</div>
-                          <small><strong>Success Rate</strong></small>
-                        </div>
-                      </div> -->
                   </div>
                 </div>
               </div>
@@ -1195,19 +1163,19 @@
         <div class="row justify-content-center">
           <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="stat-item">
-              <div class="stat-number">500+</div>
+              <div class="stat-number"><?php echo number_format($total_audience); ?>+</div>
               <h6>Peserta Pelatihan</h6>
             </div>
           </div>
           <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="stat-item">
-              <div class="stat-number">10+</div>
+              <div class="stat-number"><?php echo $total_events; ?>+</div>
               <h6>Program Pelatihan</h6>
             </div>
           </div>
           <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="stat-item">
-              <div class="stat-number">5+</div>
+              <div class="stat-number"><?php echo $total_partners; ?>+</div>
               <h6>Mitra Strategis</h6>
             </div>
           </div>
@@ -1289,83 +1257,53 @@
         </p>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="gallery-item">
-              <img src="property/gambar2.jpg" alt="Workshop AI untuk UMKM" class="img-fluid" />
-              <div class="gallery-overlay">
-                <div class="gallery-content">
-                  <h5>Event Kuliah Umum</h5>
-                  <p>22 April 2025</p>
-                  <span class="badge bg-primary">2000+ Peserta</span>
+          <?php if (empty($event_gallery)): ?>
+            <div class="col-12 text-center">
+              <i class="fas fa-images" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+              <p class="text-muted">Belum ada dokumentasi event yang tersedia.</p>
+            </div>
+          <?php else: ?>
+            <?php foreach ($event_gallery as $index => $event): ?>
+              <?php 
+              $delay = ($index + 1) * 100;
+              $imageSrc = !empty($event['images']) 
+                ? "uploads/documentation/" . $event['images'][0] 
+                : "property/training.jpg"; // Default image if no documentation
+              
+              $eventDate = new DateTime($event['date']);
+              $formattedDate = $eventDate->format('d F Y');
+              
+              // Determine badge color based on audience size
+              $badgeClass = 'bg-primary';
+              if ($event['audience'] < 20) {
+                $badgeClass = 'bg-success';
+              } elseif ($event['audience'] < 50) {
+                $badgeClass = 'bg-warning';
+              } elseif ($event['audience'] < 100) {
+                $badgeClass = 'bg-info';
+              } elseif ($event['audience'] < 500) {
+                $badgeClass = 'bg-danger';
+              } else {
+                $badgeClass = 'bg-secondary';
+              }
+              ?>
+              <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
+                <div class="gallery-item">
+                  <img src="<?php echo htmlspecialchars($imageSrc); ?>" 
+                       alt="<?php echo htmlspecialchars($event['title']); ?>" 
+                       class="img-fluid" 
+                       onerror="this.src='property/training.jpg'" />
+                  <div class="gallery-overlay">
+                    <div class="gallery-content">
+                      <h5><?php echo htmlspecialchars($event['title']); ?></h5>
+                      <p><?php echo $formattedDate; ?></p>
+                      <span class="badge <?php echo $badgeClass; ?>"><?php echo $event['audience']; ?>+ Peserta</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="gallery-item">
-              <img src="property/fgd.jpg" alt="Workshop AI untuk UMKM" class="img-fluid" />
-              <div class="gallery-overlay">
-                <div class="gallery-content">
-                  <h5>Forum Group Discussion</h5>
-                  <p>10 Oktober 2024</p>
-                  <span class="badge bg-success">10+ Peserta</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="gallery-item">
-              <img src="property/gambar4.jpg" alt="Data Science Bootcamp" class="img-fluid" />
-              <div class="gallery-overlay">
-                <div class="gallery-content">
-                  <h5>Workshop UMKM</h5>
-                  <p>12 November 2024</p>
-                  <span class="badge bg-warning">30+ Peserta</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="gallery-item">
-              <img src="property/gambar1.jpg" alt="Team Building Workshop" class="img-fluid" />
-              <div class="gallery-overlay">
-                <div class="gallery-content">
-                  <h5>Team Building Workshop</h5>
-                  <p>Yogyakarta, Oktober 2024</p>
-                  <span class="badge bg-info">40+ Peserta</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
-            <div class="gallery-item">
-              <img src="property/training.jpg" alt="Leadership Development" class="img-fluid" />
-              <div class="gallery-overlay">
-                <div class="gallery-content">
-                  <h5>Workshop Gen AI untuk Gen Z</h5>
-                  <p>09 November 2024</p>
-                  <span class="badge bg-danger">20+ Peserta</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
-            <div class="gallery-item">
-              <img src="property/webinar.jpg" alt="Certification Ceremony" class="img-fluid" />
-              <div class="gallery-overlay">
-                <div class="gallery-content">
-                  <h5>Webinar</h5>
-                  <p>Agustus 2024</p>
-                  <span class="badge bg-secondary">100+ Graduates</span>
-                </div>
-              </div>
-            </div>
-          </div>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </div>
 
         <div class="text-center mt-4" data-aos="fade-up">
@@ -1383,226 +1321,48 @@
         <h2 class="section-title mt-5 mb-5" data-aos="fade-up">
           <span class="highlight-yellow">Mentor</span> Kami
         </h2>
+        <!-- MENGAMBIL DATA DARI CONTROLLER -->
+        <?php
+        require 'Admin/controller/get_mentors.php';
 
+        ?>
         <div class="experts-carousel-container" data-aos="fade-up">
           <div class="experts-carousel-track">
             <!-- Original cards -->
-            <div class="experts-item-wrapper">
-              <a href="mentor-robbihendriyanto.html">
-                <div class="agent-card">
-                  <img src="property/parobi.png" class="agent-photo mb-3" alt="Robby Hendriyanto" />
-                  <h5>Robby Hendriyanto, S.T., M.T</h5>
-                </div>
-                <div class="social-links">
-                  <a href="https://www.linkedin.com/in/robby-hendriyanto" target="_blank"><i
-                      class="fab fa-linkedin"></i></a>
-                </div>
-              </a>
-            </div>
-
-            <a href="mentor-herunugroho.html">
-              <div class="agent-card">
-                <div onclick="window.location.href='mentor-heru-nugroho.html'" style="cursor: pointer">
-                  <img src="property/heru.png" class="agent-photo mb-3" alt="Heru Nugroho" />
-                  <h5>Dr. Heru Nugroho, S.Si., M.T</h5>
-                </div>
-                <div class="social-links">
-                  <a href="https://www.linkedin.com/in/heru-nugroho" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </div>
-              </div>
-            </a>
-
-            <a href="mentor-yusuf.html">
+            <?php foreach ($mentors as $mentor): ?>
               <div class="experts-item-wrapper">
-                <div class="agent-card">
-                  <div onclick="window.location.href='mentor-yusuf.html'" style="cursor: pointer">
-                    <img src="property/payusuf.png" class="agent-photo mb-3" alt="Yusuf Ramadhan" />
-                    <h5>M.Yusuf Ramadhan, S.A.B., M.A.B</h5>
+                <a href="detail-mentor.php?id=<?= $mentor['id'] ?>">
+                  <div class="agent-card">
+                    <img src="uploads/profile/<?= htmlspecialchars($mentor['profile_pict']) ?>" class="agent-photo mb-3" alt="Robby Hendriyanto" />
+                    <h5><?= htmlspecialchars($mentor['name']) ?></h5>
+                    <div class="social-links">
+                      <a href="https://www.linkedin.com/in/robby-hendriyanto" target="_blank"><i
+                          class="fab fa-linkedin"></i></a>
+                    </div>
                   </div>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/yusuf-ramadhan" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
+                </a>
               </div>
-            </a>
-
-            <a href="mentor-ernahikmawati.html">
+            <?php endforeach; ?>
+            <?php foreach ($mentors as $mentor): ?>
               <div class="experts-item-wrapper">
-                <div class="agent-card">
-                  <div onclick="window.location.href='mentor-ernahikmawati.html'" style="cursor: pointer">
-                    <img src="property/buerna.png" class="agent-photo mb-3" alt="Erna Hikmawati" />
-                    <h5>Dr.Erna Hikmawati, S.Kom., M.Kom</h5>
+                <a href="detail-mentor.php?id=<?= $mentor['id'] ?>">
+                  <div class="agent-card">
+                    <img src="uploads/profile/<?= htmlspecialchars($mentor['profile_pict']) ?>" class="agent-photo mb-3" alt="Robby Hendriyanto" />
+                    <h5><?= htmlspecialchars($mentor['name']) ?></h5>
+                    <div class="social-links">
+                      <a href="https://www.linkedin.com/in/robby-hendriyanto" target="_blank"><i
+                          class="fab fa-linkedin"></i></a>
+                    </div>
                   </div>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/erna-hikmawati" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
+                </a>
               </div>
-            </a>
-
-            <a href="mentor-wardanimuhamad.html">
-              <div class="experts-item-wrapper">
-                <div class="agent-card">
-                  <div onclick="window.location.href='mentor-wardanimuhamad.html'" style="cursor: pointer">
-                    <img src="property/bapakwar.png" class="agent-photo mb-3" alt="Wardani Muhamad" />
-                    <h5>Dr. Wardani Muhamad, S.T., M.T.</h5>
-                  </div>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/wardani-muhamad" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <div class="experts-item-wrapper">
-              <a href="mentor-kristina.html">
-                <div class="agent-card" onclick="window.location.href='mentor-kristina.html'">
-                  <img src="property/bukris.png" class="agent-photo mb-3" alt="Kristina Sisilia" />
-                  <h5>Kristina Sisilia, S.T., M.B.A.</h5>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/kristina-sisilia-41643b42/" target="_blank"
-                      onclick="event.stopPropagation()"><i class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="experts-item-wrapper">
-              <a href="mentor-sriwidianingsih.html">
-                <div class="agent-card" onclick="window.location.href='mentor-sriwidianingsih.html'">
-                  <img src="property/ibusri.png" class="agent-photo mb-3" alt="Sri Widianingsih" />
-                  <h5>Sri Widianingsih, S.Psi., M.M.</h5>
-                  <div class="social-links">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="experts-item-wrapper">
-              <a href="mentor-buretno.html">
-                <div class="agent-card" onclick="window.location.href='mentor-buretno.html'">
-                  <img src="property/iburetno.png" class="agent-photo mb-3" alt="Retno Setyorini" />
-                  <h5>Retno Setyorini, S.T., M.M.</h5>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/retno-setyorini-b10820b2" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Duplicate cards for seamless loop -->
-            <div class="experts-item-wrapper">
-              <a href="mentor-robbihendriyanto.html">
-                <div class="agent-card">
-                  <img src="property/parobi.png" class="agent-photo mb-3" alt="Robby Hendriyanto" />
-                  <h5>Robby Hendriyanto, S.T., M.T</h5>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/robby-hendriyanto" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="experts-item-wrapper">
-              <a href="mentor-herunugroho.html">
-                <div class="agent-card">
-                  <img src="property/heru.png" class="agent-photo mb-3" alt="Heru Nugroho" />
-                  <h5>Dr. Heru Nugroho, S.Si., M.T</h5>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/heru-nugroho" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="experts-item-wrapper">
-              <a href="mentor-yusuf.html">
-                <div class="agent-card">
-                  <img src="property/payusuf.png" class="agent-photo mb-3" alt="Yusuf Ramadhan" />
-                  <h5>M.Yusuf Ramadhan, S.A.B., M.A.B</h5>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/yusuf-ramadhan" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="experts-item-wrapper">
-              <a href="mentor-ernahikmawati.html">
-                <div class="agent-card">
-                  <img src="property/buerna.png" class="agent-photo mb-3" alt="Erna Hikmawati" />
-                  <h5>Dr.Erna Hikmawati, S.Kom., M.Kom</h5>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/erna-hikmawati" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="experts-item-wrapper">
-              <a href="mentor-wardanimuhamad.html">
-                <div class="agent-card">
-                  <img src="property/bapakwar.png" class="agent-photo mb-3" alt="Wardani Muhamad" />
-                  <h5>Dr. Wardani Muhamad, S.T., M.T.</h5>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/wardani-muhamad" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="experts-item-wrapper">
-              <a href="mentor-kristina.html">
-                <div class="agent-card">
-                  <img src="property/bukris.png" class="agent-photo mb-3" alt="Kristina Sisilia" />
-                  <h5>Kristina Sisilia, S.T., M.B.A.</h5>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/kristina-sisilia-41643b42/" target="_blank"
-                      onclick="event.stopPropagation()"><i class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="experts-item-wrapper">
-              <a href="mentor-sriwidianingsih.html">
-                <div class="agent-card">
-                  <img src="property/ibusri.png" class="agent-photo mb-3" alt="Sri Widianingsih" />
-                  <h5>Sri Widianingsih, S.Psi., M.M.</h5>
-                  <div class="social-links">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="experts-item-wrapper">
-              <a href="mentor-buretno.html">
-                <div class="agent-card">
-                  <img src="property/iburetno.png" class="agent-photo mb-3" alt="Retno Setyorini" />
-                  <h5>Retno Setyorini, S.T., M.M.</h5>
-                  <div class="social-links">
-                    <a href="https://www.linkedin.com/in/retno-setyorini-b10820b2" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </a>
-            </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
-  </div>
-  </section>
+    </section>
+
+            
 
   <!-- News -->
   <section class="news-section">
@@ -1658,7 +1418,7 @@
         </div>
       </div>
       <div class="text-center" data-aos="fade-up">
-        <a href="news.html">
+        <a href="news.php">
           <button class="btn btn-dark">Lihat Semua</button>
         </a>
       </div>
@@ -1707,7 +1467,7 @@
         </div>
       </div>
       <div class="text-center" data-aos="fade-up">
-        <a href="reviews.html">
+        <a href="reviews.php">
           <button class="btn btn-dark">Lihat Semua</button>
         </a>
       </div>
@@ -1816,78 +1576,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer-section">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-3 col-md-6 mb-4">
-          <a class="navbar-brand" href="index.html"><img src="property/logo idspora_nobg_dark.png" alt="idSpora Logo"
-              style="height: 60px; width: auto" /></a>
-          <p class="text-light">
-            Belajar tanpa batas, berkembang tanpa henti.
-          </p>
-          <div class="social-links">
-            <a href="https://www.tiktok.com/@idspora" class="text-light me-3"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/idspora.official/" class="text-light me-3"><i
-                class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/idspora/" class="text-light"><i class="fab fa-linkedin"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6 mb-4">
-          <h6 class="text-white mb-3">Quick Links</h6>
-          <ul class="list-unstyled">
-            <li><a href="index.html" class="text-light">Beranda</a></li>
-            <li>
-              <a href="about.html" class="text-light">Tentang Kami</a>
-            </li>
-            <li>
-              <a href="products.html" class="text-light">Portofolio</a>
-            </li>
-            <li><a href="reviews.html" class="text-light">Ulasan</a></li>
-            <li><a href="news.html" class="text-light">Berita</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <h6 class="text-white mb-3">Layanan</h6>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-light">Live Webinars</a></li>
-            <li>
-              <a href="#" class="text-light">Training & Mini Workshops</a>
-            </li>
-            <li><a href="#" class="text-light">E-Learning</a></li>
-            <li><a href="#" class="text-light">Video Production</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <h6 class="text-white mb-3">Hubungi Kami</h6>
-          <p class="text-light mb-2">
-            <i class="fas fa-envelope me-2"></i>info@idspora.com
-          </p>
-          <p class="text-light mb-2">
-            <i class="fas fa-phone me-2"></i>+62 898-926-0731
-          </p>
-          <p class="text-light mb-3">
-            <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
-          </p>
-          <div class="social-links">
-            <a href="https://www.tiktok.com/@idspora" class="text-light me-3" title="TikTok"><i
-                class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/idspora.official/" class="text-light me-3" title="Instagram"><i
-                class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/idspora/" class="text-light" title="LinkedIn"><i
-                class="fab fa-linkedin"></i></a>
-          </div>
-        </div>
-      </div>
-      <hr class="my-3" style="border-color: #495057" />
-      <div class="row justify-content-center">
-        <div class="col-md-4 text-center">
-          <p class="text-light mb-1" style="font-size: 0.8rem">
-            &copy; 2024 idSpora. All rights reserved.
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <?php include __DIR__ . '/includes/footer.php'; ?>
   </div>
 
   <!-- WhatsApp Floating Button -->
@@ -1940,6 +1629,8 @@
         });
       });
     });
+
+
   </script>
 </body>
 

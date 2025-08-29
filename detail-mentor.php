@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Retno Setyorini - Mentor Profile | idSpora</title>
+    <title>Sri Widianingsih - Mentor Profile | idSpora</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -144,6 +144,7 @@
             font-size: 1.1rem;
             color: #666;
             line-height: 1.6;
+            text-align: justify;
         }
 
         /* Profile Content */
@@ -380,6 +381,78 @@
             color: var(--dark-blue);
         }
 
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg,
+                    var(--dark-blue),
+                    rgba(44, 62, 80, 0.9));
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-cta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'><path d='M0 20L100 0v20z' fill='rgba(244,196,48,0.1)'/></svg>");
+            background-size: 100px 20px;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(-50px);
+            }
+        }
+
+        .contact-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-cta {
+            background: var(--primary-yellow);
+            color: var(--dark-blue);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-cta:hover {
+            background: #ffd700;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(244, 196, 48, 0.3);
+            color: var(--dark-blue);
+        }
+
         /* Footer */
         .footer-section {
             background: var(--dark-blue) !important;
@@ -460,166 +533,123 @@
 
 <body>
     <div class="main-container">
-        <!-- Navbar -->
-        <div class="main-container">
-            <!-- Navigation -->
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="index.php"><img src="property/logo idspora_nobg_outlined.png"
-                            alt="idSpora Logo" /></a>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.php"><img src="property/logo idspora_nobg_outlined.png"
+                        alt="idSpora Logo" /></a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto me-4">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php">Beranda</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.php">Tentang</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="products.php">Portofolio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="reviews.php">Ulasan</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="news.php">Berita</a>
-                            </li>
-                        </ul>
-                        <a href="contact.php" class="btn btn-contact">Hubungi Kami</a>
-                    </div>
-                </div>
-            </nav>
-          
-            <!-- Breadcrumb -->
-            <nav aria-label="breadcrumb">
-                <div class="container">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-                        <li class="breadcrumb-item">
-                            <a href="index.php#mentors">Mentor</a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto me-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Beranda</a>
                         </li>
-                        <li class="breadcrumb-item active">Retno Setyorini, S.T., M.M.</li>
-                    </ol>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.php">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="products.php">Portofolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reviews.php">Ulasan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="news.php">Berita</a>
+                        </li>
+                    </ul>
+                    <a href="contact.php" class="btn btn-contact">Hubungi Kami</a>
                 </div>
-            </nav>
+            </div>
+        </nav>
+        <!-- INCLUDE FILE GET DETAIL MENTOR -->
+        <?php
+        require 'Admin/controller/get_detail_mentors.php';
+        ?>
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
+                    <li class="breadcrumb-item">
+                        <a href="index.php#mentors">Mentor</a>
+                    </li>
+                    <li class="breadcrumb-item active"><?= htmlspecialchars($mentor['name']) ?></li>
+                </ol>
+            </div>
+        </nav>
 
-            <!-- Profile Header -->
-            <section class="profile-header">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4 text-center" data-aos="fade-right">
-                            <img src="property/buretno.png" alt="Retno Setyorini" class="mentor-photo" />
-                            <div class="social-links-large">
-                                <a href="https://www.linkedin.com/in/retno-setyorini/" target="_blank">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="mailto:retno.setyorini@idSpora.com">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                                <a href="https://scholar.google.com/citations?user=retno" target="_blank">
-                                    <i class="fas fa-user-graduate"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-8" data-aos="fade-left">
-                            <h1 class="mentor-name">Retno Setyorini, S.T., M.M.</h1>
-                            <p class="mentor-title">ERP & Project Management Specialist</p>
-                            <p class="mentor-description">
-                                Seorang pakar di bidang Enterprise Resource Planning (ERP) dan
-                                manajemen proyek dengan pengalaman 10 tahun. Memiliki latar
-                                belakang pendidikan Sarjana Teknik Industri dari Universitas
-                                Pasundan dan Magister Manajemen dari Universitas Telkom. Saat
-                                ini sedang menempuh program S3 Manajemen di Universitas
-                                Pendidikan Indonesia. Berpengalaman dalam implementasi sistem
-                                ERP untuk berbagai industri dan memiliki sertifikasi sebagai
-                                Certified Practising Project Practitioner (CPPP) dari IAMPI.
-                            </p>
+        <!-- Profile Header -->
+        <section class="profile-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-center" data-aos="fade-right">
+                        <img src="uploads/profile/<?= htmlspecialchars($mentor['profile_pict']) ?>" alt="<?= htmlspecialchars($mentor['name']) ?>" class="mentor-photo" />
+                        <div class="social-links-large">
+                            <a href="<?= htmlspecialchars($mentor['linkedin']) ?>" target="_blank">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="mailto:<?= htmlspecialchars($mentor['email']) ?>">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="uploads/cv/<?= htmlspecialchars($mentor['cv']) ?>" target="_blank">
+                                <i class="fas fa-file-alt"></i>
+                            </a>
                         </div>
                     </div>
+                    <div class="col-lg-8" data-aos="fade-left">
+                        <h1 class="mentor-name"><?= htmlspecialchars($mentor['name']) ?></h1>
+                        <p class="mentor-title">
+                            <?= htmlspecialchars($mentor['title']) ?>
+                        </p>
+                        <p class="mentor-description">
+                            <?= htmlspecialchars($mentor['description']) ?>
+                        </p>
+                    </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Expertise Section -->
-            <section class="profile-section">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-10" data-aos="fade-up">
-                            <h2 class="section-title text-center mb-5">
-                                <span class="highlight-yellow">Keahlian</span> Utama
-                            </h2>
+        <!-- Expert Areas Section -->
+        <section class="profile-section" style="padding-top: 0">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10" data-aos="fade-up">
+                        <h2 class="section-title text-center mb-5">
+                            <span class="highlight-yellow">Bidang</span> Keahlian
+                        </h2>
 
+                        <?php if ($details): ?>
                             <div class="row">
-                                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                                    <div class="skill-item d-flex align-items-center">
-                                        <div class="skill-icon">
-                                            <i class="fas fa-cogs"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="mb-2">Enterprise Resource Planning (ERP)</h5>
-                                            <p class="text-muted mb-0">
-                                                Implementasi dan optimasi sistem ERP untuk meningkatkan
-                                                efisiensi operasional perusahaan.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                                    <div class="skill-item d-flex align-items-center">
-                                        <div class="skill-icon">
-                                            <i class="fas fa-tasks"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="mb-2">Project Management</h5>
-                                            <p class="text-muted mb-0">
-                                                Manajemen proyek dengan metodologi CPPP untuk mencapai
-                                                target dan deadline yang tepat.
-                                            </p>
+                                <?php foreach ($details as $index => $detail): ?>
+                                    <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="<?= 100 + ($index * 100) ?>">
+                                        <div class="skill-item d-flex align-items-center">
+                                            <div class="skill-icon">
+                                                <!-- <i class="fa-solid fa-bullseye-arrow"></i> -->
+                                                <i class="fa-solid fa-book-open-reader"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-2"><?= htmlspecialchars($detail['title']) ?></h5>
+                                                <p class="text-muted mb-0">
+                                                    <?= nl2br(htmlspecialchars($detail['description'])) ?>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-                                    <div class="skill-item d-flex align-items-center">
-                                        <div class="skill-icon">
-                                            <i class="fas fa-industry"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="mb-2">Industrial Engineering</h5>
-                                            <p class="text-muted mb-0">
-                                                Optimasi proses industri dan peningkatan produktivitas
-                                                dengan pendekatan teknik industri.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="400">
-                                    <div class="skill-item d-flex align-items-center">
-                                        <div class="skill-icon">
-                                            <i class="fas fa-chart-line"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="mb-2">Business Process Management</h5>
-                                            <p class="text-muted mb-0">
-                                                Analisis dan perbaikan proses bisnis untuk meningkatkan
-                                                efektivitas organisasi.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
-                        </div>
+                        <?php else: ?>
+                            <p class="text-center text-muted">Belum ada bidang keahlian yang ditambahkan.</p>
+                        <?php endif; ?>
+
                     </div>
                 </div>
-            </section>
-
-          <!-- Footer -->
+            </div>
+        </section>
+        <!-- Footer -->
         <footer class="footer-section">
             <div class="container">
                 <div class="row justify-content-center">

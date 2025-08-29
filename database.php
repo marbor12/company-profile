@@ -146,12 +146,6 @@ if (basename($_SERVER['PHP_SELF']) === 'database.php') {
         echo "Database connection failed!";
     }
 }
-
-/**
- * Format tanggal ke format Indonesia
- * @param string $tanggal
- * @return string
- */
 function formatTanggalIndonesia($tanggal) {
     // Buat objek DateTime dari string tanggal di database
     $date = new DateTime($tanggal);
@@ -168,26 +162,5 @@ function formatTanggalIndonesia($tanggal) {
 
     // Kembalikan format yang diinginkan: "Hari Bulan Tahun"
     return $date->format('j') . ' ' . $namaBulan . ' ' . $date->format('Y');
-}
-
-/**
- * Truncate text to specified length
- * @param string $text
- * @param int $length
- * @return string
- */
-function truncateText($text, $length = 150) {
-    // Remove HTML tags first
-    $text = strip_tags($text);
-    
-    // Remove extra whitespace
-    $text = trim(preg_replace('/\s+/', ' ', $text));
-    
-    if (strlen($text) > $length) {
-        $text = substr($text, 0, $length);
-        $text = substr($text, 0, strrpos($text, ' '));
-        $text .= '...';
-    }
-    return $text;
 }
 ?> 

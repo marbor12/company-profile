@@ -1,40 +1,33 @@
 <?php
-// Include database connection
-require_once 'Admin/config/database.php';
-
-// Get database connection
-$pdo = getDBConnection();
-
-// Fetch past events for the dropdown
-$today = date('Y-m-d');
-$stmt = $pdo->prepare("
-    SELECT id, title, date 
-    FROM event 
-    WHERE date < ? 
-    ORDER BY date DESC
-");
-$stmt->execute([$today]);
-$past_events = $stmt->fetchAll();
-
-// Fetch latest 6 reviews from database
-$stmt = $pdo->prepare("
-    SELECT r.*, e.title as event_title, e.date as event_date
-    FROM review r 
-    LEFT JOIN event e ON r.id_event = e.id 
-    ORDER BY r.id DESC 
-    LIMIT 6
-");
-$stmt->execute();
-$reviews = $stmt->fetchAll();
+// Load data via controller for cleaner structure
+[$past_events, $reviews, $reviews_error] = (function() {
+    $data = require __DIR__ . '/Admin/controller/get_reviews.php';
+    return [
+        $data['past_events'] ?? [],
+        $data['reviews'] ?? [],
+        $data['error'] ?? ''
+    ];
+})();
 
 // Handle success/error messages
 $success_message = '';
 $error_message = '';
 
 if (isset($_GET['success'])) {
-    $success_message = 'Review berhasil dikirim! Terima kasih atas ulasan Anda.';
+    if ($_GET['success'] === 'pending_approval') {
+        $success_message = 'Review berhasil dikirim dan sedang menunggu persetujuan admin! Review akan ditampilkan setelah disetujui.';
+    } else {
+        $success_message = 'Review berhasil dikirim! Terima kasih atas ulasan Anda.';
+    }
 } elseif (isset($_GET['error'])) {
     $error_message = $_GET['error'];
+}
+
+// Append controller error notice if any
+if (!empty($reviews_error)) {
+    $error_message = $error_message
+        ? ($error_message . ' | ' . htmlspecialchars($reviews_error))
+        : htmlspecialchars($reviews_error);
 }
 ?>
 <!DOCTYPE html>
@@ -255,6 +248,7 @@ if (isset($_GET['success'])) {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         gap: 30px;
+        align-items: stretch;
       }
 
       .review-card {
@@ -266,6 +260,9 @@ if (isset($_GET['success'])) {
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
       }
 
       .review-card::before {
@@ -316,19 +313,98 @@ if (isset($_GET['success'])) {
         margin-top: 5px;
       }
 
+      .review-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      
       .review-content p {
         color: #555;
         line-height: 1.6;
         margin: 0;
+        max-height: 4.8em; /* 3 lines of text */
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .review-content p::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 40px;
+        height: 20px;
+        background: linear-gradient(to right, transparent, white);
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      
+      .review-content.expanded p {
+        max-height: none !important;
+        -webkit-line-clamp: unset !important;
+        overflow: visible !important;
+      }
+      
+      .review-content.expanded p::after {
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+      
+      .review-content.short-review p {
+        max-height: none !important;
+        -webkit-line-clamp: unset !important;
+        overflow: visible !important;
+      }
+      
+      .review-content.short-review p::after {
+        display: none !important;
+      }
+      
+      .review-content.short-review .toggle-review-btn {
+        display: none !important;
+      }
+      
+      .review-content.short-review {
+        justify-content: flex-start;
+      }
+      
+      .review-content.short-review p {
+        margin-bottom: 0;
+      }
+      
+      .toggle-review-btn {
+        background: none;
+        border: none;
+        color: var(--primary-yellow);
+        font-size: 0.9rem;
+        cursor: pointer;
+        padding: 5px 0;
+        margin-top: 10px;
+        text-decoration: underline;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+        align-self: flex-start;
+      }
+      
+      .toggle-review-btn:hover {
+        color: var(--dark-blue);
+        text-decoration: none;
       }
 
       .review-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 15px;
+        margin-top: auto;
         padding-top: 15px;
         border-top: 1px solid #f0f0f0;
+        flex-shrink: 0;
       }
 
       /* Filter Tabs */
@@ -609,10 +685,15 @@ if (isset($_GET['success'])) {
                         </div>
                       </div>
                     </div>
-                    <div class="review-content">
+                    <div class="review-content <?php echo strlen($review['review']) <= 150 ? 'short-review' : ''; ?>" id="review-content-<?php echo $review['id']; ?>">
                       <p>
                         "<?php echo htmlspecialchars($review['review']); ?>"
                       </p>
+                      <?php if (strlen($review['review']) > 150): ?>
+                        <button type="button" class="toggle-review-btn" onclick="toggleReviewFrontend(<?php echo $review['id']; ?>)">
+                          Lihat Selengkapnya
+                        </button>
+                      <?php endif; ?>
                     </div>
                     <div class="review-footer">
                       <small class="text-muted">
@@ -1004,6 +1085,25 @@ if (isset($_GET['success'])) {
         const ratingCard = document.querySelector(".overall-rating-card");
         if (ratingCard) {
           observer.observe(ratingCard);
+        }
+        
+        // Toggle Review Function
+        window.toggleReviewFrontend = function(reviewId) {
+          const reviewContent = document.getElementById(`review-content-${reviewId}`);
+          const toggleBtn = reviewContent.querySelector('.toggle-review-btn');
+          
+          // Skip if it's a short review
+          if (reviewContent.classList.contains('short-review')) {
+            return;
+          }
+          
+          if (reviewContent.classList.contains('expanded')) {
+            reviewContent.classList.remove('expanded');
+            toggleBtn.textContent = 'Lihat Selengkapnya';
+          } else {
+            reviewContent.classList.add('expanded');
+            toggleBtn.textContent = 'Sembunyikan';
+          }
         }
       });
     </script>

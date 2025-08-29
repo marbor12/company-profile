@@ -63,9 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
+    <link href="admin.css" rel="stylesheet">
     <style>
         .admin-container {
-            background: var(--light-cream);
+            background: #ffffff;
             border-radius: 20px;
             margin: 20px;
             overflow: hidden;
@@ -74,30 +75,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .admin-header {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, #FF8C42 100%);
-            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #fff9e6 100%);
+            color: var(--dark-blue);
             padding: 30px;
             text-align: center;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .admin-nav {
-            background: var(--dark-blue);
+            background: #ffffff;
             padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .admin-nav .nav-link {
-            color: white !important;
+            color: var(--dark-blue) !important;
             margin: 0 15px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         
         .admin-nav .nav-link:hover {
-            color: var(--primary-orange) !important;
+            color: var(--primary-yellow) !important;
         }
         
         .admin-nav .nav-link.active {
-            color: var(--primary-orange) !important;
+            color: var(--primary-yellow) !important;
             font-weight: 700;
         }
         
@@ -109,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: white;
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
         }
         
         .form-control, .form-select {
@@ -120,13 +123,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .form-control:focus, .form-select:focus {
-            border-color: var(--primary-orange);
-            box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+            border-color: var(--primary-yellow);
+            box-shadow: 0 0 0 0.2rem rgba(244, 196, 48, 0.25);
         }
         
         .btn-submit {
-            background: var(--primary-orange);
-            color: white;
+            background: var(--primary-yellow);
+            color: #111;
             border: none;
             padding: 12px 30px;
             border-radius: 25px;
@@ -135,8 +138,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .btn-submit:hover {
-            background: var(--dark-blue);
+            background: #e0b020;
             transform: translateY(-2px);
+            color: #111;
         }
         
         .btn-back {
@@ -189,7 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="row align-items-center">
                     <div class="col-md-8">
                         <h1><i class="fas fa-plus-circle"></i> Add New Event</h1>
-                        <p class="mb-0">Tambah event baru ke database idSpora</p>
+                        <p class="mb-0">Tambah event baru (yang akan datang atau yang sudah lewat)</p>
                     </div>
                     <div class="col-md-4 text-end">
                         <a href="logout.php" class="logout-btn">
@@ -227,6 +231,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <li class="nav-item">
                         <a class="nav-link" href="reviews.php">
                             <i class="fas fa-star"></i> Reviews
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documentation.php">
+                            <i class="fas fa-images"></i> Documentation
                         </a>
                     </li>
                 </ul>
@@ -293,12 +302,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="mb-3">
                                     <label for="date" class="form-label">Event Date *</label>
                                     <input type="date" class="form-control" id="date" name="date" 
-                                           value="<?php echo $date ?? ''; ?>" min="<?php echo date('Y-m-d'); ?>" required>
+                                           value="<?php echo $date ?? ''; ?>" required>
+                                    <small class="text-muted">You can select any date (past, present, or future)</small>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="audience" class="form-label">Expected Audience *</label>
+                                    <label for="audience" class="form-label">Audience *</label>
                                     <input type="number" class="form-control" id="audience" name="audience" 
                                            value="<?php echo htmlspecialchars($audience ?? ''); ?>" min="1" required>
                                 </div>
@@ -357,6 +367,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="admin-footer">
+        <a class="brand" href="index.php">
+            <img src="../property/logo idspora_nobg_outlined.png" alt="idSpora" />
+            <span>idSpora Admin</span>
+        </a>
+        <div class="small">© <?php echo date('Y'); ?> idSpora</div>
+    </footer>
     <script>
         // Form validation
         document.addEventListener('DOMContentLoaded', function() {

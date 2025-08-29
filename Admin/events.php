@@ -45,9 +45,10 @@ $events = $stmt->fetchAll();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
+    <link href="admin.css" rel="stylesheet">
     <style>
         .admin-container {
-            background: var(--light-cream);
+            background: #ffffff;
             border-radius: 20px;
             margin: 20px;
             overflow: hidden;
@@ -56,30 +57,32 @@ $events = $stmt->fetchAll();
         }
         
         .admin-header {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, #FF8C42 100%);
-            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #fff9e6 100%);
+            color: var(--dark-blue);
             padding: 30px;
             text-align: center;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .admin-nav {
-            background: var(--dark-blue);
+            background: #ffffff;
             padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .admin-nav .nav-link {
-            color: white !important;
+            color: var(--dark-blue) !important;
             margin: 0 15px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         
         .admin-nav .nav-link:hover {
-            color: var(--primary-orange) !important;
+            color: var(--primary-yellow) !important;
         }
         
         .admin-nav .nav-link.active {
-            color: var(--primary-orange) !important;
+            color: var(--primary-yellow) !important;
             font-weight: 700;
         }
         
@@ -95,8 +98,8 @@ $events = $stmt->fetchAll();
         }
         
         .btn-add {
-            background: var(--primary-orange);
-            color: white;
+            background: var(--primary-yellow);
+            color: #111;
             border: none;
             padding: 10px 20px;
             border-radius: 25px;
@@ -105,8 +108,8 @@ $events = $stmt->fetchAll();
         }
         
         .btn-add:hover {
-            background: var(--dark-blue);
-            color: white;
+            background: #e0b020;
+            color: #111;
             transform: translateY(-2px);
         }
         
@@ -114,48 +117,97 @@ $events = $stmt->fetchAll();
             background: white;
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            overflow-x: auto;
         }
         
         .table {
             margin-bottom: 0;
+            min-width: 1200px;
         }
         
         .table th {
             border-top: none;
-            background: #f8f9fa;
+            background: #fff8d6;
             color: var(--dark-blue);
             font-weight: 600;
+            white-space: nowrap;
+            padding: 15px 12px;
+            vertical-align: middle;
         }
         
-        .btn-action {
-            padding: 5px 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin: 0 2px;
-            font-size: 0.9rem;
+        .table td {
+            padding: 15px 12px;
+            vertical-align: middle;
+            border-top: 1px solid #dee2e6;
         }
         
-        .btn-edit {
-            background: #3498db;
-            color: white;
+        /* Column Widths */
+        .table th:nth-child(1), .table td:nth-child(1) { width: 25%; } /* Title */
+        .table th:nth-child(2), .table td:nth-child(2) { width: 12%; } /* Category */
+        .table th:nth-child(3), .table td:nth-child(3) { width: 10%; } /* Type */
+        .table th:nth-child(4), .table td:nth-child(4) { width: 12%; } /* Date */
+        .table th:nth-child(5), .table td:nth-child(5) { width: 15%; } /* Venue */
+        .table th:nth-child(6), .table td:nth-child(6) { width: 12%; } /* Trainer */
+        .table th:nth-child(7), .table td:nth-child(7) { width: 8%; }  /* Audience */
+        .table th:nth-child(8), .table td:nth-child(8) { width: 6%; }  /* Actions */
+        
+        /* Title Column */
+        .table td:nth-child(1) {
+            word-wrap: break-word;
+            max-width: 0;
         }
         
-        .btn-delete {
-            background: #e74c3c;
-            color: white;
+        .table td:nth-child(1) strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--dark-blue);
         }
         
-        .btn-view {
-            background: var(--primary-orange);
-            color: white;
+        .table td:nth-child(1) small {
+            display: block;
+            line-height: 1.4;
+            color: #6c757d;
+        }
+        
+        /* Category Column */
+        .table td:nth-child(2) {
+            text-align: center;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #e3f2fd;
+            color: #1976d2;
+            text-align: center;
+            white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Date Column */
+        .table td:nth-child(4) {
+            text-align: center;
+        }
+        
+        .date-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
         }
         
         .status-badge {
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
             font-weight: 600;
+            white-space: nowrap;
         }
         
         .status-upcoming {
@@ -166,6 +218,85 @@ $events = $stmt->fetchAll();
         .status-past {
             background: #ffeaea;
             color: #e74c3c;
+        }
+        
+        .date-text {
+            font-size: 0.8rem;
+            color: #495057;
+            font-weight: 500;
+        }
+        
+        /* Actions Column */
+        .table td:nth-child(8) {
+            text-align: center;
+        }
+        
+        .actions-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+        }
+        
+        .btn-action {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        
+        .btn-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .btn-edit {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-edit:hover {
+            background: #2980b9;
+            color: white;
+        }
+        
+        .btn-view {
+            background: var(--primary-yellow);
+            color: #111;
+        }
+        
+        .btn-view:hover {
+            background: #e0b020;
+            color: #111;
+        }
+        
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #c0392b;
+            color: white;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1400px) {
+            .table {
+                min-width: 1000px;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            .table {
+                min-width: 800px;
+            }
         }
         
         .logout-btn {
@@ -197,7 +328,7 @@ $events = $stmt->fetchAll();
                 <div class="row align-items-center">
                     <div class="col-md-8">
                         <h1><i class="fas fa-calendar-alt"></i> Manage Events</h1>
-                        <p class="mb-0">Kelola semua event idSpora</p>
+                        <p class="mb-0">Kelola event yang akan datang dan yang sudah lewat</p>
                     </div>
                     <div class="col-md-4 text-end">
                         <a href="logout.php" class="logout-btn">
@@ -237,6 +368,11 @@ $events = $stmt->fetchAll();
                             <i class="fas fa-star"></i> Reviews
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documentation.php">
+                            <i class="fas fa-images"></i> Documentation
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -260,9 +396,16 @@ $events = $stmt->fetchAll();
 
                 <div class="content-header">
                     <h2>Daftar Events</h2>
-                    <a href="add_event.php" class="btn-add">
-                        <i class="fas fa-plus"></i> Add New Event
-                    </a>
+                    <div class="d-flex gap-2">
+                        <select id="statusFilter" class="form-select" style="width: auto;">
+                            <option value="all">All Events</option>
+                            <option value="upcoming">Upcoming Events</option>
+                            <option value="past">Past Events</option>
+                        </select>
+                        <a href="add_event.php" class="btn-add">
+                            <i class="fas fa-plus"></i> Add New Event
+                        </a>
+                    </div>
                 </div>
 
                 <div class="table-container">
@@ -283,7 +426,13 @@ $events = $stmt->fetchAll();
                                 </thead>
                                 <tbody>
                                     <?php foreach ($events as $event): ?>
-                                        <tr>
+                                        <?php 
+                                        $eventDate = new DateTime($event['date']);
+                                        $today = new DateTime();
+                                        $statusClass = $eventDate >= $today ? 'status-upcoming' : 'status-past';
+                                        $statusText = $eventDate >= $today ? 'upcoming' : 'past';
+                                        ?>
+                                        <tr data-status="<?php echo $statusText; ?>">
                                             <td>
                                                 <strong><?php echo htmlspecialchars($event['title']); ?></strong>
                                                 <br>
@@ -292,39 +441,39 @@ $events = $stmt->fetchAll();
                                                 </small>
                                             </td>
                                             <td>
-                                                <span class="status-badge status-upcoming">
+                                                <span class="category-badge">
                                                     <?php echo htmlspecialchars($event['category']); ?>
                                                 </span>
                                             </td>
                                             <td><?php echo htmlspecialchars($event['type']); ?></td>
                                             <td>
-                                                <?php 
-                                                $eventDate = new DateTime($event['date']);
-                                                $today = new DateTime();
-                                                $statusClass = $eventDate >= $today ? 'status-upcoming' : 'status-past';
-                                                $statusText = $eventDate >= $today ? 'Upcoming' : 'Past';
-                                                ?>
-                                                <span class="status-badge <?php echo $statusClass; ?>">
-                                                    <?php echo $statusText; ?>
-                                                </span>
-                                                <br>
-                                                <small><?php echo date('d M Y', strtotime($event['date'])); ?></small>
+                                                <div class="date-info">
+                                                    <span class="status-badge <?php echo $statusClass; ?>">
+                                                        <?php echo ucfirst($statusText); ?>
+                                                    </span>
+                                                    <span class="date-text">
+                                                        <?php echo date('d M Y', strtotime($event['date'])); ?>
+                                                    </span>
+                                                </div>
                                             </td>
                                             <td><?php echo htmlspecialchars($event['venue']); ?></td>
                                             <td><?php echo htmlspecialchars($event['mentor_name'] ?? 'N/A'); ?></td>
-                                            <td><?php echo number_format($event['audience']); ?></td>
+                                            <td class="text-end"><?php echo number_format($event['audience']); ?></td>
                                             <td>
-                                                <a href="edit_event.php?id=<?php echo $event['id']; ?>" class="btn-action btn-edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="view_event.php?id=<?php echo $event['id']; ?>" class="btn-action btn-view">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="events.php?delete=<?php echo $event['id']; ?>" 
-                                                   class="btn-action btn-delete"
-                                                   onclick="return confirm('Are you sure you want to delete this event?')">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
+                                                <div class="actions-container">
+                                                    <a href="edit_event.php?id=<?php echo $event['id']; ?>" class="btn-action btn-edit" title="Edit Event">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="view_event.php?id=<?php echo $event['id']; ?>" class="btn-action btn-view" title="View Event">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a href="events.php?delete=<?php echo $event['id']; ?>" 
+                                                       class="btn-action btn-delete" 
+                                                       title="Delete Event"
+                                                       onclick="return confirm('Are you sure you want to delete this event?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -347,5 +496,33 @@ $events = $stmt->fetchAll();
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="admin-footer">
+        <a class="brand" href="index.php">
+            <img src="../property/logo idspora_nobg_outlined.png" alt="idSpora" />
+            <span>idSpora Admin</span>
+        </a>
+        <div class="small">© <?php echo date('Y'); ?> idSpora</div>
+    </footer>
+    <script>
+        // Event status filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusFilter = document.getElementById('statusFilter');
+            const eventRows = document.querySelectorAll('tbody tr[data-status]');
+            
+            statusFilter.addEventListener('change', function() {
+                const selectedStatus = this.value;
+                
+                eventRows.forEach(row => {
+                    const eventStatus = row.getAttribute('data-status');
+                    
+                    if (selectedStatus === 'all' || eventStatus === selectedStatus) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html> 

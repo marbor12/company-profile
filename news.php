@@ -1,3 +1,33 @@
+<?php
+require_once 'Admin/config/database.php';
+
+$pdo = getDBConnection();
+$berita_per_halaman = 8;
+
+$total_berita_stmt = $pdo->query("SELECT COUNT(*) FROM news");
+$total_berita = $total_berita_stmt->fetchColumn();
+
+$total_halaman = ceil($total_berita / $berita_per_halaman);
+
+$halaman_sekarang = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($halaman_sekarang > $total_halaman) {
+    $halaman_sekarang = $total_halaman;
+}
+if ($halaman_sekarang < 1) {
+    $halaman_sekarang = 1;
+}
+
+$offset = ($halaman_sekarang - 1) * $berita_per_halaman;
+
+$stmt = $pdo->prepare("SELECT * FROM news ORDER BY created_at DESC LIMIT :limit OFFSET :offset");
+$stmt->bindValue(':limit', $berita_per_halaman, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+$daftar_berita = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Set active page for header
+$activePage = 'news';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -200,6 +230,46 @@
       transition: all 0.4s ease;
       border: 1px solid rgba(244, 196, 48, 0.1);
       height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-card .card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-card .card-text {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .news-card .card-footer {
+      margin-top: auto;
+      padding-top: 15px;
+    }
+
+    .news-card h5 {
+      font-size: 1.1rem;
+      line-height: 1.4;
+      min-height: 2.8rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .news-card .card-text p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      min-height: 4.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .news-card:hover {
@@ -208,6 +278,7 @@
     }
 
     .news-card img {
+      border: 1px solid #e9ecef;
       border-radius: 10px;
       transition: all 0.4s ease;
       width: 100%;
@@ -311,44 +382,24 @@
       .blog-sidebar {
         margin-top: 30px;
       }
+
+      .news-card h5 {
+        font-size: 1rem;
+        min-height: 2.4rem;
+      }
+
+      .news-card .card-text p {
+        font-size: 0.85rem;
+        min-height: 4rem;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="main-container">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="index.php"><img src="property/logo idspora_nobg_outlined.png"
-            alt="idSpora Logo" /></a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto me-4">
-            <li class="nav-item">
-              <a class="nav-link" href="index.php">Beranda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.php">Tentang</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="products.php">Portofolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="reviews.php">Ulasan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="news.php">Berita</a>
-            </li>
-          </ul>
-          <a href="contact.php" class="btn btn-contact">Hubungi Kami</a>
-        </div>
-      </div>
-    </nav>
+    <!-- Include Header -->
+    <?php include 'includes/header.php'; ?>
 
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">
@@ -377,205 +428,74 @@
     <section class="section-spacing-sm" style="background: #ffffff">
       <div class="container">
         <div class="row">
-          <!-- Featured Article as Card -->
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="news-card">
-              <img src="property/berita-hadiri-fitrahinsani.png" alt="AI Trends" class="img-fluid mb-3" />
-              <div class="d-flex align-items-center mb-2">
-                <span class="badge bg-primary me-2">Seminar AI</span>
-                <small class="text-muted">09 Agustus 2025</small>
+          <?php if (!empty($daftar_berita)): ?>
+            <?php foreach ($daftar_berita as $article): ?>
+              <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="news-card">
+                  <?php
+                    $image_src = htmlspecialchars($article['picture']);
+                    if (strpos($image_src, 'uploads/') !== 0) {
+                      $image_src = 'uploads/' . $image_src;
+                    }
+                  ?>
+                  <img src="<?php echo $image_src; ?>" alt="<?php echo htmlspecialchars($article['title']); ?>" class="img-fluid mb-3" />
+                  
+                  <div class="card-content">
+                    <div class="d-flex align-items-center mb-2">
+                      <span class="badge bg-primary me-2">Berita</span>
+                      <small class="text-muted">
+                        <i class="fas fa-calendar-alt me-1"></i>
+                        <?php echo formatTanggalIndonesia($article['created_at']); ?>
+                      </small>
+                    </div>
+                    
+                    <h5 class="mb-3">
+                      <?php echo htmlspecialchars($article['title']); ?>
+                    </h5>
+                    
+                    <div class="card-text">
+                      <p class="text-muted mb-3">
+                        <?php echo htmlspecialchars(truncateText($article['article'], 150)); ?>
+                      </p>
+                    </div>
+                    
+                    <div class="card-footer">
+                      <a href="detail_berita.php?id=<?php echo $article['id']; ?>" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h5 class="mb-3">
-                Idspora Menghadiri Event Yayasan Fitrah Insani
-              </h5>
-              <p class="text-muted mb-3">
-                idSpora menghadiri event yang diselenggarakan oleh Yayasan Fitrah Insani. Seminar tersebut membahas
-                materi Media pembelajaran berbasis AI yang kreatif dan islami. 
-              </p>
-              <a href="dokumentasi-fgd.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <div class="col-12 text-center">
+              <p>Tidak ada berita untuk ditampilkan di halaman ini.</p>
             </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="news-card">
-              <img src="property/berita -buatmateri.png" alt="AI Trends" class="img-fluid mb-3" />
-              <div class="d-flex align-items-center mb-2">
-                <span class="badge bg-primary me-2">Seminar AI</span>
-                <small class="text-muted">08 Agustus 2025</small>
-              </div>
-              <h5 class="mb-3">
-                Idspora Membuat Modul Pelatihan Untuk Kolaborasi Dengan Yayasan Fitrah Insani
-              </h5>
-              <p class="text-muted mb-3">
-               Idspora membuat modul pelatihan untuk berkolaborasi dengan yayasan fitrah insani di hari sabtu
-              </p>
-              <a href="dokumentasi-fgd.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="50">
-            <div class="news-card">
-              <img src="property/fgdhibah1.jpg" class="img-fluid mb-3" />
-              <div class="d-flex align-items-center mb-2">
-                <span class="badge bg-primary me-2">FGD Literature & Review</span>
-                <small class="text-muted">20 Oktober 2024</small>
-              </div>
-              <h5 class="mb-3">
-                FGD Hibah Penelitian KerjaSama
-              </h5>
-              <p class="text-muted mb-3">
-                idSpora melakukan kolaborasi dengan kemenristekdikti untuk melalukan FGD Hibah Penelitian KerjaSama
-              </p>
-              <a href="dokumentasi-fgd.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="news-card">
-              <img src="property/workshopumkm1.jpg" alt="AI Trends" class="img-fluid mb-3" />
-              <div class="d-flex align-items-center mb-2">
-                <span class="badge bg-success me-2">Workshop AI</span>
-                <small class="text-muted">12 November 2024</small>
-              </div>
-              <h5 class="mb-3">
-                Workshop Jago AI For UMKM
-              </h5>
-              <p class="text-muted mb-3">
-                Kegiatan workshop yang diadakan oleh idSpora untuk UMKM dalam memanfaatkan AI untuk meningkatkan
-                produktivitas bisnis.
-              </p>
-              <a href="dokumentasi-workshop.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="news-card">
-              <img src="property/seminarai1.JPG" alt="AI Trends" class="img-fluid mb-3" />
-              <div class="d-flex align-items-center mb-2">
-                <span class="badge bg-success me-2">Seminar AI</span>
-                <small class="text-muted">09 November 2024</small>
-              </div>
-              <h5 class="mb-3">
-                Seminar Jago AI For UMKM
-              </h5>
-              <p class="text-muted mb-3">
-                KKegiatan seminar yang diadakan oleh idSpora untuk UMKM dalam memanfaatkan AI untuk meningkatkan
-                produktivitas bisnis.
-              </p>
-              <a href="dokumentasi-seminar.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="news-card">
-              <img src="property/cheva1.jpg" alt="Cybersecurity" class="img-fluid mb-3" />
-              <div class="d-flex align-items-center mb-2">
-                <span class="badge bg-danger me-2">Webinar Literature Review</span>
-                <small class="text-muted">29 November 2024</small>
-              </div>
-              <h5 class="mb-3">
-                Webinar idspora In Collaboration With Cheva
-              </h5>
-              <p class="text-muted mb-3">
-                Berisi materi All about publikasi ilmiah: Memahami dunia jurnal dan konferensi untuk pemula
-              </p>
-              <a href="dokumentasi-webinar.php" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
-            </div>
-          </div>
-
-          <!-- Pagination -->
-          <nav aria-label="Blog pagination" class="mt-5">
-            <ul class="pagination justify-content-center">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Sebelumnya</a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Selanjutnya</a>
-              </li>
-            </ul>
-          </nav>
+          <?php endif; ?>
         </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Blog pagination" class="mt-5">
+          <ul class="pagination justify-content-center">
+            <li class="page-item <?php if($halaman_sekarang <= 1){ echo 'disabled'; } ?>">
+              <a class="page-link" href="news.php?page=<?php echo $halaman_sekarang - 1; ?>">Sebelumnya</a>
+            </li>
+
+            <?php for($i = 1; $i <= $total_halaman; $i++): ?>
+              <li class="page-item <?php if($halaman_sekarang == $i) {echo 'active'; } ?>">
+                <a class="page-link" href="news.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+              </li>
+            <?php endfor; ?>
+
+            <li class="page-item <?php if($halaman_sekarang >= $total_halaman) { echo 'disabled'; } ?>">
+              <a class="page-link" href="news.php?page=<?php echo $halaman_sekarang + 1; ?>">Selanjutnya</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer-section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-3 col-md-6 mb-4">
-            <a class="navbar-brand" href="index.php"><img src="property/logo idspora_nobg_dark.png" alt="idSpora Logo"
-                style="height: 60px; width: auto" /></a>
-            <p class="text-light">
-              Belajar tanpa batas, berkembang tanpa henti.
-            </p>
-            <div class="social-links">
-              <a href="https://www.tiktok.com/@idspora" class="text-light me-3"><i class="fab fa-tiktok"></i></a>
-              <a href="https://www.instagram.com/idspora.official/" class="text-light me-3"><i
-                  class="fab fa-instagram"></i></a>
-              <a href="https://www.linkedin.com/company/idspora/" class="text-light"><i class="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-6 mb-4">
-            <h6 class="text-white mb-3">Quick Links</h6>
-            <ul class="list-unstyled">
-              <li><a href="index.php" class="text-light">Beranda</a></li>
-              <li>
-                <a href="about.php" class="text-light">Tentang Kami</a>
-              </li>
-              <li>
-                <a href="products.php" class="text-light">Portofolio</a>
-              </li>
-              <li><a href="reviews.php" class="text-light">Ulasan</a></li>
-              <li><a href="news.php" class="text-light">Berita</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-4">
-            <h6 class="text-white mb-3">Layanan</h6>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-light">Live Webinars</a></li>
-              <li>
-                <a href="#" class="text-light">Training & Mini Workshops</a>
-              </li>
-              <li><a href="#" class="text-light">E-Learning</a></li>
-              <li><a href="#" class="text-light">Video Production</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-4">
-            <h6 class="text-white mb-3">Hubungi Kami</h6>
-            <p class="text-light mb-2">
-              <i class="fas fa-envelope me-2"></i>info@idspora.com
-            </p>
-            <p class="text-light mb-2">
-              <i class="fas fa-phone me-2"></i>+62 898-926-0731
-            </p>
-            <p class="text-light mb-3">
-              <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
-            </p>
-            <div class="social-links">
-              <a href="https://www.tiktok.com/@idspora" class="text-light me-3" title="TikTok"><i
-                  class="fab fa-tiktok"></i></a>
-              <a href="https://www.instagram.com/idspora.official/" class="text-light me-3" title="Instagram"><i
-                  class="fab fa-instagram"></i></a>
-              <a href="https://www.linkedin.com/company/idspora/" class="text-light" title="LinkedIn"><i
-                  class="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-        <hr class="my-3" style="border-color: #495057" />
-        <div class="row justify-content-center">
-          <div class="col-md-4 text-center">
-            <p class="text-light mb-1" style="font-size: 0.8rem">
-              &copy; 2024 idSpora. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <!-- Include Footer -->
+    <?php include 'includes/footer.php'; ?>
   </div>
 
   <!-- WhatsApp Floating Button -->

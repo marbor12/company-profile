@@ -16,19 +16,36 @@ $pdo = getDBConnection();
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     try {
-        $stmt = $pdo->prepare("DELETE FROM news WHERE id = ?");
+        // Get the picture filename before deleting
+        $stmt = $pdo->prepare("SELECT picture FROM documentation WHERE id_dokumentasi = ?");
         $stmt->execute([$id]);
-        header('Location: news.php?success=deleted');
+        $doc = $stmt->fetch();
+        
+        if ($doc && $doc['picture']) {
+            $picture_path = "../uploads/documentation/" . $doc['picture'];
+            if (file_exists($picture_path)) {
+                unlink($picture_path);
+            }
+        }
+        
+        $stmt = $pdo->prepare("DELETE FROM documentation WHERE id_dokumentasi = ?");
+        $stmt->execute([$id]);
+        header('Location: documentation.php?success=deleted');
         exit();
     } catch(PDOException $e) {
-        header('Location: news.php?error=delete_failed');
+        header('Location: documentation.php?error=delete_failed');
         exit();
     }
 }
 
-// Get all news
-$stmt = $pdo->query("SELECT * FROM news ORDER BY id DESC");
-$news = $stmt->fetchAll();
+// Get all documentation with event information
+$stmt = $pdo->query("
+    SELECT d.*, e.title as event_title, e.date as event_date 
+    FROM documentation d 
+    LEFT JOIN event e ON d.id_event = e.id 
+    ORDER BY d.id_dokumentasi DESC
+");
+$documentations = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +53,7 @@ $news = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage News - Admin idSpora</title>
+    <title>Manage Documentation - Admin idSpora</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
@@ -93,8 +110,8 @@ $news = $stmt->fetchAll();
         }
         
         .btn-add {
-            background: var(--primary-yellow);
-            color: #111;
+            background: var(--primary-orange);
+            color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 25px;
@@ -103,8 +120,8 @@ $news = $stmt->fetchAll();
         }
         
         .btn-add:hover {
-            background: #e0b020;
-            color: #111;
+            background: var(--dark-blue);
+            color: white;
             transform: translateY(-2px);
         }
         
@@ -112,7 +129,7 @@ $news = $stmt->fetchAll();
             background: white;
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .table {
@@ -121,7 +138,7 @@ $news = $stmt->fetchAll();
         
         .table th {
             border-top: none;
-            background: #fff8d6;
+            background: #f8f9fa;
             color: var(--dark-blue);
             font-weight: 600;
         }
@@ -145,8 +162,8 @@ $news = $stmt->fetchAll();
         }
         
         .btn-view {
-            background: var(--primary-yellow);
-            color: #111;
+            background: var(--primary-orange);
+            color: white;
         }
         
         .logout-btn {
@@ -169,20 +186,17 @@ $news = $stmt->fetchAll();
             border: none;
         }
         
-        .news-preview {
-            max-width: 300px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+        .doc-image {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
         }
         
-        .news-content {
-            max-height: 100px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
+        .event-date {
+            color: #666;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -193,8 +207,8 @@ $news = $stmt->fetchAll();
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <h1><i class="fas fa-newspaper"></i> Manage News</h1>
-                        <p class="mb-0">Kelola semua berita idSpora</p>
+                        <h1><i class="fas fa-images"></i> Manage Documentation</h1>
+                        <p class="mb-0">Kelola dokumentasi event yang sudah lewat</p>
                     </div>
                     <div class="col-md-4 text-end">
                         <a href="logout.php" class="logout-btn">
@@ -225,7 +239,7 @@ $news = $stmt->fetchAll();
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="news.php">
+                        <a class="nav-link" href="news.php">
                             <i class="fas fa-newspaper"></i> News
                         </a>
                     </li>
@@ -235,7 +249,7 @@ $news = $stmt->fetchAll();
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="documentation.php">
+                        <a class="nav-link active" href="documentation.php">
                             <i class="fas fa-images"></i> Documentation
                         </a>
                     </li>
@@ -249,56 +263,67 @@ $news = $stmt->fetchAll();
                 <?php if (isset($_GET['success'])): ?>
                     <div class="alert alert-success">
                         <i class="fas fa-check-circle"></i> 
-                        <?php echo $_GET['success'] === 'deleted' ? 'Berita berhasil dihapus!' : 'Operasi berhasil!'; ?>
+                        <?php echo $_GET['success'] === 'deleted' ? 'Documentation berhasil dihapus!' : 'Operasi berhasil!'; ?>
                     </div>
                 <?php endif; ?>
                 
                 <?php if (isset($_GET['error'])): ?>
                     <div class="alert alert-danger">
                         <i class="fas fa-exclamation-triangle"></i> 
-                        Terjadi kesalahan saat menghapus berita.
+                        Terjadi kesalahan saat menghapus documentation.
                     </div>
                 <?php endif; ?>
 
                 <div class="content-header">
-                    <h2>Daftar Berita</h2>
-                    <a href="add_news.php" class="btn-add">
-                        <i class="fas fa-plus"></i> Add News Article
+                    <h2>Daftar Documentation</h2>
+                    <a href="add_documentation.php" class="btn-add">
+                        <i class="fas fa-plus"></i> Add New Documentation
                     </a>
                 </div>
 
                 <div class="table-container">
-                    <?php if ($news): ?>
+                    <?php if ($documentations): ?>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Content Preview</th>
+                                        <th>Image</th>
+                                        <th>Event</th>
+                                        <th>Event Date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($news as $article): ?>
+                                    <?php foreach ($documentations as $doc): ?>
                                         <tr>
                                             <td>
-                                                <strong class="news-preview"><?php echo htmlspecialchars($article['title']); ?></strong>
+                                                <?php if ($doc['picture']): ?>
+                                                    <img src="../uploads/documentation/<?php echo htmlspecialchars($doc['picture']); ?>" 
+                                                         alt="Documentation" class="doc-image">
+                                                <?php else: ?>
+                                                    <div class="doc-image bg-light d-flex align-items-center justify-content-center">
+                                                        <i class="fas fa-image text-muted"></i>
+                                                    </div>
+                                                <?php endif; ?>
                                             </td>
                                             <td>
-                                                <div class="news-content">
-                                                    <?php echo htmlspecialchars($article['article']); ?>
-                                                </div>
+                                                <strong><?php echo htmlspecialchars($doc['event_title'] ?? 'N/A'); ?></strong>
                                             </td>
                                             <td>
-                                                <a href="edit_news.php?id=<?php echo $article['id']; ?>" class="btn-action btn-edit">
+                                                <span class="event-date">
+                                                    <?php echo $doc['event_date'] ? date('d M Y', strtotime($doc['event_date'])) : 'N/A'; ?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a href="edit_documentation.php?id=<?php echo $doc['id_dokumentasi']; ?>" class="btn-action btn-edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="view_news.php?id=<?php echo $article['id']; ?>" class="btn-action btn-view">
+                                                <a href="view_documentation.php?id=<?php echo $doc['id_dokumentasi']; ?>" class="btn-action btn-view">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-                                                <a href="news.php?delete=<?php echo $article['id']; ?>" 
+                                                <a href="documentation.php?delete=<?php echo $doc['id_dokumentasi']; ?>" 
                                                    class="btn-action btn-delete"
-                                                   onclick="return confirm('Are you sure you want to delete this news article?')">
+                                                   onclick="return confirm('Are you sure you want to delete this documentation?')">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -309,11 +334,11 @@ $news = $stmt->fetchAll();
                         </div>
                     <?php else: ?>
                         <div class="text-center py-5">
-                            <i class="fas fa-newspaper" style="font-size: 4rem; color: #ccc;"></i>
-                            <h4 class="mt-3">No News Articles Found</h4>
-                            <p class="text-muted">Start by adding your first news article.</p>
-                            <a href="add_news.php" class="btn-add">
-                                <i class="fas fa-plus"></i> Add First Article
+                            <i class="fas fa-images" style="font-size: 4rem; color: #ccc;"></i>
+                            <h4 class="mt-3">No Documentation Found</h4>
+                            <p class="text-muted">Start by adding documentation for past events.</p>
+                            <a href="add_documentation.php" class="btn-add">
+                                <i class="fas fa-plus"></i> Add First Documentation
                             </a>
                         </div>
                     <?php endif; ?>
@@ -331,4 +356,4 @@ $news = $stmt->fetchAll();
         <div class="small">© <?php echo date('Y'); ?> idSpora</div>
     </footer>
 </body>
-</html> 
+</html>

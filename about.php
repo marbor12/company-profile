@@ -1,3 +1,14 @@
+<?php
+[$event_gallery, $total_events, $total_audience, $total_partners] = (function () {
+    $data = require __DIR__ . '/Admin/controller/get_home_data.php';
+    return [
+        $data['event_gallery'] ?? [],
+        $data['total_events'] ?? 0,
+        $data['total_audience'] ?? 0,
+        $data['total_partners'] ?? 0,
+    ];
+})();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -325,45 +336,7 @@
   <body>
     <div class="main-container">
       <!-- Navigation -->
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="index.html"
-            ><img
-              src="property/logo idspora_nobg_outlined.png"
-              alt="idSpora Logo"
-          /></a>
-
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto me-4">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Beranda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="about.html">Tentang</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="products.html">Portofolio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="reviews.html">Ulasan</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="news.html">Berita</a>
-              </li>
-            </ul>
-            <a href="contact.html" class="btn btn-contact">Hubungi Kami</a>
-          </div>
-        </div>
-      </nav>
+      <?php $activePage = 'about'; include __DIR__ . '/includes/header.php'; ?>
 
       <!-- Breadcrumb -->
       <nav aria-label="breadcrumb">
@@ -445,7 +418,7 @@
               data-aos-delay="100"
             >
               <div class="stat-item">
-                <div class="stat-number">500+</div>
+                <div class="stat-number"><?php echo number_format($total_audience); ?>+</div>
                 <h5>Peserta</h5>
               </div>
             </div>
@@ -455,8 +428,8 @@
               data-aos-delay="200"
             >
               <div class="stat-item">
-                <div class="stat-number">1+</div>
-                <h5>Tahun Pengalaman</h5>
+                <div class="stat-number"><?php echo (int)$total_events; ?>+</div>
+                <h5>Program Pelatihan</h5>
               </div>
             </div>
             <div
@@ -465,7 +438,7 @@
               data-aos-delay="300"
             >
               <div class="stat-item">
-                <div class="stat-number">5+</div>
+                <div class="stat-number"><?php echo (int)$total_partners; ?>+</div>
                 <h5>Mitra</h5>
               </div>
             </div>
@@ -780,105 +753,7 @@
       </section>
 
       <!-- Footer -->
-      <footer class="footer-section">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-3 col-md-6 mb-4">
-              <a class="navbar-brand" href="index.html"
-                ><img
-                  src="property/logo idspora_nobg_dark.png"
-                  alt="idSpora Logo"
-                  style="height: 60px; width: auto"
-              /></a>
-              <p class="text-light">
-                Belajar tanpa batas, berkembang tanpa henti.
-              </p>
-              <div class="social-links">
-                <a
-                  href="https://www.tiktok.com/@idspora"
-                  class="text-light me-3"
-                  ><i class="fab fa-tiktok"></i
-                ></a>
-                <a
-                  href="https://www.instagram.com/idspora.official/"
-                  class="text-light me-3"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/company/idspora/"
-                  class="text-light"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-              </div>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Quick Links</h6>
-              <ul class="list-unstyled">
-                <li><a href="index.html" class="text-light">Beranda</a></li>
-                <li>
-                  <a href="about.html" class="text-light">Tentang Kami</a>
-                </li>
-                <li>
-                  <a href="products.html" class="text-light">Portofolio</a>
-                </li>
-                <li><a href="reviews.html" class="text-light">Ulasan</a></li>
-                <li><a href="news.html" class="text-light">Berita</a></li>
-              </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Layanan</h6>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-light">Live Webinars</a></li>
-                <li>
-                  <a href="#" class="text-light">Training & Mini Workshops</a>
-                </li>
-                <li><a href="#" class="text-light">E-Learning</a></li>
-                <li><a href="#" class="text-light">Video Production</a></li>
-              </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-              <h6 class="text-white mb-3">Hubungi Kami</h6>
-              <p class="text-light mb-2">
-                <i class="fas fa-envelope me-2"></i>info@idspora.com
-              </p>
-              <p class="text-light mb-2">
-                <i class="fas fa-phone me-2"></i>+62 898-926-0731
-              </p>
-              <p class="text-light mb-3">
-                <i class="fas fa-map-marker-alt me-2"></i>Bandung, Indonesia
-              </p>
-              <div class="social-links">
-                <a
-                  href="https://www.tiktok.com/@idspora"
-                  class="text-light me-3"
-                  title="TikTok"
-                  ><i class="fab fa-tiktok"></i
-                ></a>
-                <a
-                  href="https://www.instagram.com/idspora.official/"
-                  class="text-light me-3"
-                  title="Instagram"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/company/idspora/"
-                  class="text-light"
-                  title="LinkedIn"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <hr class="my-3" style="border-color: #495057" />
-          <div class="row justify-content-center">
-            <div class="col-md-4 text-center">
-              <p class="text-light mb-1" style="font-size: 0.8rem">
-                &copy; 2024 idSpora. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <?php include __DIR__ . '/includes/footer.php'; ?>
     </div>
 
     <!-- WhatsApp Floating Button -->

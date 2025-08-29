@@ -110,9 +110,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
+    <link href="admin.css" rel="stylesheet">
     <style>
         .admin-container {
-            background: var(--light-cream);
+            background: #ffffff;
             border-radius: 20px;
             margin: 20px;
             overflow: hidden;
@@ -121,30 +122,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .admin-header {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, #FF8C42 100%);
-            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #fff9e6 100%);
+            color: var(--dark-blue);
             padding: 30px;
             text-align: center;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .admin-nav {
-            background: var(--dark-blue);
+            background: #ffffff;
             padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .admin-nav .nav-link {
-            color: white !important;
+            color: var(--dark-blue) !important;
             margin: 0 15px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         
         .admin-nav .nav-link:hover {
-            color: var(--primary-orange) !important;
+            color: var(--primary-yellow) !important;
         }
         
         .admin-nav .nav-link.active {
-            color: var(--primary-orange) !important;
+            color: var(--primary-yellow) !important;
             font-weight: 700;
         }
         
@@ -156,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: white;
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
         }
         
         .form-control, .form-select {
@@ -167,24 +170,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .form-control:focus, .form-select:focus {
-            border-color: var(--primary-orange);
-            box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+            border-color: var(--primary-yellow);
+            box-shadow: 0 0 0 0.2rem rgba(244, 196, 48, 0.25);
         }
         
-        .btn-submit {
-            background: var(--primary-orange);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-submit:hover {
-            background: var(--dark-blue);
-            transform: translateY(-2px);
-        }
+
         
         .btn-back {
             background: #6c757d;
@@ -237,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         .file-upload-info i {
-            color: var(--primary-orange);
+            color: var(--primary-yellow);
             margin-right: 5px;
         }
         
@@ -323,26 +313,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <i class="fas fa-star"></i> Reviews
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documentation.php">
+                            <i class="fas fa-images"></i> Documentation
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
 
         <!-- Admin Content -->
         <div class="admin-content">
-            <div class="container">
-                <?php if ($success): ?>
-                    <div class="alert alert-success">
-                        <i class="fas fa-check-circle"></i> <?php echo $success; ?>
-                    </div>
-                <?php endif; ?>
-                
-                <?php if ($error): ?>
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-triangle"></i> <?php echo $error; ?>
-                    </div>
-                <?php endif; ?>
+            <?php if ($success): ?>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> <?php echo $success; ?>
+                </div>
+            <?php endif; ?>
+            
+            <?php if ($error): ?>
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> <?php echo $error; ?>
+                </div>
+            <?php endif; ?>
 
-                <div class="form-container">
+            <div class="form-container">
                     <form method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
@@ -416,7 +410,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
 
                         <div class="d-flex gap-3">
-                            <button type="submit" class="btn btn-submit">
+                            <button type="submit" class="btn btn-add">
                                 <i class="fas fa-save"></i> Save Mentor
                             </button>
                             <a href="mentors.php" class="btn btn-back">
@@ -425,7 +419,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </form>
                 </div>
-            </div>
         </div>
     </div>
 

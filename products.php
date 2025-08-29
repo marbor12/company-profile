@@ -1,3 +1,12 @@
+<?php
+/**
+ * Products/Portfolio Page - Event Carousel
+ * Controller-based data loading
+ */
+
+// Include controller to fetch events
+$event_carousel = require __DIR__ . '/Admin/controller/get_events.php';
+?>
 <!DOCTYPE html>
 <html lang="id">
   <head>
@@ -256,9 +265,9 @@
         border-radius:16px;box-shadow:0 2px 8px var(--shadow-color);padding:32px 24px; margin-left: 50px; margin-top: -50px;
       }
       .subtitle{color:var(--primary-yellow-dark);font-size:12px;letter-spacing:1.5px;margin-bottom:8px;text-transform:uppercase}
-      .main-title{font-size:44px;font-weight:700;line-height:1.15;margin-bottom:6px;color:var(--primary-gray)}
+      .main-title{font-size:44px;font-weight:700;line-height:1.15;margin-bottom:6px;color:var(--primary-gray);word-wrap:break-word;overflow-wrap:break-word}
       .year{font-size:16px;color:#caa800;margin-bottom:16px}
-      .description{font-size:15px;margin-bottom:16px;color:#425466}
+      .description{font-size:15px;margin-bottom:16px;color:#425466;line-height:1.6;word-wrap:break-word;overflow-wrap:break-word;max-height:120px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical}
       .features{list-style:none;margin:0;padding:0}
       .features li{
         margin-bottom:10px;font-size:15px;position:relative;padding-left:18px;color:var(--primary-gray);
@@ -298,14 +307,16 @@
       .nft-sphere::before{
         width:14px;height:14px;background:rgba(255,255,255,.7);border-radius:50%;filter:blur(2px);content:"";position:absolute;top:15%;left:25%
       }
-      .nft-title{font-size:18px;font-weight:700;color:#22324a;margin-bottom:6px;text-align:center}
-      .nft-card.center .nft-title{font-size:24px;margin-bottom:10px}
+      .nft-title{font-size:18px;font-weight:700;color:#22324a;margin-bottom:6px;text-align:center;line-height:1.3;word-wrap:break-word;overflow-wrap:break-word}
+      .nft-card.center .nft-title{font-size:24px;margin-bottom:10px;line-height:1.2}
       .reward-badge{background:var(--primary-yellow-dark);color:#22324a;box-shadow:0 1px 4px var(--shadow-color);padding:7px 16px;border-radius:14px;
         font-size:12px;font-weight:800;text-align:center;margin-bottom:8px;text-transform:uppercase}
       .nft-card.center .reward-badge{font-size:13px;padding:9px 18px}
-      .availability{color:#425466;background:var(--primary-white);border-radius:8px;padding:6px 12px;text-align:center;font-size:14px}
+      .availability{color:#425466;background:var(--primary-white);border-radius:8px;padding:6px 12px;text-align:center;font-size:14px;line-height:1.3;word-wrap:break-word}
       .nft-card.center .availability{font-size:15px}
       .nft-stats{color:#425466;background:var(--primary-white);border-radius:8px;padding:4px 10px;text-align:center;margin-bottom:6px}
+      .nft-description{color:#425466;background:var(--primary-white);border-radius:8px;padding:6px 12px;text-align:center;font-size:12px;line-height:1.4;word-wrap:break-word;overflow-wrap:break-word;max-height:60px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+      .nft-card.center .nft-description{font-size:13px;max-height:80px;-webkit-line-clamp:4}
 
       .carousel-nav{
         position:absolute;top:50%;transform:translateY(-50%);background:var(--primary-white);border:1px solid var(--primary-yellow-dark);border-radius:50%;
@@ -347,12 +358,18 @@
         .nft-cards{justify-content:flex-start;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;padding:20px 0}
         .nft-cards::-webkit-scrollbar{display:none}
         .nft-card{scroll-snap-align:center;min-width:200px}
+        .main-title{font-size:32px;line-height:1.2}
+        .description{font-size:14px;max-height:100px;-webkit-line-clamp:4}
+        .content-left{margin-left:0;margin-top:0}
       }
       @media (max-width: 480px){
         .page-container{padding:0 16px}
-        .main-title{font-size:30px}
+        .main-title{font-size:28px;line-height:1.3}
+        .description{font-size:13px;max-height:80px;-webkit-line-clamp:3}
         .carousel-nav{width:40px;height:40px}
         .carousel-nav.prev{left:-20px}.carousel-nav.next{right:-20px}
+        .nft-title{font-size:16px}
+        .nft-card.center .nft-title{font-size:20px}
       }
     </style>
   </head>
@@ -361,45 +378,7 @@
    
    <div class="main-container">
       <!-- Navigation -->
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="index.php"
-            ><img
-              src="property/logo idspora_nobg_outlined.png"
-              alt="idSpora Logo"
-          /></a>
-
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto me-4">
-              <li class="nav-item">
-                <a class="nav-link" href="index.php">Beranda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.php">Tentang</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="products.php">Portofolio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="reviews.php">Ulasan</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="news.php">Berita</a>
-              </li>
-            </ul>
-            <a href="contact.php" class="btn btn-contact">Hubungi Kami</a>
-          </div>
-        </div>
-      </nav>
+      <?php $activePage = 'products'; include __DIR__ . '/includes/header.php'; ?>
 
       <!-- Breadcrumb -->
       <nav aria-label="breadcrumb">
@@ -415,14 +394,38 @@
     <!-- ===== MAIN ===== -->
       <main class="main-content">
         <div class="content-left">
-          <div class="subtitle">Focus Group Discussion</div>
-          <h1 class="main-title">Sunset Phase</h1>
-          <div class="year">(Late 2024)</div>
-          <p class="description">Complete sunset journey and get 3 of 4 NFT.</p>
+          <div class="subtitle"><?php echo htmlspecialchars($event_carousel[0]['category'] ?? 'Event'); ?></div>
+          <h1 class="main-title"><?php echo htmlspecialchars($event_carousel[0]['title'] ?? 'Event Portfolio'); ?></h1>
+          <div class="year">
+            <?php 
+            if (isset($event_carousel[0]['date'])) {
+              $date = new DateTime($event_carousel[0]['date']);
+              echo $date->format('d F Y');
+            } else {
+              echo 'Tanggal TBD';
+            }
+            ?>
+          </div>
+          <p class="description"><?php echo htmlspecialchars($event_carousel[0]['description'] ?? 'Deskripsi event akan ditampilkan di sini.'); ?></p>
           <ul class="features">
-            <li>Non-EVM Networks Expansion</li>
-            <li>Non-EVM Cross Chain Swaps</li>
-            <li>Multichain Portal</li>
+            <?php 
+            $event = $event_carousel[0];
+            $features = [];
+            if ($event['audience']) {
+              $features[] = $event['audience'] . ' Peserta';
+            }
+            if ($event['type']) {
+              $features[] = 'Tipe: ' . $event['type'];
+            }
+            if ($event['venue']) {
+              $features[] = 'Lokasi: ' . $event['venue'];
+            }
+            if (empty($features)) {
+              $features[] = 'Event yang telah dilaksanakan';
+            }
+            foreach ($features as $feature): ?>
+              <li><?php echo htmlspecialchars($feature); ?></li>
+            <?php endforeach; ?>
           </ul>
         </div>
 
@@ -439,41 +442,49 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-      const cardsData = [
-        {
-          phase: "hibah_penelitian",
+      // Data from PHP database
+      const cardsData = <?php echo json_encode($event_carousel); ?>;
+      
+      // Convert database data to card format
+      const processedCardsData = cardsData.map((event, index) => {
+        const eventDate = new Date(event.date);
+        const formattedDate = eventDate.toLocaleDateString('id-ID', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+        
+        // Get first image or use default
+        const imagePath = event.images && event.images.length > 0 
+          ? `uploads/documentation/${event.images[0]}` 
+          : 'property/training.jpg';
+        
+        // Truncate description if too long
+        const shortDescription = event.description && event.description.length > 100 
+          ? event.description.substring(0, 100) + '...' 
+          : event.description || 'Tidak ada deskripsi';
+        
+        return {
+          phase: `event_${event.id}`,
           html: `
-            <div class="nft-image"><img src="property/fgd_bu_yayu.JPG" alt="FGD Hibah Penelitian Kerjasama" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
-            <div class="nft-title">FGD Hibah Penelitian Kerjasama</div>
-            <div class="nft-stats">10 Oktober 2024</div>
-            <div class="availability">Telkom University</div>`,
-        },
-        {
-          phase: "jagoai_series",
-          html: `
-            <div class="nft-image"><div class="nft-sphere"></div></div>
-            <div class="reward-badge">GET 1 OF 4 NFT REWARD</div>
-            <div class="nft-title">Retro Bridge Sunset</div>
-            <div class="availability">Available in Sunset Phase</div>
-          `,
-        },
-        {
-          phase: "midnight",
-          html: `
-            <div class="nft-image"><div class="nft-sphere"></div></div>
-            <div class="nft-title">Retro Bridge Midnight</div>
-            <div class="availability">Midnight Journey</div>
-          `,
-        },
-      ];
+            <div class="nft-image">
+              <img src="${imagePath}" alt="${event.title}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" onerror="this.src='property/training.jpg'">
+            </div>
+            <div class="nft-title">${event.title}</div>
+            <div class="nft-stats">${formattedDate}</div>
+            <div class="nft-description">${shortDescription}</div>
+            <div class="availability">${event.venue}</div>`,
+          eventData: event
+        };
+      });
 
       let currentCenterIndex = 1;
-      const totalCards = cardsData.length;
+      const totalCards = processedCardsData.length;
 
       function renderCards(){
         const carousel = document.getElementById("nftCarousel");
         carousel.innerHTML = "";
-        cardsData.forEach((card, i) => {
+        processedCardsData.forEach((card, i) => {
           const div = document.createElement("div");
           div.className = "nft-card";
           div.dataset.phase = card.phase;
@@ -534,46 +545,51 @@
 
       function updateContentForCurrentCard(){
         const currentCard = document.querySelectorAll(".nft-card")[currentCenterIndex];
-        const phase = currentCard?.dataset.phase;
+        const currentEvent = processedCardsData[currentCenterIndex];
+        
+        if (!currentEvent || !currentEvent.eventData) {
+          return;
+        }
+        
+        const event = currentEvent.eventData;
         const titleEl = document.querySelector(".main-title");
         const subtitleEl = document.querySelector(".subtitle");
         const yearEl = document.querySelector(".year");
         const descEl = document.querySelector(".description");
         const featuresEl = document.querySelector(".features");
 
-        const phaseData = {
-          hibah_penelitian: {
-            title: "Hibah Penelitian Kerjasama - Dalam Negerti Kemenristekdikti",
-            year: "10 Oktober 2024",
-            subtitle: "Forum Group Discussion",
-            description: "ini deskripsi",
-            features: [
-                "15 Peserta dari Telkom University & STIK Siti Khadijah Palembang",
-                "Dilaksanan secara onsite di Fakultas Ilmu Terapan Telkom University",
-            ],
-          },
-          sunset: {
-            title: "Sunset Phase",
-            year: "(Late 2024)",
-            subtitle: "Complete Sunset Journey",
-            description: "Complete sunset journey and get 3 of 4 NFT.",
-            features: ["Non-EVM Networks Expansion","Non-EVM Cross Chain Swaps","Multichain Portal"],
-          },
-          midnight: {
-            title: "Midnight Phase",
-            year: "(Early 2025)",
-            subtitle: "Complete Midnight Journey",
-            description: "Complete midnight journey and get 4 of 4 NFT.",
-            features: ["Advanced Protocol Integration","Cross-Reality Swaps","Ultimate Portal Access"],
-          },
-        };
+        // Format date
+        const eventDate = new Date(event.date);
+        const formattedDate = eventDate.toLocaleDateString('id-ID', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
 
-        const data = phaseData[phase] || phaseData.sunset;
-        titleEl.textContent = data.title;
-        yearEl.textContent = data.year;
-        subtitleEl.textContent = data.subtitle;
-        descEl.textContent = data.description;
-        featuresEl.innerHTML = data.features.map(f=>`<li>${f}</li>`).join("");
+        // Update content
+        titleEl.textContent = event.title;
+        yearEl.textContent = formattedDate;
+        subtitleEl.textContent = event.category || 'Event';
+        descEl.textContent = event.description || 'Tidak ada deskripsi yang tersedia.';
+        
+        // Create features from event data
+        const features = [];
+        if (event.audience) {
+          features.push(`${event.audience} Peserta`);
+        }
+        if (event.type) {
+          features.push(`Tipe: ${event.type}`);
+        }
+        if (event.venue) {
+          features.push(`Lokasi: ${event.venue}`);
+        }
+        
+        // If no features, add default
+        if (features.length === 0) {
+          features.push('Event yang telah dilaksanakan');
+        }
+        
+        featuresEl.innerHTML = features.map(f => `<li>${f}</li>`).join("");
       }
 
       document.addEventListener("DOMContentLoaded", () => {
@@ -598,6 +614,8 @@
 
       window.addEventListener("resize", updateCarouselTransform);
     </script>
+
+    <?php include __DIR__ . '/includes/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>

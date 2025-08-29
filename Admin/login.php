@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
+    <link href="admin.css" rel="stylesheet">
     <style>
         .login-container {
             background: var(--light-cream);
@@ -59,6 +60,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .login-header {
             text-align: center;
             margin-bottom: 30px;
+        }
+        
+        .login-logo {
+            margin-bottom: 10px;
+        }
+        
+        .login-logo img {
+            height: 50px;
+            width: auto;
         }
         
         .login-header h2 {
@@ -138,6 +148,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="login-container">
         <div class="login-card">
             <div class="login-header">
+                <div class="login-logo">
+                    <img src="../property/logo idspora_nobg_outlined.png" alt="idSpora" />
+                </div>
                 <h2><i class="fas fa-cogs"></i> Admin Login</h2>
                 <p>Masuk ke panel administrasi idSpora</p>
             </div>
@@ -183,5 +196,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="admin-footer">
+        <a class="brand" href="index.php">
+            <img src="../property/logo idspora_nobg_outlined.png" alt="idSpora" />
+            <span>idSpora Admin</span>
+        </a>
+        <div class="small">© <?php echo date('Y'); ?> idSpora</div>
+    </footer>
 </body>
 </html> 

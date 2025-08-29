@@ -29,9 +29,10 @@ $totalReviews = $stats['total_reviews'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
+    <link href="admin.css" rel="stylesheet">
     <style>
         .admin-container {
-            background: var(--light-cream);
+            background: #ffffff;
             border-radius: 20px;
             margin: 20px;
             overflow: hidden;
@@ -40,30 +41,32 @@ $totalReviews = $stats['total_reviews'];
         }
         
         .admin-header {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, #FF8C42 100%);
-            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #fff9e6 100%);
+            color: var(--dark-blue);
             padding: 30px;
             text-align: center;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .admin-nav {
-            background: var(--dark-blue);
+            background: #ffffff;
             padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .admin-nav .nav-link {
-            color: white !important;
+            color: var(--dark-blue) !important;
             margin: 0 15px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         
         .admin-nav .nav-link:hover {
-            color: var(--primary-orange) !important;
+            color: var(--primary-yellow) !important;
         }
         
         .admin-nav .nav-link.active {
-            color: var(--primary-orange) !important;
+            color: var(--primary-yellow) !important;
             font-weight: 700;
         }
         
@@ -82,7 +85,7 @@ $totalReviews = $stats['total_reviews'];
         
         .stats-icon {
             font-size: 3rem;
-            color: var(--primary-orange);
+            color: var(--primary-yellow);
             margin-bottom: 15px;
         }
         
@@ -110,8 +113,8 @@ $totalReviews = $stats['total_reviews'];
         }
         
         .action-btn {
-            background: var(--primary-orange);
-            color: white;
+            background: var(--primary-yellow);
+            color: #111;
             border: none;
             padding: 12px 25px;
             border-radius: 25px;
@@ -122,8 +125,8 @@ $totalReviews = $stats['total_reviews'];
         }
         
         .action-btn:hover {
-            background: var(--dark-blue);
-            color: white;
+            background: #e0b020;
+            color: #111;
             transform: translateY(-2px);
         }
         
@@ -189,6 +192,11 @@ $totalReviews = $stats['total_reviews'];
                     <li class="nav-item">
                         <a class="nav-link" href="reviews.php">
                             <i class="fas fa-star"></i> Reviews
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documentation.php">
+                            <i class="fas fa-images"></i> Documentation
                         </a>
                     </li>
                 </ul>
@@ -314,5 +322,12 @@ $totalReviews = $stats['total_reviews'];
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="admin-footer">
+        <a class="brand" href="index.php">
+            <img src="../property/logo idspora_nobg_outlined.png" alt="idSpora" />
+            <span>idSpora Admin</span>
+        </a>
+        <div class="small">© <?php echo date('Y'); ?> idSpora</div>
+    </footer>
 </body>
 </html> 

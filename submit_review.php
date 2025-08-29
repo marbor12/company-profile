@@ -44,11 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!$event) {
                 $error_message = 'Event yang dipilih tidak valid atau belum selesai!';
             } else {
-                // Insert review into database
+                // Insert review into approval table instead of main review table
                 try {
                     $stmt = $pdo->prepare("
-                        INSERT INTO review (name, job_title, rate, review, id_event) 
-                        VALUES (?, ?, ?, ?, ?)
+                        INSERT INTO review_approval (name, job_title, rate, review, id_event, status) 
+                        VALUES (?, ?, ?, ?, ?, 'pending')
                     ");
                     $stmt->execute([$name, $job_title, $rate, $review, $id_event]);
                     $success = true;
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Redirect back to reviews page with appropriate message
 if ($success) {
-    header('Location: reviews.php?success=submitted');
+    header('Location: reviews.php?success=pending_approval');
 } else {
     header('Location: reviews.php?error=' . urlencode($error_message));
 }
